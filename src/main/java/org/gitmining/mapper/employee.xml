@@ -5,11 +5,11 @@
 		<result property="id" column="id" />
 		<result property="name" column="name" />
 	</resultMap>
-	
+
 	<insert id="insertEmployee" parameterType="org.gitmining.bean.Employee">
 		INSERT INTO
 		employee
 		(name)
 		VALUES(#{name});
-	</insert>	
+	</insert>
 </mapper>
