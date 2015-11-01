@@ -22,5 +22,7 @@
           $screen_content  
        </div>
        <div id="footer">#parse('footer.vm')</div>
+       
+       <script src="/GithubVisualization/static/js/semantic.min.js"></script>
     </body>  
 </html> 
