@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
-	<bean id="userDataService" class="org.gitmining.service.impl.UserDataServiceStub">
+	<bean id="userDataService" class="org.gitmining.service.impl.UserDataServiceImpl">
+		<property name="userDao" ref="userDao"></property>
 	</bean>
 </beans>

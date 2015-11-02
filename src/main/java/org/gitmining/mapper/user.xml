@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+	<resultMap type="org.gitmining.bean.User" id="user">
+		<result property="id" column="id" />
+		<result property="login" column="login" />
+		<result property="type" column="type" />
+		<result property="site_admin" column="site_admin" />
+		<result property="name" column="name" />
+		<result property="company" column="company" />
+		<result property="blog" column="blog" />
+		<result property="location" column="location" />
+		<result property="email" column="email" />
+		<result property="hireable" column="hireable" />
+		<result property="bio" column="bio" />
+		<result property="public_repos" column="public_repos" />
+		<result property="public_gists" column="public_gists" />
+		<result property="followers" column="followers" />
+		<result property="following" column="following" />
+		<result property="created_at" column="created_at" />
+		<result property="updated_at" column="updated_at" />
+	</resultMap>
+
+	<select id="selectAllUsers" resultMap="user">
+		SELECT id, login, type, site_admin, name,company,blog,location,email,hireable,bio,public_repos,public_gists,followers,following,created_at,updated_at
+		FROM
+		usertest;
+	</select>
+	
+	<select id="countUsers" resultType="java.lang.Integer">
+		SELECT
+		count(*)
+		FROM 
+		usertest;
+	</select>
+
+</mapper>

@@ -1,11 +1,12 @@
 package org.gitmining.bean;
 
-public class Orgnization {
+public class Organization {
 	private int id;
 	private String login;
 	private String name;
 	private String company;
 	private int member_count;
+	private int repo_count;
 	public int getId() {
 		return id;
 	}
@@ -36,14 +37,23 @@ public class Orgnization {
 	public void setMember_count(int member_count) {
 		this.member_count = member_count;
 	}
-	public Orgnization(int id, String login, String name, String company,
-			int member_count) {
+	
+	public int getRepo_count() {
+		return repo_count;
+	}
+	public void setRepo_count(int repo_count) {
+		this.repo_count = repo_count;
+	}
+	public Organization(int id, String login, String name, String company,
+			int member_count, int repo_count) {
 		super();
 		this.id = id;
 		this.login = login;
 		this.name = name;
 		this.company = company;
 		this.member_count = member_count;
+		this.repo_count = repo_count;
 	}
+
 	
 }

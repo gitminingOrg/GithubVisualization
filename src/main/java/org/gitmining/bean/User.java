@@ -16,8 +16,8 @@ public class User {
 	private int public_gists;
 	private int followers;
 	private int following;
-	private String create_at;
-	private String update_at;
+	private String created_at;
+	private String updated_at;
 	public int getId() {
 		return id;
 	}
@@ -108,41 +108,17 @@ public class User {
 	public void setFollowing(int following) {
 		this.following = following;
 	}
-	public String getCreate_at() {
-		return create_at;
+	public String getCreated_at() {
+		return created_at;
 	}
-	public void setCreate_at(String create_at) {
-		this.create_at = create_at;
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
 	}
-	public String getUpdate_at() {
-		return update_at;
+	public String getUpdated_at() {
+		return updated_at;
 	}
-	public void setUpdate_at(String update_at) {
-		this.update_at = update_at;
+	public void setUpdated_at(String updated_at) {
+		this.updated_at = updated_at;
 	}
-	public User(int id, String login, String type, boolean site_admin,
-			String name, String company, String blog, String location,
-			String email, boolean hireable, String bio, int public_repos,
-			int public_gists, int followers, int following, String create_at,
-			String update_at) {
-		super();
-		this.id = id;
-		this.login = login;
-		this.type = type;
-		this.site_admin = site_admin;
-		this.name = name;
-		this.company = company;
-		this.blog = blog;
-		this.location = location;
-		this.email = email;
-		this.hireable = hireable;
-		this.bio = bio;
-		this.public_repos = public_repos;
-		this.public_gists = public_gists;
-		this.followers = followers;
-		this.following = following;
-		this.create_at = create_at;
-		this.update_at = update_at;
-	}
-	
+
 }

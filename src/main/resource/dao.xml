@@ -6,5 +6,11 @@
 	<bean id="employeeDao" class="org.gitmining.dao.impl.EmployeeDaoImpl">
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
-
+	<bean id="userDao" class="org.gitmining.dao.impl.UserDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	<bean id="organizationDao" class="org.gitmining.dao.impl.OrganizationDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
 </beans>
