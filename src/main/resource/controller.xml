@@ -4,8 +4,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
-	<bean class="org.gitmining.controller.HelloController" />
-
 	<bean id="addEmployeeController" class="org.gitmining.controller.AddEmployeeController">
 		<property name="employeeDao" ref="employeeDao"></property>
 	</bean>

@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.gitmining.service.UserDataService;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+@RestController
 public class UserDataController {
 	private UserDataService userDataService;
 	public UserDataService getUserDataService() {
@@ -21,7 +25,13 @@ public class UserDataController {
 		this.userDataService = userDataService;
 	}
 	
-	@RequestMapping(value="/companyData")
+	@RequestMapping(value="/user")
+	public ModelAndView getUserView(HttpServletRequest request) throws Exception {
+		
+		return new ModelAndView("user");
+	}
+	
+	@RequestMapping(value="/companyData",method=RequestMethod.GET)
 	public Map companyData(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub

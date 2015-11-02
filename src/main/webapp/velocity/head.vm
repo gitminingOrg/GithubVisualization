@@ -2,7 +2,7 @@
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<div href="#" class="header item">GitMining</div>
-			<a href="#" class="item">Overview</a><a href="#" class="item">UserAnalysis</a><a
+			<a href="#" class="item">Overview</a><a href="/GithubVisualization/user" class="item">UserAnalysis</a><a
 				href="#" class="ui simple dropdown item"> Dropdown <i
 				class="dropdown icon"></i>
 				<div class="menu">

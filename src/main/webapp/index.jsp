@@ -1,3 +1,3 @@
 <script language="javascript">
-	window.location.href = "hello";
+	window.location.href = "user";
 </script>
