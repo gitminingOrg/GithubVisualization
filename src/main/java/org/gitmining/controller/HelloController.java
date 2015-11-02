@@ -12,11 +12,12 @@ import org.springframework.web.servlet.mvc.Controller;
 @RestController
 public class HelloController implements Controller {
 	@RequestMapping(value="/hello")
-	public ModelAndView handleRequest(String id, ModelMap modelMap,HttpServletRequest request) throws Exception {
+	public ModelAndView handleRequest(String id, ModelMap data,HttpServletRequest request) throws Exception {
 		// TODO Auto-generated method stub
 		//ModelAndView view = new ModelAndView("hello");
 		//view.addObject("mes", "hello");
-		return new ModelAndView("user");
+//		data.addAttribute(attributeName, attributeValue)
+		return new ModelAndView("user","data",data);
 	}
 
 	@Override

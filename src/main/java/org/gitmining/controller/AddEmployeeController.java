@@ -29,5 +29,4 @@ public class AddEmployeeController implements Controller{
 		ModelAndView view = new ModelAndView("hello");
 		return view;
 	}
-
 }

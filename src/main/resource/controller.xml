@@ -9,4 +9,8 @@
 	<bean id="addEmployeeController" class="org.gitmining.controller.AddEmployeeController">
 		<property name="employeeDao" ref="employeeDao"></property>
 	</bean>
+	
+	<bean id="userDataController" class="org.gitmining.controller.UserDataController">
+		<property name="userDataService" ref="userDataService"></property>
+	</bean>
 </beans>
