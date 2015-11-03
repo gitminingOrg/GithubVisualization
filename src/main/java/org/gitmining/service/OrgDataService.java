@@ -1,5 +1,6 @@
 package org.gitmining.service;
 
+import java.util.List;
 import java.util.Map;
 
 public interface OrgDataService {
@@ -13,4 +14,10 @@ public interface OrgDataService {
 	 * @return
 	 */	
 	public Map<Integer,Integer> getOrgRepoCountData();
+	
+	/**
+	 * ln map of repo and member count of a org
+	 * @return
+	 */
+	public List<double[]> getOrgLnMap();
 }
