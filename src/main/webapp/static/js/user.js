@@ -186,7 +186,7 @@ $(function() {
 				}
 			});
 		
-		//get emaildata
+		// get emaildata
 		url="/GithubVisualization/emailData"
 			$.ajax(url, {
 				type : 'GET',
@@ -231,72 +231,76 @@ $(function() {
 				}
 			});
 		
-		//get org's repo-user
-		$('#container').highcharts({                                                             
-	        chart: {                                                                             
-	            type: 'scatter',                                                                 
-	            zoomType: 'xy'                                                                   
-	        },                                                                                   
-	        title: {                                                                             
-	            text: 'Height Versus Weight of 507 Individuals by Gender'                        
-	        },                                                                                   
-	        subtitle: {                                                                          
-	            text: 'Source: Heinz  2003'                                                      
-	        },                                                                                   
-	        xAxis: {                                                                             
-	            title: {                                                                         
-	                enabled: true,                                                               
-	                text: 'Height (cm)'                                                          
-	            },                                                                               
-	            startOnTick: true,                                                               
-	            endOnTick: true,                                                                 
-	            showLastLabel: true                                                              
-	        },                                                                                   
-	        yAxis: {                                                                             
-	            title: {                                                                         
-	                text: 'Weight (kg)'                                                          
-	            }                                                                                
-	        },                                                                                   
-	        legend: {                                                                            
-	            layout: 'vertical',                                                              
-	            align: 'left',                                                                   
-	            verticalAlign: 'top',                                                            
-	            x: 100,                                                                          
-	            y: 70,                                                                           
-	            floating: true,                                                                  
-	            backgroundColor: '#FFFFFF',                                                      
-	            borderWidth: 1                                                                   
-	        },                                                                                   
-	        plotOptions: {                                                                       
-	            scatter: {                                                                       
-	                marker: {                                                                    
-	                    radius: 5,                                                               
-	                    states: {                                                                
-	                        hover: {                                                             
-	                            enabled: true,                                                   
-	                            lineColor: 'rgb(100,100,100)'                                    
-	                        }                                                                    
-	                    }                                                                        
-	                },                                                                           
-	                states: {                                                                    
-	                    hover: {                                                                 
-	                        marker: {                                                            
-	                            enabled: false                                                   
-	                        }                                                                    
-	                    }                                                                        
-	                },                                                                           
-	                tooltip: {                                                                   
-	                    headerFormat: '<b>{series.name}</b><br>',                                
-	                    pointFormat: '{point.x} cm, {point.y} kg'                                
-	                }                                                                            
-	            }                                                                                
-	        },                                                                                   
-	        series: [{                                                                           
-	            name: 'Female',                                                                  
-	            color: 'rgba(223, 83, 83, .5)',                                                  
-	            data:   data                                                                         
-	        }]                                                                                   
-	    });                                                                                      
+		// get org's repo-user
+		url="/GithubVisualization/orgTotalData"
+			$.ajax(url, {
+				type : 'GET',
+				success : function(data, textStatus) {
+					$('#repouser').highcharts({                                                             
+				        chart: {                                                                             
+				            type: 'scatter',                                                                 
+				            zoomType: 'xy'                                                                   
+				        },                                                                                   
+				        title: {                                                                             
+				            text: 'Users and Repositories in Organizations'                        
+				        },                                                                                   
+				        xAxis: {                                                                             
+				            title: {                                                                         
+				                enabled: true,                                                               
+				                text: 'User'                                                          
+				            },                                                                               
+				            startOnTick: true,                                                               
+				            endOnTick: true,                                                                 
+				            showLastLabel: true                                                              
+				        },                                                                                   
+				        yAxis: {                                                                             
+				            title: {                                                                         
+				                text: 'Repository'                                                          
+				            }                                                                                
+				        },                                                                                   
+				        legend: {                                                                            
+				            layout: 'vertical',                                                              
+				            align: 'left',                                                                   
+				            verticalAlign: 'top',                                                            
+				            x: 100,                                                                          
+				            y: 70,                                                                           
+				            floating: true,                                                                  
+				            backgroundColor: '#FFFFFF',                                                      
+				            borderWidth: 1                                                                   
+				        },                                                                                   
+				        plotOptions: {                                                                       
+				            scatter: {                                                                       
+				                marker: {                                                                    
+				                    radius: 5,                                                               
+				                    states: {                                                                
+				                        hover: {                                                             
+				                            enabled: true,                                                   
+				                            lineColor: 'rgb(100,100,100)'                                    
+				                        }                                                                    
+				                    }                                                                        
+				                },                                                                           
+				                states: {                                                                    
+				                    hover: {                                                                 
+				                        marker: {                                                            
+				                            enabled: false                                                   
+				                        }                                                                    
+				                    }                                                                        
+				                },                                                                           
+				                tooltip: {                                                                   
+				                    headerFormat: '<b>{series.name}</b><br>',                                
+				                    pointFormat: '{point.x} , {point.y} '                                
+				                }                                                                            
+				            }                                                                                
+				        },                                                                                   
+				        series: [{                                                                           
+				            name: 'Organization',                                                                  
+				            color: 'rgba(223, 83, 83, .5)',                                                  
+				            data:  data.repoMemberList                                                                         
+				        }]                                                                                   
+				    });                             
+				}})
+	
+		                                                         
 	                                                                                        
 
 		// Load the fonts
