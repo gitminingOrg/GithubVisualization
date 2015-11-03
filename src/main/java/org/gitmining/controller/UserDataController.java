@@ -148,4 +148,58 @@ public class UserDataController {
 		result.put("count", counts);
 		return result;	
 	}
+	
+	@RequestMapping(value="/gistData")
+	public Map gistData(HttpServletRequest request,HttpServletResponse response){
+		Map<String,List> result = new HashMap<String, List>();
+		Map<Integer, Integer> gistMap = userDataService.getUserGistData();
+		List<Integer> ranges = new ArrayList<Integer>();
+		List<Integer> counts = new ArrayList<Integer>();
+		
+		Set<Integer> keySet = gistMap.keySet();
+		for (Integer key : keySet) {
+			ranges.add(key);
+			counts.add(gistMap.get(key));
+			System.out.println(gistMap.get(key));
+		}
+		result.put("range", ranges);
+		result.put("count", counts);
+		return result;	
+	}
+	
+	@RequestMapping(value="/followerData")
+	public Map followerData(HttpServletRequest request,HttpServletResponse response){
+		Map<String,List> result = new HashMap<String, List>();
+		Map<Integer, Integer> followerMap = userDataService.getUserFollowerData();
+		List<Integer> ranges = new ArrayList<Integer>();
+		List<Integer> counts = new ArrayList<Integer>();
+		
+		Set<Integer> keySet = followerMap.keySet();
+		for (Integer key : keySet) {
+			ranges.add(key);
+			counts.add(followerMap.get(key));
+			System.out.println(followerMap.get(key));
+		}
+		result.put("range", ranges);
+		result.put("count", counts);
+		return result;	
+	}
+	
+	@RequestMapping(value="/followingData")
+	public Map followingData(HttpServletRequest request,HttpServletResponse response){
+		Map<String,List> result = new HashMap<String, List>();
+		Map<Integer, Integer> followerMap = userDataService.getUserFollowingData();
+		List<Integer> ranges = new ArrayList<Integer>();
+		List<Integer> counts = new ArrayList<Integer>();
+		
+		Set<Integer> keySet = followerMap.keySet();
+		for (Integer key : keySet) {
+			ranges.add(key);
+			counts.add(followerMap.get(key));
+			System.out.println(followerMap.get(key));
+		}
+		result.put("range", ranges);
+		result.put("count", counts);
+		return result;	
+	}
 }
