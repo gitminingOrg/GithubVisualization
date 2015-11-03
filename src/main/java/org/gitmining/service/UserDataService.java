@@ -30,4 +30,10 @@ public interface UserDataService {
 	public int getUserCount();
 	
 	public int getOrgCount();
+	
+	public Map<Integer,Integer> getUserRepoData();
+	public Map<Integer,Integer> getUserGistData();
+	public Map<Integer,Integer> getUserFollowerData();
+	public Map<Integer,Integer> getUserFollowingData();
+	
 }

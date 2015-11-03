@@ -1,6 +1,7 @@
 package org.gitmining.service.impl;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -193,6 +194,54 @@ public class UserDataServiceImpl implements UserDataService {
 	public int getOrgCount() {
 		// TODO Auto-generated method stub
 		return organizationDao.countOrganizations();
+	}
+
+	@Override
+	public Map<Integer, Integer> getUserRepoData() {
+		// TODO Auto-generated method stub
+		int[] bounds = {0,20,40,60,80,100,120,140,160,180,200,52713};
+		int[] counts = new int[bounds.length];
+		List<User> users = userDao.selectAllUsers();
+		users.sort(new Comparator<User>() {
+			@Override
+			public int compare(User u1, User u2) {
+				// TODO Auto-generated method stub
+				return u1.getPublic_repos()-u2.getPublic_repos();
+			}
+		});
+		
+		int bound = 0;
+		for(int i=0; i<users.size(); i++){
+			if(users.get(i).getPublic_repos() > bounds[bound]){
+				counts[bound] = i;
+				bound++;
+			}
+		}
+		counts[counts.length-1] = users.size();
+		
+		Map<Integer,Integer> repoMap = new HashMap<Integer, Integer>();
+		for (int i = 0; i < counts.length; i++) {
+			repoMap.put(bounds[i], counts[i]);
+		}
+		return repoMap;
+	}
+
+	@Override
+	public Map<Integer, Integer> getUserGistData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<Integer, Integer> getUserFollowerData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<Integer, Integer> getUserFollowingData() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
