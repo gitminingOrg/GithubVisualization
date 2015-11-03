@@ -27,5 +27,4 @@ public class OrgDataController {
 		result.put("repoMemberList", repoMemberList);
 		return result;
 	}
-	
 }
