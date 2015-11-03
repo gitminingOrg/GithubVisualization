@@ -7,6 +7,11 @@
 		<div id="blog"></div>
 		<div id="location"></div>
 		<div id="email"></div>
+		<div id="repo"></div>
+		<div id="gist"></div>
+		<div id="follower"></div>
+		<div id="following"></div>
+		<div id="useractive"></div>
 		<div id="repouser"></div>
 		
 	</div>
@@ -14,5 +19,6 @@
  <script src="/GithubVisualization/static/js/jquery-1.11.3.js"></script>
  <script src="/GithubVisualization/static/js/highcharts.js"></script>
  <script src="/GithubVisualization/static/js/highcharts-3d.js"></script>
+ <script src="/GithubVisualization/static/js/sand-signika.js"></script>
  <script src="/GithubVisualization/static/js/user.js"></script>
 
