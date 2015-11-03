@@ -44,16 +44,4 @@ public class Organization {
 	public void setRepo_count(int repo_count) {
 		this.repo_count = repo_count;
 	}
-	public Organization(int id, String login, String name, String company,
-			int member_count, int repo_count) {
-		super();
-		this.id = id;
-		this.login = login;
-		this.name = name;
-		this.company = company;
-		this.member_count = member_count;
-		this.repo_count = repo_count;
-	}
-
-	
 }

@@ -11,4 +11,8 @@
 	<bean id="userDataController" class="org.gitmining.controller.UserDataController">
 		<property name="userDataService" ref="userDataService"></property>
 	</bean>
+	
+	<bean id="orgDataController" class="org.gitmining.controller.OrgDataController">
+		<property name="orgDataService" ref="orgDataService"></property>
+	</bean>
 </beans>
