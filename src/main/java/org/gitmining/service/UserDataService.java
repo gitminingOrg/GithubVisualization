@@ -26,4 +26,8 @@ public interface UserDataService {
 	 * @return
 	 */
 	public Map<String,Integer> getEmailCount();
+	
+	public int getUserCount();
+	
+	public int getOrgCount();
 }

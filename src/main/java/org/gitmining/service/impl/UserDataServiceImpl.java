@@ -6,19 +6,31 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.gitmining.bean.User;
+import org.gitmining.dao.OrganizationDao;
 import org.gitmining.dao.UserDao;
 import org.gitmining.service.UserDataService;
+import org.gitmining.util.DomainRetriever;
 
 public class UserDataServiceImpl implements UserDataService {
 	private UserDao userDao;
+	private OrganizationDao organizationDao;
 	public UserDao getUserDao() {
 		return userDao;
 	}
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
+	}
+
+	public OrganizationDao getOrganizationDao() {
+		return organizationDao;
+	}
+
+	public void setOrganizationDao(OrganizationDao organizationDao) {
+		this.organizationDao = organizationDao;
 	}
 
 	@Override
@@ -48,11 +60,20 @@ public class UserDataServiceImpl implements UserDataService {
 				companyMap.put("others", companyMap.get("others")+count);
 			}
 		}
-		
 		for (String key : deleteKeys) {
 			companyMap.remove(key);
 		}
-		return companyMap;
+		
+		Map<String, Integer> result = new TreeMap<String, Integer>();
+		Set<String> keysRemain = companyMap.keySet();
+		for (String key : keysRemain) {
+			if(!key.equals("empty") && !key.equals("others")){
+				result.put(key, companyMap.get(key));
+			}
+		}
+		
+
+		return result;
 	}
 
 	@Override
@@ -64,6 +85,8 @@ public class UserDataServiceImpl implements UserDataService {
 			String blog = user.getBlog();
 			if(blog == null || blog == ""){
 				blog = "empty";
+			}else{
+				blog = DomainRetriever.extractBlogDomain(blog);
 			}
 			if(!blogMap.containsKey(blog)){
 				blogMap.put(blog, 1);
@@ -132,7 +155,10 @@ public class UserDataServiceImpl implements UserDataService {
 			String email = user.getEmail();
 			if(email == null || email == ""){
 				email = "empty";
+			}else{
+				email = DomainRetriever.extractEmailDomain(email);
 			}
+			
 			if(!emailMap.containsKey(email)){
 				emailMap.put(email, 1);
 			}else{
@@ -155,6 +181,18 @@ public class UserDataServiceImpl implements UserDataService {
 			emailMap.remove(key);
 		}
 		return emailMap;
+	}
+
+	@Override
+	public int getUserCount() {
+		// TODO Auto-generated method stub
+		return userDao.countUsers();
+	}
+
+	@Override
+	public int getOrgCount() {
+		// TODO Auto-generated method stub
+		return organizationDao.countOrganizations();
 	}
 
 }

@@ -78,9 +78,9 @@ $(function() {
 			series : [ {
 				type : 'pie',
 				name : 'Browser share',
-				data : [ [ 'Organization', 45.0 ], {
+				data : [ [ 'Organization', 415.0 ], {
 					name : 'User',
-					y : 55.0,
+					y : 585.0,
 					sliced : true,
 					selected : true
 				} ]

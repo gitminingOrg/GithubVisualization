@@ -6,5 +6,6 @@
 
 	<bean id="userDataService" class="org.gitmining.service.impl.UserDataServiceImpl">
 		<property name="userDao" ref="userDao"></property>
+		<property name="organizationDao" ref="organizationDao"></property>
 	</bean>
 </beans>

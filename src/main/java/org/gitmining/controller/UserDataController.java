@@ -46,6 +46,20 @@ public class UserDataController {
 			int count = companyData.get(key);
 			countList.add(count);
 		}
+		for (int i = 0; i < countList.size(); i++) {
+			for (int j = 0; j < countList.size()-1; j++) {
+				if(countList.get(j+1) > countList.get(j)){
+					int tmp = countList.get(j);
+					String ctmp = keyList.get(j);
+					
+					countList.set(j, countList.get(j+1));
+					countList.set(j+1, tmp);
+					
+					keyList.set(j, keyList.get(j+1));
+					keyList.set(j+1, ctmp);
+				}
+			}
+		}
 		result.put("companyName", keyList);
 		result.put("companyCount", countList);
 		return result;
@@ -107,4 +121,14 @@ public class UserDataController {
 		result.put("emailCount", countList);
 		return result;
 	}	
+	
+	@RequestMapping(value="/totalCount")
+	public Map totalCount(HttpServletRequest request,HttpServletResponse response){
+		Map<String,Integer> result = new HashMap<String, Integer>();
+		int userCount = userDataService.getUserCount();
+		int orgCount = userDataService.getOrgCount();
+		result.put("singleUser", userCount-orgCount);
+		result.put("organization", orgCount);
+		return result;	
+	}
 }
