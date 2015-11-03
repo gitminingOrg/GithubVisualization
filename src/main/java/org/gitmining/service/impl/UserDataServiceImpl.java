@@ -111,6 +111,8 @@ public class UserDataServiceImpl implements UserDataService {
 		for (String key : deleteKeys) {
 			blogMap.remove(key);
 		}
+		blogMap.remove("empty");
+		blogMap.remove("others");
 		return blogMap;
 	}
 
@@ -145,6 +147,8 @@ public class UserDataServiceImpl implements UserDataService {
 		for (String key : deleteKeys) {
 			locationMap.remove(key);
 		}
+		locationMap.remove("empty");
+		locationMap.remove("others");
 		return locationMap;
 	}
 
@@ -182,6 +186,8 @@ public class UserDataServiceImpl implements UserDataService {
 		for (String key : deleteKeys) {
 			emailMap.remove(key);
 		}
+		emailMap.remove("empty");
+		emailMap.remove("others");
 		return emailMap;
 	}
 
@@ -323,11 +329,11 @@ public class UserDataServiceImpl implements UserDataService {
 		int startYear = 2007, startDieYear = 2013, endYear = 2015;
 		List<User> allUsers = userDao.selectAllUsers();
 		List<int[]> userDieList = new ArrayList<int[]>();
-		int[] years = new int[endYear-startYear+1];
+		int[] years = new int[endYear-startDieYear+1];
 		
-		for (int i = startYear; i<=endYear; i++) {
-			int[] yearData = new int[endYear-startDieYear+1];
-			years[i-startYear] = i;
+		for (int i = startDieYear; i<=endYear; i++) {
+			int[] yearData = new int[endYear-startYear+1];
+			years[i-startDieYear] = i;
 			userDieList.add(yearData);
 		}
 		for (int i = 0; i < allUsers.size(); i++) {
@@ -338,12 +344,12 @@ public class UserDataServiceImpl implements UserDataService {
 			int createYear = Integer.parseInt(creatDate.split("-")[0]);
 			int updateYear = Integer.parseInt(updateDate.split("-")[0]);
 			
-			userDieList.get(createYear-startYear)[updateYear-startDieYear]++;
+			userDieList.get(updateYear-startDieYear)[createYear-startYear]++;
 		}
 		Map<String,int[]> result = new HashMap<String, int[]>();
 		result.put("allYears",years);
-		for (int i = startYear; i <= endYear; i++) {
-			result.put("Year"+i, userDieList.get(i-startYear));
+		for (int i = startDieYear; i <= endYear; i++) {
+			result.put("Year"+i, userDieList.get(i-startDieYear));
 		}
 		
 		return result;
