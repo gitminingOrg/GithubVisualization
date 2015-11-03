@@ -142,6 +142,7 @@ public class UserDataController {
 		for (Integer key : keySet) {
 			ranges.add(key);
 			counts.add(repoMap.get(key));
+			System.out.println(repoMap.get(key));
 		}
 		result.put("range", ranges);
 		result.put("count", counts);
