@@ -1,5 +1,6 @@
 package org.gitmining.service;
 
+import java.util.List;
 import java.util.Map;
 
 public interface UserDataService {
@@ -35,5 +36,7 @@ public interface UserDataService {
 	public Map<Integer,Integer> getUserGistData();
 	public Map<Integer,Integer> getUserFollowerData();
 	public Map<Integer,Integer> getUserFollowingData();
+	
+	public Map<String,int[]> getUserActiveData();
 	
 }

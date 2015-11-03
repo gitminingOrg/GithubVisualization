@@ -1,6 +1,7 @@
 package org.gitmining.service.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -135,7 +136,7 @@ public class UserDataServiceImpl implements UserDataService {
 		while(keys.hasNext()){
 			String key = keys.next();
 			int count = locationMap.get(key);
-			if(count < 50){
+			if(count < 200){
 				deleteKeys.add(key);
 				locationMap.put("others", locationMap.get("others")+count);
 			}
@@ -314,5 +315,36 @@ public class UserDataServiceImpl implements UserDataService {
 			followingMap.put(bounds[i], counts[i]);
 		}
 		return followingMap;
+	}
+
+	@Override
+	public Map<String, int[]> getUserActiveData() {
+		// TODO Auto-generated method stub
+		int startYear = 2007, startDieYear = 2013, endYear = 2015;
+		List<User> allUsers = userDao.selectAllUsers();
+		List<int[]> userDieList = new ArrayList<int[]>();
+		int[] years = new int[endYear-startYear+1];
+		
+		for (int i = startYear; i<=endYear; i++) {
+			int[] yearData = new int[endYear-startDieYear+1];
+			years[i-startYear] = i;
+			userDieList.add(yearData);
+		}
+		for (int i = 0; i < allUsers.size(); i++) {
+			User user = allUsers.get(i);
+			String creatDate = user.getCreated_at();
+			String updateDate = user.getUpdated_at();
+			
+			int createYear = Integer.parseInt(creatDate.split("-")[0]);
+			int updateYear = Integer.parseInt(updateDate.split("-")[0]);
+			
+			userDieList.get(createYear-startYear)[updateYear-startDieYear]++;
+		}
+		Map<String,int[]> result = new HashMap<String, int[]>();
+		
+		for (int i = startYear; i <= endYear; i++) {
+			result.put("Year"+i, userDieList.get(i-startYear));
+		}
+		return result;
 	}
 }

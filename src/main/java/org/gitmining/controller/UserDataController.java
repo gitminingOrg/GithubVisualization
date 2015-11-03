@@ -78,6 +78,20 @@ public class UserDataController {
 			int count = blogData.get(key);
 			countList.add(count);
 		}
+		for (int i = 0; i < countList.size(); i++) {
+			for (int j = 0; j < countList.size()-1; j++) {
+				if(countList.get(j+1) > countList.get(j)){
+					int tmp = countList.get(j);
+					String ctmp = keyList.get(j);
+					
+					countList.set(j, countList.get(j+1));
+					countList.set(j+1, tmp);
+					
+					keyList.set(j, keyList.get(j+1));
+					keyList.set(j+1, ctmp);
+				}
+			}
+		}
 		result.put("blogName", keyList);
 		result.put("blogCount", countList);
 		return result;
@@ -200,6 +214,12 @@ public class UserDataController {
 		}
 		result.put("range", ranges);
 		result.put("count", counts);
+		return result;	
+	}
+	
+	@RequestMapping(value="/userActiveData")
+	public Map userActiveData(HttpServletRequest request,HttpServletResponse response){
+		Map<String,int[]> result = userDataService.getUserActiveData();
 		return result;	
 	}
 }
