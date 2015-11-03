@@ -329,11 +329,13 @@ public class UserDataServiceImpl implements UserDataService {
 		int startYear = 2007, startDieYear = 2013, endYear = 2015;
 		List<User> allUsers = userDao.selectAllUsers();
 		List<int[]> userDieList = new ArrayList<int[]>();
-		int[] years = new int[endYear-startDieYear+1];
+		int[] years = new int[endYear-startYear+1];
+		for (int i = 0; i < years.length; i++) {
+			years[i] = startYear+i;
+		}
 		
 		for (int i = startDieYear; i<=endYear; i++) {
 			int[] yearData = new int[endYear-startYear+1];
-			years[i-startDieYear] = i;
 			userDieList.add(yearData);
 		}
 		for (int i = 0; i < allUsers.size(); i++) {
