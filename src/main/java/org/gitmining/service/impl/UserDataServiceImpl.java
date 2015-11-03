@@ -341,10 +341,11 @@ public class UserDataServiceImpl implements UserDataService {
 			userDieList.get(createYear-startYear)[updateYear-startDieYear]++;
 		}
 		Map<String,int[]> result = new HashMap<String, int[]>();
-		
+		result.put("allYears",years);
 		for (int i = startYear; i <= endYear; i++) {
 			result.put("Year"+i, userDieList.get(i-startYear));
 		}
+		
 		return result;
 	}
 }
