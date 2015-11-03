@@ -199,7 +199,7 @@ public class UserDataServiceImpl implements UserDataService {
 	@Override
 	public Map<Integer, Integer> getUserRepoData() {
 		// TODO Auto-generated method stub
-		int[] bounds = {0,20,40,60,80,100,120,140,160,180,200,52713};
+		int[] bounds = {0,10,20,30,40,50,60,70,80,90,100,52713};
 		int[] counts = new int[bounds.length];
 		List<User> users = userDao.selectAllUsers();
 		users.sort(new Comparator<User>() {
