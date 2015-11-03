@@ -3,11 +3,15 @@
 	<div class="ui main text container">
 		<h1 class="ui header">不好意思</h1>
 		<div id="user"></div>
-		<div id="company"></div>
+		<div id="company1"></div>
+		<div id="blog"></div>
+		<div id="location"></div>
+		<div id="email"></div>
 		
 	</div>
 	
  <script src="/GithubVisualization/static/js/jquery-1.11.3.js"></script>
  <script src="/GithubVisualization/static/js/highcharts.js"></script>
+ <script src="/GithubVisualization/static/js/highcharts-3d.js"></script>
  <script src="/GithubVisualization/static/js/user.js"></script>
 

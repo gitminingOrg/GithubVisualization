@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.gitmining.service.UserDataService;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -129,6 +128,24 @@ public class UserDataController {
 		int orgCount = userDataService.getOrgCount();
 		result.put("singleUser", userCount-orgCount);
 		result.put("organization", orgCount);
+		return result;	
+	}
+	
+	@RequestMapping(value="/repoData")
+	public Map repoData(HttpServletRequest request,HttpServletResponse response){
+		Map<String,List> result = new HashMap<String, List>();
+		Map<Integer, Integer> repoMap = userDataService.getUserRepoData();
+		List<Integer> ranges = new ArrayList<Integer>();
+		List<Integer> counts = new ArrayList<Integer>();
+		
+		Set<Integer> keySet = repoMap.keySet();
+		for (Integer key : keySet) {
+			ranges.add(key);
+			counts.add(repoMap.get(key));
+			System.out.println(repoMap.get(key));
+		}
+		result.put("range", ranges);
+		result.put("count", counts);
 		return result;	
 	}
 }

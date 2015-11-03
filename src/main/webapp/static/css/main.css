@@ -7,6 +7,10 @@ body {
 	margin-right: 1.5em;
 }
 
+.ui.text.container{
+	max-width:900px!important;
+}
+
 .main.container {
 	margin-top: 7em;
 }
