@@ -7,9 +7,25 @@
 	<bean id="userDataService" class="org.gitmining.service.impl.UserDataServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 		<property name="organizationDao" ref="organizationDao"></property>
+		<property name="memcachedClient" ref="memcachedClient"></property>
 	</bean>
-	
+
 	<bean id="orgDataService" class="org.gitmining.service.impl.OrgDataServiceImpl">
 		<property name="organizationDao" ref="organizationDao"></property>
+	</bean>
+
+	<bean id="memcachedClient" class="net.spy.memcached.spring.MemcachedClientFactoryBean">
+		<property name="servers" value="127.0.0.1:11211" />
+		<property name="protocol" value="BINARY" />
+		<property name="transcoder">
+			<bean class="net.spy.memcached.transcoders.SerializingTranscoder">
+				<property name="compressionThreshold" value="1024" />
+			</bean>
+		</property>
+		<property name="opTimeout" value="1000" />
+		<property name="timeoutExceptionThreshold" value="1998" />
+		<property name="locatorType" value="CONSISTENT" />
+		<property name="failureMode" value="Redistribute" />
+		<property name="useNagleAlgorithm" value="false" />
 	</bean>
 </beans>
