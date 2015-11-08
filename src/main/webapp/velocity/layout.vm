@@ -8,13 +8,12 @@
 
         <!-- Site Properities -->
         <title>GitMining</title>
-
+        <link href="https://github.com/favicon.ico" rel="shortcut icon" />
         <link rel="stylesheet" type="text/css"
 	            href="/GithubVisualization/static/css/semantic.min.css">
         <link rel="stylesheet" type="text/css"
 	         href="/GithubVisualization/static/css/main.css">
 	    <script src="/GithubVisualization/static/js/jquery-1.11.3.js"></script>
-
         
     </head>  
     <body>  

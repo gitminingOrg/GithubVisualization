@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.gitmining.service.UserDataService;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,8 +27,9 @@ public class UserDataController {
 	
 	@RequestMapping(value="/user")
 	public ModelAndView getUserView(HttpServletRequest request) throws Exception {
-		
-		return new ModelAndView("user");
+		ModelMap type=new ModelMap();
+		type.put("type", "USER");
+		return new ModelAndView("user","type",type);
 	}
 	
 	@RequestMapping(value="/companyData",method=RequestMethod.GET)

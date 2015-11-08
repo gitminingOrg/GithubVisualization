@@ -1,6 +1,24 @@
 <div class="ui main text container">
-  <div class="ui big action input">
-    <input type="text" placeholder="Repository name">
-    <div class="ui button">Search</div>
+  <div class="content">
+    <div class="ui big action input">
+      <input id="search-name" type="text" placeholder="Repository name">
+      <button id="search-repo-btn" class="ui teal icon button" method="searchrepo()"> Search </button>
+    </div>
+    <div id="repolist">
+      <div class="ui celled list">
+        <div class="repo-list-item">
+            <h3 class="repo-list-name"><a href="">ownername/reponame</a></h3>
+            <p class="repo-list-discription">test disssssssssssss  swsdwdwdwdw</p>       
+        </div>
+        
+        <div class="repo-list-item">
+            <h3 class="repo-list-name"><a href="">ownername/reponame</a></h3>
+            <p class="repo-list-discription">test disssssssssssss  swsdwdwdwdw</p>       
+        </div>
+        
+      </div>
+    </div>
   </div>
 </div>
+
+ <script src="/GithubVisualization/static/js/repository.js"></script>

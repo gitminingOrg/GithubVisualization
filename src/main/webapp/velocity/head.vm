@@ -2,17 +2,9 @@
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<div href="#" class="header item">GitMining</div>
-			<a href="#" class="item">Overview</a><a href="/GithubVisualization/simpleRepo" class="item">Repository</a>
-			<a href="/GithubVisualization/user" class="item">UserAnalysis</a><a
-				href="#" class="ui simple dropdown item"> Dropdown <i
-				class="dropdown icon"></i>
-				<div class="menu">
-					<div class="item">Link Item</div>
-					<div class="item">Link Item</div>
-					<div class="divider"></div>
-					<div class="header">Header Item</div>
-					<div class="item">Link Item</div>
-				</div>
-			</a>
+			<a href="#" class="item" id="overviewitem">Overview</a>
+			<a href="/GithubVisualization/simpleRepo" class="item" id="repositoryitem">Repository</a>
+			<a href="/GithubVisualization/user" class="item" id="useranalysisitem">UserAnalysis</a>
+			<p id="viewtype" style="hidden">$!type.type</p>
 		</div>
 	</div>
