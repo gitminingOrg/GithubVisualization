@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="repo">
+	<resultMap type="org.gitmining.bean.SimpleRepo" id="simpleRepo">
+		<result property="id" column="id" />
+		<result property="full_name" column="full_name" />
+		<result property="owner_name" column="owner_name" />
+		<result property="description" column="description" />
+		<result property="update_time" column="update_time" />
+		<result property="language" column="language" />
+		<result property="stargazers" column="stargazers" />
+		<result property="fork_num" column="fork_num" />
+	</resultMap>
+
+	<select id="searchRepo" resultMap="simpleRepo">
+		SELECT id,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		FROM
+		repotest
+		WHERE
+		full_name like #{pattern};
+	</select>
+
+</mapper>

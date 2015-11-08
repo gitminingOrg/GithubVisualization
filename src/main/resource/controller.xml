@@ -17,6 +17,6 @@
 	</bean>
 	
 	<bean id="repoDataController" class="org.gitmining.controller.RepositoryDataController">
-<!-- 		<property name="userDataService" ref="userDataService"></property> -->
+		<property name="repoDataService" ref="repoDataService"></property>
 	</bean>
 </beans>

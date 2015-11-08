@@ -13,6 +13,10 @@
 	<bean id="orgDataService" class="org.gitmining.service.impl.OrgDataServiceImpl">
 		<property name="organizationDao" ref="organizationDao"></property>
 	</bean>
+	
+	<bean id="repoDataService" class="org.gitmining.service.impl.RepoDataServiceImpl">
+		<property name="repositoryDao" ref="repositoryDao"></property>
+	</bean>
 
 	<bean id="memcachedClient" class="net.spy.memcached.spring.MemcachedClientFactoryBean">
 		<property name="servers" value="127.0.0.1:11211" />

@@ -1,25 +1,27 @@
 package org.gitmining.bean;
 
 public class SimpleRepo {
-	private int repo_id;
-	private String repo_name;
+	private int id;
+	private String full_name;
 	private String owner_name;
 	private String description;
 	private String update_time;
 	private String language;
 	private int stargazers;
 	private int fork_num;
-	public int getRepo_id() {
-		return repo_id;
+
+	public int getId() {
+		return id;
 	}
-	public void setRepo_id(int repo_id) {
-		this.repo_id = repo_id;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getRepo_name() {
-		return repo_name;
+	
+	public String getFull_name() {
+		return full_name;
 	}
-	public void setRepo_name(String repo_name) {
-		this.repo_name = repo_name;
+	public void setFull_name(String full_name) {
+		this.full_name = full_name;
 	}
 	public String getOwner_name() {
 		return owner_name;
