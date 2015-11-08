@@ -11,6 +11,34 @@
 		<result property="stargazers" column="stargazers" />
 		<result property="fork_num" column="fork_num" />
 	</resultMap>
+	
+	<resultMap type="org.gitmining.bean.Repository" id="repository">
+		<result property="id" column="id" />
+		<result property="full_name" column="full_name" />
+		<result property="description" column="description" />
+		<result property="type" column="type" />
+		<result property="fork" column="fork" />
+		<result property="owner_id" column="owner_id" />
+		<result property="owner_type" column="owner_type" />
+		<result property="owner_name" column="owner_name" />
+		<result property="create_time" column="create_time" />
+		<result property="push_time" column="push_time" />
+		<result property="update_time" column="update_time" />
+		<result property="language" column="language" />
+		<result property="contributor" column="contributor" />
+		<result property="collaborator" column="collaborator" />
+		<result property="commit" column="commit" />
+		<result property="open_issues" column="open_issues" />
+		<result property="closed_issues" column="closed_issues" />
+		<result property="open_pull" column="open_pull" />
+		<result property="closed_pull" column="closed_pull" />
+		<result property="merged_pull" column="merged_pull" />
+		<result property="rejected_pull" column="rejected_pull" />
+		<result property="commit" column="commit" />
+		<result property="stargazers" column="stargazers" />
+		<result property="subscribers" column="subscribers" />
+		<result property="fork_num" column="fork_num" />
+	</resultMap>	
 
 	<select id="searchRepo" resultMap="simpleRepo">
 		SELECT id,full_name,owner_name,description,update_time,language,stargazers,fork_num
@@ -18,6 +46,26 @@
 		repotest
 		WHERE
 		full_name like #{pattern};
+	</select>
+	
+	<select id="searchRepoByName" resultMap="repository">
+		SELECT id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,close_pull,merged_pull,rejected_pull,
+		commit,stargazers,subscribers,fork_num
+		FROM
+		repotest
+		WHERE
+		full_name=#{full_name};
+	</select>
+	
+	<select id="searchRepoById" resultMap="repository">
+		SELECT id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
+		commit,stargazers,subscribers,fork_num
+		FROM
+		repotest
+		WHERE
+		id=#{id};
 	</select>
 
 </mapper>

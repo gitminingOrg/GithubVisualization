@@ -3,6 +3,7 @@ package org.gitmining.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
 import org.gitmining.service.RepoDataService;
 import org.springframework.ui.ModelMap;
@@ -35,6 +36,16 @@ public class RepositoryDataController {
 		Map<String,List> result = new HashMap<String, List>();
 		List<SimpleRepo> simpleRepos = repoDataService.searchRepo(name);
 		result.put("simpleRepos", simpleRepos);
+		return result;
+	}
+	
+	@RequestMapping(value = "/repository/info")
+	public Map<String,Repository> getRepository(HttpServletRequest request,HttpServletResponse response){
+		//int repo_id = (Integer) request.getAttribute("repo_id");
+		int repo_id = 23013882;
+		Map<String,Repository> result = new HashMap<String, Repository>();
+		Repository repository = repoDataService.getRepositoryById(repo_id);
+		result.put("repository", repository);
 		return result;
 	}
 }
