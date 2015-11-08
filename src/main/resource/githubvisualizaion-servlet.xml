@@ -76,5 +76,7 @@
 
 	<!-- 处理器 -->
 	<import resource="controller.xml" />
-
+	<import resource="dao.xml" />
+	<import resource="service.xml" />
+	<import resource="task.xml" />
 </beans>

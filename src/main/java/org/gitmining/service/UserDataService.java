@@ -39,4 +39,19 @@ public interface UserDataService {
 	
 	public Map<String,int[]> getUserActiveData();
 	
+	public Map<String, Integer> refreshCompanyUserCache();
+	public Map<String, Integer> refreshBlogUserCache();
+
+	public Map<String, Integer> refreshLocationCache();
+
+	public Map<String, Integer> refreshEmailCache();
+
+	public Map<Integer, Integer> refreshFollowingCache();
+
+	public Map<Integer, Integer> refreshFollowerCache();
+
+	public Map<Integer, Integer> refreshGistCache();
+
+	public Map<Integer, Integer> refreshRepoCache();
+	
 }
