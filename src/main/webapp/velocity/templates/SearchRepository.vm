@@ -1,0 +1,6 @@
+<div class="ui main text container">
+  <div class="ui big action input">
+    <input type="text" placeholder="Repository name">
+    <div class="ui button">Search</div>
+  </div>
+</div>

@@ -16,7 +16,7 @@
 		
 	</div>
 	
- <script src="/GithubVisualization/static/js/jquery-1.11.3.js"></script>
+
  <script src="/GithubVisualization/static/js/highcharts.js"></script>
  <script src="/GithubVisualization/static/js/highcharts-3d.js"></script>
  <script src="/GithubVisualization/static/js/sand-signika.js"></script>

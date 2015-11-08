@@ -13,6 +13,7 @@
 	            href="/GithubVisualization/static/css/semantic.min.css">
         <link rel="stylesheet" type="text/css"
 	         href="/GithubVisualization/static/css/main.css">
+	    <script src="/GithubVisualization/static/js/jquery-1.11.3.js"></script>
 
         
     </head>  
@@ -22,6 +23,7 @@
           $screen_content  
        
        <div id="footer">#parse('footer.vm')</div>
+       
        
        <script src="/GithubVisualization/static/js/semantic.min.js"></script>
     </body>  
