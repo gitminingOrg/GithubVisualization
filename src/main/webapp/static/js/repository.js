@@ -5,6 +5,8 @@ $(document).ready(function() {
     }else{
     	$("#repositoryitem").attr("class","item");
     }
+    
+    $('.repo-list-item i').popup();
 
 });
 

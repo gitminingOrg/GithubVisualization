@@ -1,6 +1,5 @@
 package org.gitmining.controller;
 
-import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,24 +38,21 @@ public class RepositoryDataController {
 	public ModelAndView searchRepository(HttpServletRequest request,
 			HttpServletResponse response) {
 		String name = request.getParameter("reponame");
-		System.out.println(name);
 		ModelMap result = new ModelMap();
 		List<SimpleRepo> simpleRepos = (ArrayList<SimpleRepo>)repoDataService.searchRepo(name);
-		System.out.println(simpleRepos.get(0).getId());
-		System.out.println(simpleRepos.get(0).getFull_name());
 		result.put("simpleRepos", simpleRepos);
 		result.put("type", "REPOSITORY");
-		System.out.println(result.get("simpleRepos"));
 		return new ModelAndView("repolist", "result", result);
 	}
 
 	@RequestMapping(value = "/repository/info")
-	public Map<String, Repository> getRepository(HttpServletRequest request,
+	public ModelAndView getRepository(HttpServletRequest request,
 			HttpServletResponse response) {
-		int repo_id = Integer.parseInt(request.getParameter("repo_id"));
-		Map<String, Repository> result = new HashMap<String, Repository>();
+		int repo_id = Integer.parseInt(request.getParameter("id"));
+		ModelMap map=new ModelMap();
 		Repository repository = repoDataService.getRepositoryById(repo_id);
-		result.put("repository", repository);
-		return result;
+		map.put("repository", repository);
+		map.put("type", "REPOSITORY");
+		return new ModelAndView("repoinfo","result",map);
 	}
 }

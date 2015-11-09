@@ -1,0 +1,24 @@
+#parse('/templates/searchrepo.vm')
+<div id="repoinfo">
+  <h3>$!result.repository.full_name</h3>
+  <h3>Description:$!result.repository.description</h3>
+  <h3>Type：$!result.repository.type</h3>
+  <h3>Owner Type:$!result.repository.owner_type </h3>
+  <h3>Create Time:$!result.repository.create_time</h3>
+  <h3>Push Time:$!result.repository.push_time</h3>
+  <h3>Last Update Time:$!result.repository.update_time</h3>
+  <h3>Language:$!result.repository.language</h3>
+  <h3>$!result.repository.contributor contributors</h3>
+  <h3>$!result.repository.collaborator collaborator</h3>
+  <h3>$!result.repository.commit commits</h3>
+  <h3>$!result.repository.open_issues open issues</h3>
+  <h3>$!result.repository.closed_issues closed issues</h3>
+  <h3>$!result.repository.open_pull open pulls</h3>
+  <h3>$!result.repository.closed_pull closed pulls</h3>
+  <h3>$!result.repository.merged_pull merged pulls</h3>
+  <h3>$!result.repository.rejected_pull rejected pulls</h3>
+  <h3>$!result.repository.stargazers  stargazers</h3>
+  <h3>$!result.repository.subscribers subscribers</h3>
+  <h3>$!result.repository.fork_num forks</h3>
+  
+</div>

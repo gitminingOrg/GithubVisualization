@@ -47,7 +47,7 @@ td,b{
 	width:22em;
 }
 
-#repolist{
+#repolist, #repoinfo{
 	max-width:800px;
 	margin-top:2em;
 	border-top:5px solid #009c95;
@@ -65,8 +65,19 @@ td,b{
 	
 }
 
+.repo-list-stats{
+	float:right;
+	margin-top:4px;
+	margin-right:10px;
+	color:#888;
+}
+
 .repo-list-name{
 	margin:0 0 8px;
 	font-size:1.2em;
 	line-height:1.2;
+}
+
+a:hover{
+	text-decoration:underline;
 }

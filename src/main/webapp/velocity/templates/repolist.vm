@@ -4,8 +4,13 @@
       <div class="ui celled list">
         #foreach( $repo in $result.simpleRepos) 
           <div class="repo-list-item">
-             <h3 class="repo-list-name"><a href="">$!repo.id</a></h3>
-             <p class="repo-list-discription">222 $!repo.description</p>       
+             <div class="repo-list-stats">
+               <i class="star icon link" data-content="Stargazers" data-position="bottom left"  data-variation="inverted"></i>$!repo.stargazers 
+               <i class="fork icon link" data-content="Forks" data-position="bottom left"  data-variation="inverted" style="margin-left:6px;"></i>$!repo.fork_num
+             </div>
+             <h3 class="repo-list-name"><a href="/GithubVisualization/repository/info?id=$repo.id">$!repo.full_name</a></h3>
+             <p class="repo-list-discription">$!repo.description</p>  
+                  
           </div>
         #end       
       </div>
