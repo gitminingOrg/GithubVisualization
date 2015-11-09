@@ -1,3 +1,8 @@
+$(window).load(function() {
+	var repoinfo = document.getElementById("repoinfo");
+	TweenMax.to(repoinfo, 2, {transformPerspective:400, rotationX:360, transformOrigin:"left top"})
+});
+
 $(document).ready(function() {
 	var type=$("#viewtype").text();
     if(type=="REPOSITORY"){

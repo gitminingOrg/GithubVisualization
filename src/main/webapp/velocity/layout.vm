@@ -29,5 +29,6 @@
        
        
        <script src="/GithubVisualization/static/js/semantic.min.js"></script>
+       <script type="text/javascript" src="/GithubVisualization/static/js/greensock/TweenMax.min.js"></script>
     </body>  
 </html> 
