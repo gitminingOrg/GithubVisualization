@@ -38,7 +38,8 @@ public class RepositoryDataController {
 	@RequestMapping(value = "/repository/search", method = RequestMethod.POST)
 	public ModelAndView searchRepository(HttpServletRequest request,
 			HttpServletResponse response) {
-		String name = (String) request.getAttribute("reponame");
+		String name = request.getParameter("reponame");
+		System.out.println(name);
 		ModelMap result = new ModelMap();
 		List<SimpleRepo> simpleRepos = (ArrayList<SimpleRepo>)repoDataService.searchRepo(name);
 		System.out.println(simpleRepos.get(0).getId());
