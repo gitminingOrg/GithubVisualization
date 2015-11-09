@@ -36,8 +36,8 @@ public class OrgDataServiceImpl implements OrgDataService {
 		List<Organization> organizations =  organizationDao.selectAllOrganizations();
 		List<double[]> result = new ArrayList<double[]>();
 		for (Organization organization : organizations) {
-			double lnMember = (double)Math.round(Math.log(organization.getMember_count()+1) * 10) / 10;
-			double lnRepo = (double)Math.round(Math.log(organization.getRepo_count()+1) * 10) / 10;
+			double lnMember = (double)Math.round(Math.log10(organization.getMember_count()+1) * 10) / 10;
+			double lnRepo = (double)Math.round(Math.log10(organization.getRepo_count()+1) * 10) / 10;
 			double[] items = new double[]{lnMember,lnRepo};
 			result.add(items);
 			

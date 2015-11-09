@@ -53,8 +53,7 @@ public class RepositoryDataController {
 	@RequestMapping(value = "/repository/info")
 	public Map<String, Repository> getRepository(HttpServletRequest request,
 			HttpServletResponse response) {
-		// int repo_id = (Integer) request.getAttribute("repo_id");
-		int repo_id = 23013882;
+		int repo_id = Integer.parseInt(request.getParameter("repo_id"));
 		Map<String, Repository> result = new HashMap<String, Repository>();
 		Repository repository = repoDataService.getRepositoryById(repo_id);
 		result.put("repository", repository);
