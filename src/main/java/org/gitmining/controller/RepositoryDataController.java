@@ -32,7 +32,7 @@ public class RepositoryDataController {
 	}
 	@RequestMapping(value = "/repository/search")
 	public Map<String,List> searchRepository(HttpServletRequest request,HttpServletResponse response){
-		String name = (String) request.getAttribute("name");
+		String name = request.getParameter("name");
 		Map<String,List> result = new HashMap<String, List>();
 		List<SimpleRepo> simpleRepos = repoDataService.searchRepo(name);
 		result.put("simpleRepos", simpleRepos);
