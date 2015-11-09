@@ -5,6 +5,6 @@
 			<a href="#" class="item" id="overviewitem">Overview</a>
 			<a href="/GithubVisualization/simpleRepo" class="item" id="repositoryitem">Repository</a>
 			<a href="/GithubVisualization/user" class="item" id="useranalysisitem">UserAnalysis</a>
-			<p id="viewtype" style="hidden">$!type.type</p>
+			<p id="viewtype" style="hidden">$!result.type</p>
 		</div>
 	</div>

@@ -27,9 +27,9 @@ public class UserDataController {
 	
 	@RequestMapping(value="/user")
 	public ModelAndView getUserView(HttpServletRequest request) throws Exception {
-		ModelMap type=new ModelMap();
-		type.put("type", "USER");
-		return new ModelAndView("user","type",type);
+		ModelMap result=new ModelMap();
+		result.put("type", "USER");
+		return new ModelAndView("user","result",result);
 	}
 	
 	@RequestMapping(value="/companyData",method=RequestMethod.GET)

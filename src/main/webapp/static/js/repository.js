@@ -5,25 +5,17 @@ $(document).ready(function() {
     }else{
     	$("#repositoryitem").attr("class","item");
     }
-	//$("#repolist").hide();
-	
-	function searchrepo() {
-		var reponame = $("#search-name").val();
-		if (reponame == "") {
-			return false;
-		}
-		;
-		var url = "";
-		$.ajax(url, {
-			type : 'GET',
-			async : false,
-			data:{
-				reponame:reponame,
-			},
-			dataType : 'json',
-			success : function(data, textStatus) {
-				//$("#repolist").show();
-			}
-		});
+
+});
+
+$("#search-repo-btn").click(function(e) {
+	e.preventDefault();
+	$("#search-repo-btn").blur();
+
+	var reponame = $("#search-name").val();
+	if (reponame == "") {
+		return false;
 	}
+	;
+	$("#search-repo-form").submit();
 });

@@ -17,11 +17,15 @@
         
     </head>  
     <body>  
-       <div id="header">#parse('head.vm')</div> 
+       #parse('head.vm')
        
-          $screen_content  
+       <div class="ui main text container"> 
+         <div class="content">
+            $screen_content 
+         </div>
+       </div> 
        
-       <div id="footer">#parse('footer.vm')</div>
+       #parse('footer.vm')
        
        
        <script src="/GithubVisualization/static/js/semantic.min.js"></script>

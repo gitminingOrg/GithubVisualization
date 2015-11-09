@@ -1,0 +1,12 @@
+ 
+  #parse('/templates/searchrepo.vm')
+  <div id="repolist">
+      <div class="ui celled list">
+        #foreach( $repo in $result.simpleRepos) 
+          <div class="repo-list-item">
+             <h3 class="repo-list-name"><a href="">$!repo.id</a></h3>
+             <p class="repo-list-discription">222 $!repo.description</p>       
+          </div>
+        #end       
+      </div>
+  </div>
