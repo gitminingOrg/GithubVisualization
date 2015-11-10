@@ -42,6 +42,7 @@ public class RepositoryDataController {
 		List<SimpleRepo> simpleRepos = (ArrayList<SimpleRepo>)repoDataService.searchRepo(name);
 		result.put("simpleRepos", simpleRepos);
 		result.put("type", "REPOSITORY");
+		result.put("searchstring", name);
 		return new ModelAndView("repolist", "result", result);
 	}
 

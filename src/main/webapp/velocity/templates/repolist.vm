@@ -5,9 +5,10 @@
         #foreach( $repo in $result.simpleRepos) 
           <div class="repo-list-item">
              <div class="repo-list-stats">
-               <i class="star icon link" data-content="Stargazers" data-position="bottom left"  data-variation="inverted"></i>$!repo.stargazers 
-               <i class="fork icon link" data-content="Forks" data-position="bottom left"  data-variation="inverted" style="margin-left:6px;"></i>$!repo.fork_num
+               <i class="star icon link" data-title="Stargazers" data-variation="inverted"></i>$!repo.stargazers 
+               <i class="fork icon link" data-title="Forks" data-variation="inverted" style="margin-left:6px;"></i>$!repo.fork_num
              </div>
+             <div class="ui custom popup bottom left transition hidden">Stargazers</div>
              <h3 class="repo-list-name"><a href="/GithubVisualization/repository/info?id=$repo.id">$!repo.full_name</a></h3>
              <p class="repo-list-discription">$!repo.description</p>  
                   

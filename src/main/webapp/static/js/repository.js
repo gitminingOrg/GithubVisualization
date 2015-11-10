@@ -11,7 +11,10 @@ $(document).ready(function() {
     	$("#repositoryitem").attr("class","item");
     }
     
-    $('.repo-list-item i').popup();
+    $('.repo-list-item i').popup({
+    	//popup : $('.custom.popup'),
+    	position:'bottom left',
+    });
 
 });
 
