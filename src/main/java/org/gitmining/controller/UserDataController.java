@@ -158,7 +158,6 @@ public class UserDataController {
 		for (Integer key : keySet) {
 			ranges.add(key);
 			counts.add(repoMap.get(key));
-			System.out.println(repoMap.get(key));
 		}
 		result.put("range", ranges);
 		result.put("count", counts);
@@ -176,7 +175,6 @@ public class UserDataController {
 		for (Integer key : keySet) {
 			ranges.add(key);
 			counts.add(gistMap.get(key));
-			System.out.println(gistMap.get(key));
 		}
 		result.put("range", ranges);
 		result.put("count", counts);
@@ -194,7 +192,6 @@ public class UserDataController {
 		for (Integer key : keySet) {
 			ranges.add(key);
 			counts.add(followerMap.get(key));
-			System.out.println(followerMap.get(key));
 		}
 		result.put("range", ranges);
 		result.put("count", counts);
@@ -212,7 +209,6 @@ public class UserDataController {
 		for (Integer key : keySet) {
 			ranges.add(key);
 			counts.add(followerMap.get(key));
-			System.out.println(followerMap.get(key));
 		}
 		result.put("range", ranges);
 		result.put("count", counts);

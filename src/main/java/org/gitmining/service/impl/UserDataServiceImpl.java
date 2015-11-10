@@ -86,7 +86,7 @@ public class UserDataServiceImpl implements UserDataService {
 				System.out.println(key + ":" + companyMap.get(key) + "company");
 			}
 		}
-		memcachedClient.replace("companyMap", 0, result);
+		memcachedClient.add("companyMap", 0, result);
 		return result;
 	}
 
@@ -138,7 +138,7 @@ public class UserDataServiceImpl implements UserDataService {
 		System.out.println("others" + blogMap.get("others") + "blog");
 		blogMap.remove("empty");
 		blogMap.remove("others");
-		memcachedClient.replace("blogMap", 0, blogMap);
+		memcachedClient.add("blogMap", 0, blogMap);
 		return blogMap;
 	}
 	
@@ -187,7 +187,7 @@ public class UserDataServiceImpl implements UserDataService {
 		System.out.println("others" + locationMap.get("others") + "locationMap");
 		locationMap.remove("empty");
 		locationMap.remove("others");
-		memcachedClient.replace("locationMap", 0, locationMap);	
+		memcachedClient.add("locationMap", 0, locationMap);	
 		return locationMap;
 	}
 
@@ -240,7 +240,7 @@ public class UserDataServiceImpl implements UserDataService {
 		emailMap.remove("empty");
 		emailMap.remove("others");
 		
-		memcachedClient.replace("emailMap", 0, emailMap);
+		memcachedClient.add("emailMap", 0, emailMap);
 		return emailMap;
 	}
 	@Override
@@ -293,7 +293,7 @@ public class UserDataServiceImpl implements UserDataService {
 			repoMap.put(bounds[i], counts[i]);
 		}
 		
-		memcachedClient.replace("repoMap", 0, repoMap);
+		memcachedClient.add("repoMap", 0, repoMap);
 		return repoMap;
 	}
 
@@ -335,7 +335,7 @@ public class UserDataServiceImpl implements UserDataService {
 		for (int i = 0; i < counts.length; i++) {
 			gistMap.put(bounds[i], counts[i]);
 		}
-		memcachedClient.replace("gistMap", 0, gistMap);
+		memcachedClient.add("gistMap", 0, gistMap);
 		return gistMap;
 	}
 	@Override
@@ -376,7 +376,7 @@ public class UserDataServiceImpl implements UserDataService {
 		for (int i = 0; i < counts.length; i++) {
 			followerMap.put(bounds[i], counts[i]);
 		}
-		memcachedClient.replace("followerMap", 0, followerMap);
+		memcachedClient.add("followerMap", 0, followerMap);
 		return followerMap;
 	}
 	@Override
@@ -420,7 +420,7 @@ public class UserDataServiceImpl implements UserDataService {
 			followingMap.put(bounds[i], counts[i]);
 		}
 		
-		memcachedClient.replace("followingMap", 0, followingMap);
+		memcachedClient.add("followingMap", 0, followingMap);
 		return followingMap;
 	}
 
