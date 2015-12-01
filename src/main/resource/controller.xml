@@ -3,10 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
-
-	<bean id="addEmployeeController" class="org.gitmining.controller.AddEmployeeController">
-		<property name="employeeDao" ref="employeeDao"></property>
-	</bean>
 	
 	<bean id="userDataController" class="org.gitmining.controller.UserDataController">
 		<property name="userDataService" ref="userDataService"></property>
