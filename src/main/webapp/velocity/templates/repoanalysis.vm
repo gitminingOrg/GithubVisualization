@@ -1,5 +1,3 @@
-
-
 	<div class="ui main text container">
 		
 		<div id="user"></div>
@@ -20,5 +18,4 @@
  <script src="/GithubVisualization/static/js/highcharts.js"></script>
  <script src="/GithubVisualization/static/js/highcharts-3d.js"></script>
  <script src="/GithubVisualization/static/js/sand-signika.js"></script>
- <script src="/GithubVisualization/static/js/useranalysis.js"></script>
-
+ <script src="/GithubVisualization/static/js/repoanalysis.js"></script>
