@@ -1,0 +1,16 @@
+<link rel="stylesheet" type="text/css" href="/GithubVisualization/static/css/miaov_style.css" />
+<script type="text/javascript" src="/GithubVisualization/static/css/miaov.js"></script>
+
+<div id="div1">
+	<a href="http://www.jq22.com" style="font-size:200px">jquery</a>
+	<a href="http://www.jq22.com/" class="red">教程</a>
+	<a href="http://www.jq22.com">试听</a>
+	<a href="http://www.jq22.com">精品</a>
+	<a href="http://www.jq22.com" class="blue">插件</a>
+	<a href="http://www.jq22.com">SEO</a>
+	<a href="http://www.jq22.com" class="red">特效</a>
+	<a href="http://www.jq22.com/" class="yellow">JavaScript</a>
+	<a href="http://www.jq22.com/">miaov</a>
+	<a href="http://www.jq22.com/" class="red">CSS</a>
+	<a href="http://www.jq22.com/">求职</a>
+</div>

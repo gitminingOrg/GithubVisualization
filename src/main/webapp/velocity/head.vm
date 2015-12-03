@@ -2,7 +2,7 @@
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<div href="#" class="header item">GitMining</div>
-			<a href="#" class="item" id="overviewitem">Overview</a>
+			<a href="/GithubVisualization/overview" class="item" id="overviewitem">Overview</a>
 			<a href="/GithubVisualization/simpleRepo" class="item" id="repositoryitem">Repository</a>
 			<a href="/GithubVisualization/repoAnalysis" class="item" id="repoanalysisitem">RepoAnalysis</a>
 			<a href="/GithubVisualization/simpleUser" class="item" id="useritem">User</a>
