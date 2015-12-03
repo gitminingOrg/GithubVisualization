@@ -12,6 +12,12 @@
 		<result property="fork_num" column="fork_num" />
 	</resultMap>
 	
+	<resultMap type="org.gitmining.bean.RepoTagPair" id="repoTagPair">
+		<result property="id" column="id" />
+		<result property="repo_id" column="repo_id" />
+		<result property="tag_id" column="tag_id" />
+	</resultMap>
+	
 	<resultMap type="org.gitmining.bean.Repository" id="repository">
 		<result property="id" column="id" />
 		<result property="full_name" column="full_name" />
@@ -68,4 +74,9 @@
 		id=#{id};
 	</select>
 
+	<select id="getAllRepoTagPair" resultMap="repoTagPair">
+		SELECT id,repo_id,tag_id
+		FROM
+		repo_tag;
+	</select>
 </mapper>

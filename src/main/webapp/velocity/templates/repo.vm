@@ -1,0 +1,42 @@
+  <!--客观信息-->
+  <div id="repo">
+  	  <h1>repo_info</h1>
+	  <p>full_name:$result.repository.full_name</p>
+	  <p>description:$result.repository.description</p>
+	  <p>type:$result.repository.type</p>
+  </div>
+  
+  <!--评分-->
+  <div id="reposcore">
+  	  <h1>repo_score</h1>
+	  <p>hot_score:$result.scores.hot</p>
+	  <p>mature_score:$result.scores.mature</p>
+	  <p>popular_score:$result.scores.popular</p>
+	  <p>size_score:$result.scores.size</p>
+	  <p>contributor_score:$result.scores.contributor</p>
+	  <p>total_score:$result.scores.total</p>
+  </div>  
+  <!--推荐-->
+  <div id="repolist">
+  	  <h1>Recommand</h1>
+      <div class="ui celled list">
+      	<h3>ralated repos by tag</h3>
+        #foreach( $repo in $result.relatedRepos.tag) 
+             <a href="/GithubVisualization/repository/content?id=$repo.id">$!repo.full_name</a> 
+        #end       
+      </div>
+      
+     <div class="ui celled list">
+     	<h3>ralated repos by owner</h3>
+        #foreach( $repo in $result.relatedRepos.owner) 
+             <a href="/GithubVisualization/repository/content?id=$repo.id">$!repo.full_name</a> 
+        #end       
+      </div>
+      
+     <div class="ui celled list">
+     	<h3>ralated repos by viewer</h3>
+        #foreach( $repo in $result.relatedRepos.viewer) 
+             <a href="/GithubVisualization/repository/content?id=$repo.id">$!repo.full_name</a> 
+        #end       
+      </div>
+  </div>

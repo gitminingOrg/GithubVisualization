@@ -25,6 +25,13 @@ public class Repository {
 	private int stargazers;
 	private int subscribers;
 	private int fork_num;
+	private int size;
+	private int release;
+	private int hot;
+	private int mature;
+	private int popular;
+	private int nb;
+	private int total;
 	public int getId() {
 		return id;
 	}

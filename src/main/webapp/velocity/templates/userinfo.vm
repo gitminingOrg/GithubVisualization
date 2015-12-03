@@ -1,0 +1,153 @@
+<div id="userinfo">
+<div class="ui link cards">
+<div class="card">
+  <div class="image" style="height:300">
+    <img src="/GithubVisualization/static/img/avatar.png">
+  </div>
+  <div class="content" style="height:150;min-height: 1em">
+    <a class="header">owenchen93</a>
+    <div class="meta">
+      <span class="date"><i class="Calendar icon"></i>Joined on 3 Dec 2013</span>
+      <br/>
+      <span class="date"><i class="Mail icon"></i>630346810@qq.com</span>
+    </div>
+    <div class="description">Working company is unknown and living in Suzhou,China. </div>
+  </div>
+  <div class="extra content">
+    <a><i class="user icon"></i> 22 Friends </a>
+  </div>
+</div>
+
+<div  style="margin-top:2%;">
+	<div class="html ui top attached segment">
+		<div class="ui top attached label"><h3>Repository</h3></div>
+		<div class="ui tiny statistics">
+		  <div class="teal statistic">		    
+		    <div class="label">Repository Joined</div>
+		    <div class="value">1</div>
+		  </div>
+		  <div class="teal statistic">		    
+		    <div class="label">Repository Owned</div>
+		    <div class="value">2</div>
+		  </div>
+		  <div class="teal statistic">		    
+		    <div class="label">watch</div>
+		    <div class="value">1</div>
+		  </div>	
+		  <div class="teal statistic">		    
+		    <div class="label">fork</div>
+		    <div class="value">4</div>
+		  </div>
+		</div>
+	</div>
+	
+	<div class="html ui top attached segment" style="margin-top:5%;">
+		<div class="ui top attached label"><h3>Info</h3></div>
+		<div class="ui tiny statistics">
+		  <div class="teal statistic">
+		    <div class="label">type</div>
+		    <div class="value">User</div>
+		    
+		  </div>
+		  <div class="teal statistic">
+		    <div class="label">following</div>
+		    <div class="value">7</div>
+		    
+		  </div>
+		  <div class="teal statistic">
+		    <div class="label">follower</div>
+		    <div class="value">1</div>
+		    
+		  </div>	
+		</div>
+	</div>
+	
+	<div class="html ui top attached segment" style="margin-top:5%;">
+		<div class="ui top attached label"><h3>Contribution</h3></div>
+		<div class="ui tiny statistics">
+		  <div class="teal statistic">
+		    <div class="label">commit</div>
+		    <div class="value">11</div>
+		    
+		  </div>
+		  <div class="teal statistic">
+		    <div class="label">issue</div>
+		    <div class="value">3</div>
+		    
+		  </div>
+		  <div class="teal statistic">
+		    <div class="label">pull request</div>
+		    <div class="value">2</div>
+		    
+		  </div>
+		  <div class="teal statistic">
+		  	<div class="label">comment</div>
+		    <div class="value">4</div>
+		    
+		  </div>	
+		</div>
+	</div>	
+</div>
+</div>
+
+<div class='header' style="margin-top:5%">
+<h1>User History</h1>
+</div>
+
+
+<!-- target div for the widget -->
+<div id='placement' style="height:400"></div>
+
+</div>
+
+
+<script src="/GithubVisualization/static/js/user.js" type="text/javascript" charset="utf-8"></script>
+<script src="/GithubVisualization/static/js/timeglider/json2.js" type="text/javascript" charset="utf-8"></script>
+<script src="/GithubVisualization/static/js/timeglider/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/GithubVisualization/static/js/timeglider/jquery-ui-1.10.3.custom.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/GithubVisualization/static/js/timeglider/underscore-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/GithubVisualization/static/js/timeglider/backbone-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/GithubVisualization/static/js/timeglider/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+<script src="/GithubVisualization/static/js/timeglider/ba-debug.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/GithubVisualization/static/js/timeglider/ba-tinyPubSub.js" type="text/javascript" charset="utf-8"></script>
+<script src="/GithubVisualization/static/js/timeglider/jquery.mousewheel.js" type="text/javascript" charset="utf-8"></script>
+<script src="/GithubVisualization/static/js/timeglider/jquery.ui.ipad.js" type="text/javascript" charset="utf-8"></script>
+<script src="/GithubVisualization/static/js/timeglider/globalize.js" type="text/javascript" charset="utf-8"></script>	
+	
+<script src="/GithubVisualization/static/js/timeglider/timeglider-1.0.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/GithubVisualization/static/js/timeglider/jquery.jscrollpane.min.js" type="text/javascript"></script>
+
+
+<script type='text/javascript'>
+
+	var tg1 = {};
+	
+	
+	$(function () { 
+		
+		// jQuery widget implementation
+		// with some basic options
+		
+		tg1 = $("#placement").timeline({
+			
+				"min_zoom":1, 
+				"max_zoom":55, 
+				"image_lane_height":100,
+				"icon_folder":"timeglider/icons/",
+				"data_source":"/GithubVisualization/static/json/idaho.json",
+				"constrain_to_data": false
+		});
+		
+		tg_actor = tg1.data("timeline");
+		// You'll use tg_actor as the key to access 
+		// public API methods like "goTo", etc.
+	
+		
+    }); // end document-ready
+	
+</script>
+
+
+
+<!-- Just page navigation stuff; not important -->
+<script src='js/tg-sample-nav.js' type='text/javascript'></script>

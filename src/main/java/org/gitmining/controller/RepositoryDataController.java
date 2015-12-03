@@ -33,6 +33,20 @@ public class RepositoryDataController {
 		result.put("type", "REPOSITORY");
 		return new ModelAndView("searchrepo", "result", result);
 	}
+	
+	@RequestMapping(value = "/repository/content", method = RequestMethod.GET)
+	public ModelAndView getRepositoryContent(HttpServletRequest request,HttpServletResponse response){
+		int repo_id = 1;//Integer.parseInt(request.getParameter("id"));
+		ModelMap map = new ModelMap();
+		Repository repository = repoDataService.getRepositoryById(repo_id);
+		Map<String,List> relatedRepos = repoDataService.relatedRepos(repo_id);
+		Map<String,Integer> scores = repoDataService.getRepositoryScoreById(repo_id);
+		map.put("repository", repository);
+		map.put("relatedRepos", relatedRepos);
+		map.put("scores", scores);
+		map.put("type", "REPOSITORY");
+		return new ModelAndView("repo", "result", map);
+	}
 
 	@RequestMapping(value = "/repository/search", method = RequestMethod.POST)
 	public ModelAndView searchRepository(HttpServletRequest request,

@@ -13,6 +13,9 @@
 	            href="/GithubVisualization/static/css/semantic.min.css">
         <link rel="stylesheet" type="text/css"
 	         href="/GithubVisualization/static/css/main.css">
+		<link rel="stylesheet" href="/GithubVisualization/static/css/timeglider/jquery-ui-1.10.3.custom.css" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="/GithubVisualization/static/css/timeglider/Timeglider.css" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="/GithubVisualization/static/css/timeglider/timeglider.datepicker.css" type="text/css" charset="utf-8">
 	    <script src="/GithubVisualization/static/js/jquery-1.11.3.js"></script>
         
     </head>  
