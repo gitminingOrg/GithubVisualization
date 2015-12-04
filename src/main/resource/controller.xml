@@ -4,6 +4,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 	
+	<bean id="overviewController" class="org.gitmining.controller.OverviewController">
+<!-- 		<property name="userDataService" ref="userDataService"></property> -->
+	</bean>
+	
 	<bean id="userDataController" class="org.gitmining.controller.UserDataController">
 		<property name="userDataService" ref="userDataService"></property>
 	</bean>

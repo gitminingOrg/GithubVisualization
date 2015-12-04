@@ -1,16 +1,21 @@
-<link rel="stylesheet" type="text/css" href="/GithubVisualization/static/css/miaov_style.css" />
-<script type="text/javascript" src="/GithubVisualization/static/css/miaov.js"></script>
-
-<div id="div1">
-	<a href="http://www.jq22.com" style="font-size:200px">jquery</a>
-	<a href="http://www.jq22.com/" class="red">教程</a>
-	<a href="http://www.jq22.com">试听</a>
-	<a href="http://www.jq22.com">精品</a>
-	<a href="http://www.jq22.com" class="blue">插件</a>
-	<a href="http://www.jq22.com">SEO</a>
-	<a href="http://www.jq22.com" class="red">特效</a>
-	<a href="http://www.jq22.com/" class="yellow">JavaScript</a>
-	<a href="http://www.jq22.com/">miaov</a>
-	<a href="http://www.jq22.com/" class="red">CSS</a>
-	<a href="http://www.jq22.com/">求职</a>
+<div id="myCanvasContainer">
+   <canvas width="700px" height="400" id="myCanvas">
+      <p>Anything in here will be replaced on browsers that support the canvas element</p>
+   </canvas>
 </div>
+<div id="tags">
+<ul>
+<li><a data-weight="34"  href="http://www.scutephp.com" target="_blank">PHP建站门户</a></li>
+<li><a data-weight="37"  href="/fish">Fish</a></li>
+<li><a data-weight="48" href="/chips">Chips</a></li>
+<li><a data-weight="10" href="/salt">Salt</a></li>
+<li><a data-weight="22" href="/vinegar">Vinegar</a></li>
+<li><a data-weight="19"  href="/vinegar">java</a></li>
+<li><a data-weight="56"  href="/vinegar">css</a></li>
+<li><a data-weight="26"  href="/vinegar">security</a></li>
+</ul>
+</div>
+
+<script src="/GithubVisualization/static/js/tagcanvas.js"></script>
+
+<script src="/GithubVisualization/static/js/overview.js"></script>
