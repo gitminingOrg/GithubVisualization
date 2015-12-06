@@ -96,7 +96,7 @@
 		id=#{id};
 	</select>
 	<select id="searchRepoScoreById" resultMap="repoScore">
-		SELECT repo_id,hot,mature,popular,nb,contributor,size,update,release,total
+		SELECT repo_id,hot,mature,popular,nb,contributor,size,`update`,`release`,total
 		FROM
 		reposcore
 		WHERE
