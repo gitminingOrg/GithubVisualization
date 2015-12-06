@@ -10,12 +10,19 @@
 		<property name="memcachedClient" ref="memcachedClient"></property>
 	</bean>
 
+	<bean id="userInfoService" class="org.gitmining.service.impl.UserInfoServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+		<property name="repositoryDao" ref="repositoryDao"></property>
+		<property name="memcachedClient" ref="memcachedClient"></property>
+	</bean>
+	
 	<bean id="orgDataService" class="org.gitmining.service.impl.OrgDataServiceImpl">
 		<property name="organizationDao" ref="organizationDao"></property>
 	</bean>
 	
 	<bean id="repoDataService" class="org.gitmining.service.impl.RepoDataServiceImpl">
 		<property name="repositoryDao" ref="repositoryDao"></property>
+		<property name="memcachedClient" ref="memcachedClient"></property>
 	</bean>
 	
 	<bean id="repoByTagDataService" class="org.gitmining.service.impl.RepoByTagDataServiceImpl">

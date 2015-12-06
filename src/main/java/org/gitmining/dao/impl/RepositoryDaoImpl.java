@@ -2,6 +2,7 @@ package org.gitmining.dao.impl;
 
 import java.util.List;
 
+import org.gitmining.bean.RepoScore;
 import org.gitmining.bean.RepoTagPair;
 import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
@@ -37,6 +38,18 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 	public List<RepoTagPair> getRepoTagPairsByTagID(int tid) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("repo.getRepoTagPairsByName", tid);
+	}
+	
+	@Override
+	public List<Repository> getRepositoryByOwnerName(String owner_name) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("repo.searchRepoByOwnerName", owner_name);
+	}
+
+	@Override
+	public RepoScore getRepoScoreById(int repo_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("repo.searchRepoScoreById", repo_id);
 	}
 
 }

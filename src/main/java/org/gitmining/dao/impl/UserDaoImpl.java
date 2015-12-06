@@ -3,6 +3,7 @@ package org.gitmining.dao.impl;
 import java.util.List;
 
 import org.gitmining.bean.User;
+import org.gitmining.bean.UserScore;
 import org.gitmining.dao.UserDao;
 
 public class UserDaoImpl extends BaseDaoImpl implements UserDao {
@@ -17,6 +18,18 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 	public int countUsers() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("user.countUsers");
+	}
+
+	@Override
+	public User selectUserById(int id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("user.selectUserById",id);
+	}
+
+	@Override
+	public UserScore selectUserScoreById(int id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("user.selectUserScoreById",id);
 	}
 
 }

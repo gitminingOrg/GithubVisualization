@@ -3,6 +3,7 @@ package org.gitmining.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.gitmining.bean.History;
 import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
 import org.gitmining.service.RepoDataService;
@@ -36,11 +37,13 @@ public class RepositoryDataController {
 	
 	@RequestMapping(value = "/repository/content", method = RequestMethod.GET)
 	public ModelAndView getRepositoryContent(HttpServletRequest request,HttpServletResponse response){
-		int repo_id = 1;//Integer.parseInt(request.getParameter("id"));
+		int repo_id = Integer.parseInt(request.getParameter("id"));
 		ModelMap map = new ModelMap();
 		Repository repository = repoDataService.getRepositoryById(repo_id);
-		Map<String,List> relatedRepos = repoDataService.relatedRepos(repo_id);
+		Map<String,List> relatedRepos = repoDataService.relatedRepos(repository);
 		Map<String,Integer> scores = repoDataService.getRepositoryScoreById(repo_id);
+		History history = repoDataService.getRepositoryHistory(repo_id);
+		map.put("history", history);
 		map.put("repository", repository);
 		map.put("relatedRepos", relatedRepos);
 		map.put("scores", scores);
