@@ -79,4 +79,12 @@
 		FROM
 		repo_tag;
 	</select>
+	
+	<select id="getRepoTagPairsByTagID" resultMap="repoTagPair">
+		SELECT id,repo_id,tag_id
+		FROM
+		repo_tag
+		WHERE
+		tag_id=#{tid};
+	</select>
 </mapper>

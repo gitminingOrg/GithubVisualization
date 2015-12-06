@@ -7,5 +7,6 @@
 		<mapper resource="org/gitmining/mapper/user.xml" />
 		<mapper resource="org/gitmining/mapper/organization.xml" />
 		<mapper resource="org/gitmining/mapper/repo.xml" />
+		<mapper resource="org/gitmining/mapper/tag.xml" />
 	</mappers>
 </configuration>

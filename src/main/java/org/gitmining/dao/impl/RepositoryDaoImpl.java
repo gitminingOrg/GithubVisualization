@@ -33,4 +33,10 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		return sqlSession.selectList("repo.getAllRepoTagPair");
 	}
 
+	@Override
+	public List<RepoTagPair> getRepoTagPairsByTagID(int tid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("repo.getRepoTagPairsByName", tid);
+	}
+
 }

@@ -15,4 +15,8 @@
 	<bean id="repositoryDao" class="org.gitmining.dao.impl.RepositoryDaoImpl">
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
+	
+	<bean id="tagDao" class="org.gitmining.dao.impl.TagDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
 </beans>

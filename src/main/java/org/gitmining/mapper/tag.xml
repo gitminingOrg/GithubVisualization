@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tag">
+	<resultMap type="org.gitmining.bean.Tag" id="tag">
+		<result property="id" column="id" />
+		<result property="node_id" column="node_id" />
+		<result property="name" column="name" />
+	</resultMap>
+
+	<select id="listFirstTag" resultMap="tag">
+		SELECT id, node_id, name
+		FROM
+		tag;
+	</select>
+	
+	<select id="listSecondTag" resultType="tag">
+		SELECT id, node_id, name
+		FROM 
+		tag
+		WHERE
+		name like #{firstTag};
+	</select>
+	
+	<select id="getTagID" resultType="java.lang.Integer">
+		SELECT id
+		FROM 
+		tag
+		WHERE
+		name=#{tagName};
+	</select>
+	
+	<select id="getTagNodeID" resultType="java.lang.String">
+		SELECT node_id
+		FROM 
+		tag
+		WHERE
+		name=#{tagName};
+	</select>
+
+</mapper>

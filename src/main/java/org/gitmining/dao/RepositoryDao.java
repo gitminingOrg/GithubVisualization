@@ -9,4 +9,5 @@ public interface RepositoryDao {
 	public	Repository getRepositoryById(int id);
 	public	Repository getRepositoryByName(String name);
 	public List<RepoTagPair> getAllRepoTagPairs();
+	public List<RepoTagPair> getRepoTagPairsByTagID(int tid);
 }
