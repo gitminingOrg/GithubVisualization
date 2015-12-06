@@ -18,6 +18,19 @@
 		<result property="tag_id" column="tag_id" />
 	</resultMap>
 	
+	<resultMap type="org.gitmining.bean.RepoScore" id="repoScore">
+		<result property="repo_id" column="repo_id" />
+		<result property="hot" column="hot" />
+		<result property="mature" column="mature" />
+		<result property="popular" column="popular" />
+		<result property="nb" column="nb" />
+		<result property="contributor" column="hot" />
+		<result property="size" column="size" />
+		<result property="update" column="update" />
+		<result property="release" column="release" />
+		<result property="total" column="total" />
+	</resultMap>
+	
 	<resultMap type="org.gitmining.bean.Repository" id="repository">
 		<result property="id" column="id" />
 		<result property="full_name" column="full_name" />
@@ -64,6 +77,15 @@
 		full_name=#{full_name};
 	</select>
 	
+	<select id="searchRepoByOwnerName" resultMap="repository">
+		SELECT id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
+		commit,stargazers,subscribers,fork_num
+		FROM
+		repotest
+		WHERE
+		owner_name=#{owner_name};
+	</select>	
 	<select id="searchRepoById" resultMap="repository">
 		SELECT id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
 		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
@@ -73,7 +95,13 @@
 		WHERE
 		id=#{id};
 	</select>
-
+	<select id="searchRepoScoreById" resultMap="repoScore">
+		SELECT repo_id,hot,mature,popular,nb,contributor,size,update,release,total
+		FROM
+		reposcore
+		WHERE
+		repo_id=#{repo_id};
+	</select>
 	<select id="getAllRepoTagPair" resultMap="repoTagPair">
 		SELECT id,repo_id,tag_id
 		FROM

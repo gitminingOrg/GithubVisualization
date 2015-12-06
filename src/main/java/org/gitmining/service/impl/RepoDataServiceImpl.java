@@ -1,21 +1,40 @@
 package org.gitmining.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import net.spy.memcached.MemcachedClient;
+
+import org.gitmining.bean.Event;
+import org.gitmining.bean.History;
+import org.gitmining.bean.RepoPairRelation;
+import org.gitmining.bean.RepoScore;
 import org.gitmining.bean.RepoTagPair;
 import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
 import org.gitmining.dao.RepositoryDao;
 import org.gitmining.service.RepoDataService;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+
 public class RepoDataServiceImpl implements RepoDataService {
 	
 	private RepositoryDao repositoryDao;
+	private MemcachedClient memcachedClient;
+	public MemcachedClient getMemcachedClient() {
+		return memcachedClient;
+	}
+	public void setMemcachedClient(MemcachedClient memcachedClient) {
+		this.memcachedClient = memcachedClient;
+	}
 	public RepositoryDao getRepositoryDao() {
 		return repositoryDao;
 	}
@@ -36,24 +55,66 @@ public class RepoDataServiceImpl implements RepoDataService {
 	@Override
 	public Map<String,Integer> getRepositoryScoreById(int id){
 		// TODO Auto-generated method stub
+		RepoScore repoScore = repositoryDao.getRepoScoreById(id);
 		return getRepositoryScoreByIdStub();
 	}
 	@Override
-	public Map<String, List> relatedRepos(int id) {
+	public Map<String, List> relatedRepos(Repository repository) {
 		// TODO Auto-generated method stub
 		Map<String, List> result = new TreeMap<String, List>();
-		result.put("tag", getRelatedTagRepos(id));
-		result.put("owner", getRelatedOwnerRepos(id));
-		result.put("viewer", getRelatedOwnerRepos(id));
+		result.put("tag", getRelatedTagRepos(repository.getId()));
+		result.put("owner", getRelatedOwnerRepos(repository));
+		result.put("viewer", getRelatedViewerRepos(repository.getId()));
 		return result;
 	}
-	
+	@Override
+	public History getRepositoryHistory(int id) {
+		// TODO Auto-generated method stub
+		History history = new History();
+		history.setId("History of Repository");
+		history.setTitle("History of Repository");
+		history.setFocus_date("2015-07-01 12:00");
+		history.setColor("#82530d");
+		history.setInitial_zoom(45);
+		history.setSize_importance("true");
+		List<Event> events = new ArrayList<Event>();
+		Event event = new Event();
+		event.setDescription("description of repo"+id);
+		event.setEnddate("2015-07-01 12:00");
+		event.setHigh_threshold(60);
+		event.setLow_threshold(1);
+		event.setImportance(45);
+		event.setId(1);
+		event.setSlug("");
+		event.setStartdate("2015-08-01 12:00");
+		event.setTitle("title");
+		event.setYpix(0);
+		events.add(event);
+		history.setEvents(events);
+		return history;
+	}
 	public List<Repository> getRelatedTagRepos(int id){
-		return getRelatedReposStub();
+		if (memcachedClient.get("relation_matrix") == null) {
+			calculateRepoSimilarity();
+		}
+		Gson gson = new Gson();
+		String matrixString = (String) memcachedClient.get("relation_matrix");
+		ArrayList<RepoPairRelation>[] matrix = gson.fromJson(matrixString, new TypeToken<ArrayList<RepoPairRelation>[]>(){}.getType());
+		ArrayList<RepoPairRelation> related = matrix[id];
+		ArrayList<Repository> relatedRepository = new ArrayList<Repository>();
+		
+		for (int index = 0; index < 5; index++) {
+			int rid = related.get(index).getRepo_relate_id();
+			Repository repository = repositoryDao.getRepositoryById(rid);
+			relatedRepository.add(repository);
+		}
+		
+		return relatedRepository;
 	}
 	
-	public List<Repository> getRelatedOwnerRepos(int id){
-		return getRelatedReposStub();
+	public List<Repository> getRelatedOwnerRepos(Repository repository){
+		List<Repository> repositories = repositoryDao.getRepositoryByOwnerName(repository.getOwner_name());
+		return repositories;
 	}
 	public List<Repository> getRelatedViewerRepos(int id){
 		return getRelatedReposStub();
@@ -71,6 +132,7 @@ public class RepoDataServiceImpl implements RepoDataService {
 	}
 	
 	public Map<String,Integer> getRepositoryScoreByIdStub(){
+		
 		Map<String,Integer> map = new HashMap<String, Integer>();
 		map.put("hot", 88);
 		map.put("mature", 70);
@@ -97,21 +159,45 @@ public class RepoDataServiceImpl implements RepoDataService {
 				list.add(repoTagPair.getTag_id());
 			}
 		}
-		
+
 		//compare tags of different repos
-		int[][] matrix = new int[30000][30000];
+		ArrayList<RepoPairRelation>[] matrix = new ArrayList[5000];
 		Set<Integer> keySet = repoTagMap.keySet();
 		for (Integer integer : keySet) {
 			List<Integer> values1 = repoTagMap.get(integer);
+			matrix[integer] = new ArrayList<RepoPairRelation>();
 			for (Integer integer2 : keySet) {
+				RepoPairRelation repoPairRelation=new RepoPairRelation(integer, integer2, 0);
+				int count = 0;
 				List<Integer> values2 = repoTagMap.get(integer2);
 				for (int i=0; i< values2.size(); i++) {
 					if(values2.get(i) == values1.get(i)){
-						matrix[integer][integer2]++;
-						matrix[integer2][integer]++;
+						count++;
+						
 					}
 				}
+				repoPairRelation.setRelation_score(count);
+				matrix[integer].add(repoPairRelation);
 			}
 		}
+		Gson gson = new Gson();
+		
+		for (int i = 0; i < matrix.length; i++) {
+			if(matrix[i] != null){
+				Collections.sort(matrix[i], new Comparator<RepoPairRelation>() {
+
+					@Override
+					public int compare(RepoPairRelation o1, RepoPairRelation o2) {
+						// TODO Auto-generated method stub
+						return o2.getRelation_score()-o1.getRelation_score();
+					}
+				});				
+			}
+			
+		}
+		String matrixString = gson.toJson(matrix);
+		memcachedClient.add("relation_matrix", 0, matrixString);
+		
 	}
+
 }

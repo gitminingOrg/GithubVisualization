@@ -20,12 +20,31 @@
 		<result property="created_at" column="created_at" />
 		<result property="updated_at" column="updated_at" />
 	</resultMap>
-
+	<resultMap type="org.gitmining.bean.UserScore" id="userScore">
+		<result property="user_id" column="user_id" />
+		<result property="efficiency_score" column="efficiency_score" />
+		<result property="quantity_score" column="quantity_score" />
+		<result property="total_score" column="total_score" />
+	</resultMap>
 	<select id="selectAllUsers" resultMap="user">
 		SELECT id, login, type, site_admin, name,company,blog,location,email,hireable,bio,public_repos,public_gists,followers,following,created_at,updated_at
 		FROM
 		usertest;
 	</select>
+	<select id="selectUserById" resultMap="user">
+		SELECT id, login, type, site_admin, name,company,blog,location,email,hireable,bio,public_repos,public_gists,followers,following,created_at,updated_at
+		FROM
+		usertest
+		WHERE
+		id=#{id};
+	</select>	
+	<select id="selectUserScoreById" resultMap="userScore">
+		SELECT user_id, efficiency_score, quantity_score, total_score
+		FROM
+		userscore
+		WHERE
+		user_id=#{user_id};
+	</select>		
 	
 	<select id="countUsers" resultType="java.lang.Integer">
 		SELECT
