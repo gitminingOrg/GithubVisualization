@@ -1,3 +1,3 @@
 <script language="javascript">
-	window.location.href = "simpleRepo";
+	window.location.href = "overview";
 </script>

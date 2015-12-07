@@ -1,7 +1,7 @@
-$(window).load(function() {
-	var repoinfo = document.getElementById("repoinfo");
-	TweenMax.to(repoinfo, 2, {transformPerspective:400, rotationX:360, transformOrigin:"left top"})
-});
+//$(window).load(function() {
+//	var repoinfo = document.getElementById("repoinfo");
+//	TweenMax.to(repoinfo, 2, {transformPerspective:400, rotationX:360, transformOrigin:"left top"})
+//});
 
 $(document).ready(function() {
 	var type=$("#viewtype").text();
@@ -18,14 +18,14 @@ $(document).ready(function() {
 
 });
 
-$("#search-repo-btn").click(function(e) {
-	e.preventDefault();
-	$("#search-repo-btn").blur();
-
-	var reponame = $("#search-name").val();
-	if (reponame == "") {
-		return false;
-	}
-	;
-	$("#search-repo-form").submit();
-});
+//$("#search-repo-btn").click(function(e) {
+//	e.preventDefault();
+//	$("#search-repo-btn").blur();
+//
+//	var reponame = $("#search-name").val();
+//	if (reponame == "") {
+//		return false;
+//	}
+//	;
+//	$("#search-repo-form").submit();
+//});

@@ -5,7 +5,7 @@
 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 	
 	<bean id="overviewController" class="org.gitmining.controller.OverviewController">
-<!-- 		<property name="userDataService" ref="userDataService"></property> -->
+		<property name="repoByTagDataService" ref="repoByTagDataService"></property>
 	</bean>
 	
 	<bean id="userDataController" class="org.gitmining.controller.UserDataController">

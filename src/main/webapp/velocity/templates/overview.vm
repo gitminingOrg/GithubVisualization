@@ -5,14 +5,9 @@
 </div>
 <div id="tags">
 <ul>
-<li><a data-weight="34"  href="http://www.scutephp.com" target="_blank">PHP建站门户</a></li>
-<li><a data-weight="37"  href="/fish">Fish</a></li>
-<li><a data-weight="48" href="/chips">Chips</a></li>
-<li><a data-weight="10" href="/salt">Salt</a></li>
-<li><a data-weight="22" href="/vinegar">Vinegar</a></li>
-<li><a data-weight="19"  href="/vinegar">java</a></li>
-<li><a data-weight="56"  href="/vinegar">css</a></li>
-<li><a data-weight="26"  href="/vinegar">security</a></li>
+  #foreach( $tag in $result.tags) 
+    <li><a data-weight="34+$!velocityCount"  href="/GithubVisualization/repos?tag=$!tag.name&type=all" target="_blank">$!tag.name</a></li>
+  #end
 </ul>
 </div>
 

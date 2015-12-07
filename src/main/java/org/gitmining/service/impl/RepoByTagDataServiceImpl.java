@@ -1,5 +1,6 @@
 package org.gitmining.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.gitmining.bean.RepoTagPair;
@@ -34,6 +35,10 @@ public class RepoByTagDataServiceImpl implements org.gitmining.service.RepoByTag
 		// TODO Auto-generated method stub
 		int tag_id = tagDao.getTagID(tagName); 
 		List<RepoTagPair> repoTagPairs = (List<RepoTagPair>) repositoryDao.getRepoTagPairsByTagID(tag_id);
+		List<SimpleRepo> simpleRepos=new ArrayList<SimpleRepo>();
+		for (int i = 0; i < repoTagPairs.size(); i++) {
+		//	simpleRepos.add(repositoryDao.(repoTagPairs.get(i).getRepo_id()));
+		}
 		return repositoryDao.searchRepos("a");
 	}
 

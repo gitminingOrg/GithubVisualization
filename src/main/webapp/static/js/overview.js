@@ -24,6 +24,7 @@ $(document).ready(function() {
 		minSpeed : 0.01,
 		outlineThickness : 1,
 		outlineOffset : 8,
+		shape:'hcylinder',
 		hideTags : false,
 		shadow : '#ff0',
 		shadowBlur : 1,
@@ -36,4 +37,6 @@ $(document).ready(function() {
 		$('#myCanvasContainer').hide();
 		
 	}
+	
+	
 });

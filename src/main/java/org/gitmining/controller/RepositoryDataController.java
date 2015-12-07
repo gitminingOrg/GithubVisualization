@@ -80,4 +80,5 @@ public class RepositoryDataController {
 		result.put("type", "REPOSITORYANALYSIS");
 		return new ModelAndView("repoanalysis","result",result);
 	}
+	
 }

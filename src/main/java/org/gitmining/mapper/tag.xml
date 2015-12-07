@@ -13,7 +13,7 @@
 		tag;
 	</select>
 	
-	<select id="listSecondTag" resultType="tag">
+	<select id="listSecondTag" resultMap="tag">
 		SELECT id, node_id, name
 		FROM 
 		tag
