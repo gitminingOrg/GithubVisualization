@@ -1,7 +1,16 @@
 package org.gitmining.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.gitmining.bean.User;
+import org.gitmining.bean.UserScore;
 import org.gitmining.service.UserDataService;
 import org.gitmining.service.UserInfoService;
 import org.springframework.ui.ModelMap;
@@ -34,10 +43,13 @@ public class UserInfoDataController {
 	}
 	
 	@RequestMapping(value="/user/content")
-	public ModelAndView getUserContent(HttpServletRequest request) throws Exception {
+	public ModelAndView getUserContent(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ModelMap result=new ModelMap();
+		int user_id = Integer.parseInt(request.getParameter("id"));
+		User user = userInfoService.getUserInfo(user_id);
+		UserScore userScore = userInfoService.getUserScore(user_id);
+		Map<String, List> recommendRepos = userInfoService.getRecommendRepos(user.getName());
 		result.put("type", "USER");
-		return new ModelAndView("user","result",result);
+		return new ModelAndView("usercontent","result",result);
 	}	
-	
 }

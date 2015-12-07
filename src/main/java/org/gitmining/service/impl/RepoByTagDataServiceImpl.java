@@ -37,9 +37,9 @@ public class RepoByTagDataServiceImpl implements org.gitmining.service.RepoByTag
 		List<RepoTagPair> repoTagPairs = (List<RepoTagPair>) repositoryDao.getRepoTagPairsByTagID(tag_id);
 		List<SimpleRepo> simpleRepos=new ArrayList<SimpleRepo>();
 		for (int i = 0; i < repoTagPairs.size(); i++) {
-		//	simpleRepos.add(repositoryDao.(repoTagPairs.get(i).getRepo_id()));
+			simpleRepos.add(repositoryDao.searchSimpleRepoById(repoTagPairs.get(i).getRepo_id()));
 		}
-		return repositoryDao.searchRepos("a");
+		return simpleRepos;
 	}
 
 	@Override

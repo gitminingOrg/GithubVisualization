@@ -37,7 +37,7 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 	@Override
 	public List<RepoTagPair> getRepoTagPairsByTagID(int tid) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("repo.getRepoTagPairsByName", tid);
+		return sqlSession.selectList("repo.getRepoTagPairsByTagID", tid);
 	}
 	
 	@Override
@@ -50,6 +50,12 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 	public RepoScore getRepoScoreById(int repo_id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("repo.searchRepoScoreById", repo_id);
+	}
+
+	@Override
+	public SimpleRepo searchSimpleRepoById(int id) {
+		// TODO Auto-generated method stub	
+		return sqlSession.selectOne("repo.searchSimpleRepoById", id);
 	}
 
 }

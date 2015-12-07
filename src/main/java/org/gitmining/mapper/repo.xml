@@ -66,7 +66,14 @@
 		WHERE
 		full_name like #{pattern};
 	</select>
-	
+
+	<select id="searchSimpleRepoById" resultMap="simpleRepo">
+		SELECT id,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		FROM
+		repotest
+		WHERE
+		id=#{id};
+	</select>	
 	<select id="searchRepoByName" resultMap="repository">
 		SELECT id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
 		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,close_pull,merged_pull,rejected_pull,
@@ -96,7 +103,7 @@
 		id=#{id};
 	</select>
 	<select id="searchRepoScoreById" resultMap="repoScore">
-		SELECT repo_id,hot,mature,popular,nb,contributor,size,update,release,total
+		SELECT repo_id,hot,mature,popular,nb,contributor,size,`update`,`release`,total
 		FROM
 		reposcore
 		WHERE

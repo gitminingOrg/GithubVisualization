@@ -50,7 +50,28 @@ public class RepositoryDataController {
 		map.put("type", "REPOSITORY");
 		return new ModelAndView("repo", "result", map);
 	}
+	@RequestMapping(value="/repository/score")
+	public Map userScore(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub	
+		
+		int repo_id = Integer.parseInt(request.getParameter("id"));
+		
+		List<String> names = new ArrayList<String>();
+		List<Integer> nums = new ArrayList<Integer>();
+		Map<String,Integer> scores = repoDataService.getRepositoryScoreById(repo_id);
+		Set<String> keySet = scores.keySet();
+		for (String string : keySet) {
+			names.add(string);
+			nums.add(scores.get(string));
+		}
 
+		
+		Map<String, List> result = new TreeMap<String, List>();
+		result.put("names", names);
+		result.put("scores", nums);
+		return result;
+	}
 	@RequestMapping(value = "/repository/search", method = RequestMethod.POST)
 	public ModelAndView searchRepository(HttpServletRequest request,
 			HttpServletResponse response) {

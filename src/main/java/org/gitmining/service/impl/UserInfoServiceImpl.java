@@ -1,9 +1,12 @@
 package org.gitmining.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.spy.memcached.MemcachedClient;
 
+import org.gitmining.bean.Repository;
 import org.gitmining.bean.User;
 import org.gitmining.bean.UserScore;
 import org.gitmining.dao.RepositoryDao;
@@ -42,19 +45,22 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public User getUserInfo(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.selectUserById(id);
 	}
 
 	@Override
 	public UserScore getUserScore(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.selectUserScoreById(id);
 	}
 
 	@Override
-	public Map getRecommendRepos(int user_id) {
+	public Map getRecommendRepos(String ownerName) {
 		// TODO Auto-generated method stub
-		return null;
+		Map<String, List> result = new HashMap<String, List>();
+		List<Repository> repositories = repositoryDao.getRepositoryByOwnerName(ownerName);
+		result.put("own_repo", repositories);
+		return result;
 	}
 
 }
