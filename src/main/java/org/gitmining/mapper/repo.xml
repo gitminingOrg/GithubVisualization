@@ -122,4 +122,13 @@
 		WHERE
 		tag_id=#{tid};
 	</select>
+	
+	<select id="getSimpleReposByTagNode" resultMap="simpleRepo">
+		SELECT id,full_name,owner_name,description,update_time,language,stargazers,fork_num 
+		FROM 
+		repotest 
+		WHERE 
+		id IN 
+		(SELECT repo_id FRPM repo_tag WHERE tag_id IN (SELECT id FROM tag where node_id LIKE '#{node_id}%'))
+	</select>
 </mapper>

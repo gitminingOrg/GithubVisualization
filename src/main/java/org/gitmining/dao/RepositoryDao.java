@@ -14,4 +14,5 @@ public interface RepositoryDao {
 	public List<RepoTagPair> getAllRepoTagPairs();
 	public List<RepoTagPair> getRepoTagPairsByTagID(int tid);
 	public List<Repository> getRepositoryByOwnerName(String owner_name);
+	public List<SimpleRepo> getSimpleReposByTagNode(String node_id);
 }
