@@ -56,6 +56,7 @@ public class RepoDataServiceImpl implements RepoDataService {
 	public Map<String,Integer> getRepositoryScoreById(int id){
 		// TODO Auto-generated method stub
 	//	RepoScore repoScore = repositoryDao.getRepoScoreById(id);
+		repositoryDao.getSimpleReposByTagName("typeA");
 		return getRepositoryScoreByIdStub();
 	}
 	@Override

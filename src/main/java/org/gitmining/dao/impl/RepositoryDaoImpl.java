@@ -64,4 +64,10 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		return sqlSession.selectList("repo.getSimpleReposByTagNode", node_id);
 	}
 
+	@Override
+	public List<SimpleRepo> getSimpleReposByTagName(String tag_name) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("repo.getSimpleReposByTagName", tag_name);
+	}
+
 }

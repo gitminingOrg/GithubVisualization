@@ -129,6 +129,10 @@
 		repotest 
 		WHERE 
 		id IN 
-		(SELECT repo_id FRPM repo_tag WHERE tag_id IN (SELECT id FROM tag where node_id LIKE '#{node_id}%'))
+		(SELECT repo_id FRPM repo_tag WHERE tag_id IN (SELECT id FROM tag where node_id LIKE concat(#{node_id},'%')))
+	</select>
+	
+	<select id="getSimpleReposByTagName" resultMap="simpleRepo">
+		select id,full_name,owner_name,description,update_time,language,stargazers,fork_num from repotest where id in (select repo_id from repo_tag where tag_id in (select t2.id from tag t1,tag t2 where t1.name=#{tag_name} and t2.node_id like concat(t1.node_id,'%')));
 	</select>
 </mapper>
