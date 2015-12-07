@@ -13651,7 +13651,8 @@ to {
 .ui.column.grid>[class*="three wide"].column, .ui.grid>.column.row>[class*="three wide"].column,
 	.ui.grid>.row>[class*="three wide"].column, .ui.grid>[class*="three wide"].column
 	{
-	width: 18.75% !important
+	width: 33% !important;
+
 }
 
 .ui.column.grid>[class*="four wide"].column, .ui.grid>.column.row>[class*="four wide"].column,
