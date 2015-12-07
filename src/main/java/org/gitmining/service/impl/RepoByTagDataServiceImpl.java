@@ -33,12 +33,12 @@ public class RepoByTagDataServiceImpl implements org.gitmining.service.RepoByTag
 	@Override
 	public List<SimpleRepo> searchAndSortByTag(String tagName, String type) {
 		// TODO Auto-generated method stub
-		int tag_id = tagDao.getTagID(tagName); 
-		List<RepoTagPair> repoTagPairs = (List<RepoTagPair>) repositoryDao.getRepoTagPairsByTagID(tag_id);
-		List<SimpleRepo> simpleRepos=new ArrayList<SimpleRepo>();
-		for (int i = 0; i < repoTagPairs.size(); i++) {
-			simpleRepos.add(repositoryDao.searchSimpleRepoById(repoTagPairs.get(i).getRepo_id()));
-		}
+		//int tag_id = tagDao.getTagID(tagName); 
+		//List<RepoTagPair> repoTagPairs = (List<RepoTagPair>) repositoryDao.getRepoTagPairsByTagID(tag_id);
+		List<SimpleRepo> simpleRepos=repositoryDao.getSimpleReposByTagName(tagName);
+		//for (int i = 0; i < repoTagPairs.size(); i++) {
+		//	simpleRepos.add(repositoryDao.searchSimpleRepoById(repoTagPairs.get(i).getRepo_id()));
+		//}
 		return simpleRepos;
 	}
 

@@ -41,7 +41,11 @@ public class OverviewController {
 		result.put("repos", repos);
 		result.put("type", "REPOSITORY");
 		List<Tag> firsTags=(ArrayList<Tag>)repoByTagDataService.listFirstTag();
+		List<Tag> secondTags=(ArrayList<Tag>)repoByTagDataService.listSecondTag(tagName);
+		System.out.println(secondTags.size());
 		result.put("tags", firsTags);
+		result.put("secondTags", secondTags);
+		result.put("searchTag", tagName);
 		return new ModelAndView("allrepos", "result", result);
 	}
 

@@ -1,6 +1,6 @@
 	<div class="ui breadcrumb">
 		<a href="/GithubVisualization/overview" class="section">Overview</a><i class="right angle icon divider"></i>
-		<div class="active section">T-Shirt</div>
+		<div class="active section">$!result.searchTag</div>
 	</div>
 	<div class="leftcontainer">
 			<div id="searchitem" class="ui segment">
@@ -10,27 +10,16 @@
 					</div>
 					<div class="body">
 						<div class="ui very relaxed horizontal list">
-							<div class="item">
-								<a class="ui label teal">丹尼尔 路易斯</a>
-							</div>
-							<div class="item">
-								<a class="header">Stevie Feliciano</a>
-							</div>
-							<div class="item">
-								<a class="header">Elliot Fu</a>
-							</div>
-							<div class="item">
-								<a class="header">Elliot Fu</a>
-							</div>
-							<div class="item">
-								<a class="header">Elliot Fu</a>
-							</div>
-							<div class="item">
-								<a class="header">Elliot Fu</a>
-							</div>
-							<div class="item">
-								<a class="header">Elliot Fu</a>
-							</div>
+					
+							#foreach($tag in $result.tags)
+							  <div class="item">
+							   #if($tag.name == $result.searchTag)
+							      <a class="ui label teal">$!tag.name</a>
+							   #else
+								  <a class="header">$!tag.name</a>
+							   #end
+							  </div>
+							#end
 						</div>
 					</div>
 				</div>
@@ -40,24 +29,16 @@
 					</div>
 					<div class="body">
 						<div class="ui very relaxed horizontal list">
-							<div class="item">
-								<a class="header">丹尼尔 路易斯</a>
-							</div>
-							<div class="item">
-								<a class="header">Stevie Feliciano</a>
-							</div>
-							<div class="item">
-								<a class="header">Elliot Fu</a>
-							</div>
-							<div class="item">
-								<a class="header">Elliot Fu</a>
-							</div>
-							<div class="item">
-								<a class="header">Elliot Fu</a>
-							</div>
-							<div class="item">
-								<a class="header">Elliot Fu</a>
-							</div>
+							#foreach($stag in $result.secondTags)
+							  <div class="item">
+							   #if($tag.name == $result.searchTag)
+							      <a class="ui label teal">$!stag.name</a>
+							   #else
+								  <a class="header">$!stag.name</a>
+							   #end
+							  </div>
+							#end
+							
 						</div>
 					</div>
 				</div>
@@ -68,15 +49,14 @@
 						class="long arrow down icon"></i></a> <a class="item">Fork<i
 						class="long arrow down icon"></i></a>
 				</div>
-         <div id="repoitems" class="ui segment">
-				
+         <div id="repoitems" class="ui segment">				
 
 				<div id="repos" class="ui grid">
 				  #foreach($repo in $result.repos)
 					<div class="three wide column">
 						<div class="ui segment">
 							<h3 class="repo-list-name">
-								<a href="/GithubVisualization/repository/content?id=1">$!repo.full_name</a>
+								<a href="/GithubVisualization/repository/content?id=$!repo.id">$!repo.full_name</a>
 							</h3>
 							<div class="detaildes"><span class="repo-list-discription">$!repo.description</span></div>
 							<div class="repo-list-stats">
