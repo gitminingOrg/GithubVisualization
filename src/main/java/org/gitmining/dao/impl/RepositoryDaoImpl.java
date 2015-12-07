@@ -46,4 +46,10 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		return sqlSession.selectOne("repo.searchRepoScoreById", repo_id);
 	}
 
+	@Override
+	public SimpleRepo searchSimpleRepoById(int id) {
+		// TODO Auto-generated method stub	
+		return sqlSession.selectOne("repo.searchSimpleRepoById", id);
+	}
+
 }
