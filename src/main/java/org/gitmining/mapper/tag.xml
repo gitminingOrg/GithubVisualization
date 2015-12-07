@@ -10,7 +10,8 @@
 	<select id="listFirstTag" resultMap="tag">
 		SELECT id, node_id, name
 		FROM
-		tag;
+		tag
+		WHERE node_id not like '%.%';
 	</select>
 	
 	<select id="listSecondTag" resultMap="tag">
