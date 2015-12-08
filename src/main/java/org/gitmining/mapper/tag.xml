@@ -8,14 +8,14 @@
 	</resultMap>
 
 	<select id="listFirstTag" resultMap="tag">
-		SELECT id, node_id, name
+		SELECT id, node_id, name,weight
 		FROM
 		tag
 		WHERE node_id not like '%.%';
 	</select>
 	
 	<select id="listSecondTag" resultMap="tag">
-		SELECT id, node_id, name
+		SELECT id, node_id, name,weight
 		FROM 
 		tag
 		WHERE

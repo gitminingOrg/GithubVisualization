@@ -4,6 +4,7 @@ public class Tag {
 	private int id;
 	private String node_id;
 	private String name;
+	private int weight;
 	
 	public int getId() {
 		return id;
@@ -22,5 +23,11 @@ public class Tag {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 }

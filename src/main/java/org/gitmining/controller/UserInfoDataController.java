@@ -47,9 +47,13 @@ public class UserInfoDataController {
 		ModelMap result=new ModelMap();
 		int user_id = Integer.parseInt(request.getParameter("id"));
 		User user = userInfoService.getUserInfo(user_id);
+		System.out.println(user.getEmail());
 		UserScore userScore = userInfoService.getUserScore(user_id);
 		Map<String, List> recommendRepos = userInfoService.getRecommendRepos(user.getName());
 		result.put("type", "USER");
+		result.put("user", user);
+		result.put("score", userScore);
+		result.put("repos", recommendRepos);
 		return new ModelAndView("usercontent","result",result);
 	}	
 }
