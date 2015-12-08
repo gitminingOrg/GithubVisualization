@@ -70,4 +70,18 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		return sqlSession.selectList("repo.getSimpleReposByTagName", tag_name);
 	}
 
+	@Override
+	public List<SimpleRepo> getSimpleReposByTagNameAndSort(String tag_name,
+			String type) {
+		// TODO Auto-generated method stub
+		if(type.equals("fork")){
+			return sqlSession.selectList("repo.getSimpleReposByTagNameSortFork", tag_name);
+		}else if(type.equals("star")){
+			return sqlSession.selectList("repo.getSimpleReposByTagNameSortStar", tag_name);
+		}else{
+			return sqlSession.selectList("repo.getSimpleReposByTagName", tag_name);
+		}
+		
+	}
+
 }
