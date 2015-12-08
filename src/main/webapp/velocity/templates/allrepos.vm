@@ -1,3 +1,5 @@
+	#parse('/templates/searchrepo.vm')
+	
 	<div class="ui breadcrumb">
 		<a href="/GithubVisualization/overview" class="section">Overview</a><i class="right angle icon divider"></i>
 		<div class="active section">$!result.searchTag</div>

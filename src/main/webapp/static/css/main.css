@@ -37,6 +37,7 @@ body {
 .main.container {
 	margin-top: 5em;
 	overflow: hidden;
+	min-height:500px;
 }
 
 .wireframe {
@@ -61,14 +62,27 @@ td, b {
 	width: 700px !important;
 }
 
-.ui.big.input {
-	margin-left: auto;
-	margin-right: auto;
-	width: 22em;
+.ui.input {	
+	width: 28em;
+	margin:0 auto;
+	margin-left:250px;
+}
+
+.ui.action.input .dropdown{
+	border-radius:0 !important;
+}
+
+.ui.action.input input{
+	border-radius:0 !important;
+	border-right:none;
+}
+
+.ui.action.input button{
+	border-radius:0 !important;
 }
 
 #repolist, #repoinfo {
-	max-width: 800px;
+	max-width: 880px;
 	margin-top: 2em;
 	border-top: 5px solid #009c95;
 	margin-left: auto;
@@ -222,4 +236,13 @@ a:hover {
 #repos .ui.segment .repo-list-stats {
 	bottom: 5px;
 	position: absolute;
+}
+
+#recommendlist .content a{
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+#recommendlist .ui.segment:last-child{
+	margin-bottom:1rem;
 }

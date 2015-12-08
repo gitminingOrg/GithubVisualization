@@ -1,75 +1,116 @@
 #parse('/templates/searchrepo.vm')
-<div id="repoinfo" style="text-align:left;">
-  <!--客观信息-->
-	<h1 class="ui header" style="text-align:left;">
-	  <i class="github square icon"></i>
-	  <div style="text-align:left;" class="content"><br/>$!result.repository.full_name &nbsp;&nbsp;&nbsp; (type:$!result.repository.type)
-	  <div style="text-align:left;" class="sub header">$!result.repository.description<br/></div>
-	</h1>
-	<br/><br/>
-  <div id="content" class="ui grid">
-	  <div class="ten wide column">
-	  <h2>Repository Statistics</h2>
-		<div class="ui mini horizontal statistic">
-	  		<div class="value">$!result.repository.contributor</div>
-	  		<div class="label">contributors</div>
-	  	</div>	
+	<div id="repoinfo" style="text-align: left;">
+		<!--客观信息-->
+		<h1 class="ui header" style="text-align: left;">
+			<i class="github square icon"></i>
+			<div style="text-align: left;" class="content">
+				<br />$!result.repository.full_name &nbsp;&nbsp;&nbsp;
+				(type:$!result.repository.type)
+				<div style="text-align: left;" class="sub header">
+					$!result.repository.description<br />
+				</div>
+			</div>
+		</h1>
+		<br /> <br />
+		<div id="content" class="ui grid">
+			<div class="ten wide column">
+				<h2>Repository Statistics</h2>
+				<div class="ui mini horizontal statistic">
+					<div class="value">$!result.repository.contributor</div>
+					<div class="label">contributors</div>
+				</div>
 
-	  	<div class="ui mini horizontal statistic">	
-	  		<div class="value">$!result.repository.stargazers</div>
-	  		<div class="label">stargazers</div>
-	  	</div>
-	  	<div class="ui mini horizontal statistic">	
-	  		<div class="value">$!result.repository.subscribers</div>
-	  		<div class="label">subscribers</div>
+				<div class="ui mini horizontal statistic">
+					<div class="value">$!result.repository.stargazers</div>
+					<div class="label">stargazers</div>
+				</div>
+				<div class="ui mini horizontal statistic">
+					<div class="value">$!result.repository.subscribers</div>
+					<div class="label">subscribers</div>
+				</div>
+				<div class="ui mini horizontal statistic">
+					<div class="value">$!result.repository.fork_num</div>
+					<div class="label">forks</div>
+				</div>
+			</div>
+			<div class="six wide column">
+				<div id="reposcorePic" style="min-width: 300px; height: 300px"></div>
+			</div>
 		</div>
-		<div class="ui mini horizontal statistic">	
-		<div class="value">$!result.repository.fork_num</div>
-	    <div class="label">forks</div>
-	    </div>
-	  </div>
-      <div class="six wide column">
-     	 <div id="container" style="min-width:300px;height:300px"></div>
-      </div>
-  </div>
-  <!--评分-->
-  <div id="reposcore" style="display:none;">
-  	  <h1>repo_score</h1>
-	  <p>hot_score:$result.scores.hot</p>
-	  <p>mature_score:$result.scores.mature</p>
-	  <p>popular_score:$result.scores.popular</p>
-	  <p>size_score:$result.scores.size</p>
-	  <p>contributor_score:$result.scores.contributor</p>
-	  <p>total_score:$result.scores.total</p>
-  </div> 
+		<!--评分-->
+		<div id="reposcore" style="display: none;">
+			<h1>repo_score</h1>
+			<p>hot_score:$result.scores.hot</p>
+			<p>mature_score:$result.scores.mature</p>
+			<p>popular_score:$result.scores.popular</p>
+			<p>size_score:$result.scores.size</p>
+			<p>contributor_score:$result.scores.contributor</p>
+			<p>total_score:$result.scores.total</p>
+		</div>
 
-  <!--推荐-->
-  <div id="repolist" style="text-align:left;">
-  	  <h1>Related Repositories Recommend</h1>
-      <div class="ui celled list">
-      	<h3>related repos by tag</h3>
-        #foreach( $repo in $result.relatedRepos.tag) 
-             <a href="/GithubVisualization/repository/content?id=$repo.id">$!repo.full_name</a> 
-        #end       
-      </div>
-      
-     <div class="ui celled list">
-     	<h3>related repos by owner</h3>
-        #foreach( $repo in $result.relatedRepos.owner) 
-             <a href="/GithubVisualization/repository/content?id=$repo.id">$!repo.full_name</a> 
-        #end       
-      </div>
-      
-     <div class="ui celled list">
-     	<h3>related repos by viewer</h3>
-        #foreach( $repo in $result.relatedRepos.viewer) 
-             <a href="/GithubVisualization/repository/content?id=$repo.id">$!repo.full_name</a> 
-        #end       
-      </div>
-  </div>
-</div>
-  <script type="text/javascript" src="/GithubVisualization/static/js/jquery/jquery-1.8.2.js"></script>
+		<!--推荐-->
+		<div id="recommendlist" style="text-align: left;">
+			<h3>Recommend</h3>
+
+			<div class="ui grid">
+				<div class="three wide column">
+					<div class="ui segment">
+						<h3>related repos by tag</h3>
+						<div class="ui relaxed divided list">
+							#foreach( $repo in $result.relatedRepos.tag)
+							<div class="item">
+								<i class="large github middle aligned icon"></i>
+								<div class="content">
+									<a class="header"
+										href="/GithubVisualization/repository/content?id=$repo.id">$!repo.full_name</a>
+								</div>
+							</div>
+							#end
+
+						</div>
+					</div>
+				</div>
+
+				<div class="three wide column">
+					<div class="ui segment">
+						<h3>related repos by owner</h3>
+						<div class="ui relaxed divided list">
+							#foreach( $repo in $result.relatedRepos.owner)
+							<div class="item">
+								<i class="large github middle aligned icon"></i>
+								<div class="content">
+									<a class="header"
+										href="/GithubVisualization/repository/content?id=$repo.id">$!repo.full_name</a>
+								</div>
+							</div>
+							#end
+						</div>
+
+
+					</div>
+				</div>
+
+				<div class="three wide column">
+					<div class="ui segment">
+						<h3>related repos by viewer</h3>
+						<div class="ui relaxed divided list">
+							#foreach( $repo in $result.relatedRepos.viewer)
+							<div class="item">
+								<i class="large github middle aligned icon"></i>
+								<div class="content">
+									<a class="header"
+										href="/GithubVisualization/repository/content?id=$repo.id">$!repo.full_name</a>
+								</div>
+							</div>
+							#end
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
    <script src="/GithubVisualization/static/js/highcharts.js"></script>
   <script type="text/javascript" src="/GithubVisualization/static/js/exporting.js"></script>
   <script type="text/javascript" src="/GithubVisualization/static/js/highcharts-more.js"></script>
-  <script type="text/javascript" src="/GithubVisualization/static/js/repo.js"></script>
+  <script type="text/javascript" src="/GithubVisualization/static/js/repository.js"></script>

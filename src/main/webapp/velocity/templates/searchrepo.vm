@@ -1,10 +1,9 @@
 
 <form id="search-repo-form" action="/GithubVisualization/repository/search" method="POST">
-    <div class="ui big action input"> 
-      <input id="search-name" name="reponame" type="text" placeholder="Repository name" value="$!result.searchstring">
-      <button id="search-repo-btn" type="submit" class="ui teal icon button"> Search </button>     
-    </div>   
+    <div class="ui action input"> 
+    
+      <input id="search-name" name="reponame" type="text" placeholder="Repository..." value="$!result.searchstring">
+      <button id="search-repo-btn" type="submit" class="ui teal button"> Search </button>     
+    </div>  
+
 </form>
-
-
- <script src="/GithubVisualization/static/js/repository.js"></script>
