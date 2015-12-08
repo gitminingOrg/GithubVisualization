@@ -19,7 +19,7 @@
 		FROM 
 		tag
 		WHERE
-		name like #{firstTag};
+		node_id like #{firstTag};
 	</select>
 	
 	<select id="getTagID" resultType="java.lang.Integer">

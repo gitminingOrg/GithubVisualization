@@ -56,7 +56,6 @@ public class RepoDataServiceImpl implements RepoDataService {
 	public Map<String,Integer> getRepositoryScoreById(int id){
 		// TODO Auto-generated method stub
 	//	RepoScore repoScore = repositoryDao.getRepoScoreById(id);
-		repositoryDao.getSimpleReposByTagName("typeA");
 		return getRepositoryScoreByIdStub();
 	}
 	@Override
@@ -122,7 +121,7 @@ public class RepoDataServiceImpl implements RepoDataService {
 	}
 	public List<Repository> getRelatedReposStub(){
 		List<Repository> repositories = new ArrayList<Repository>();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 5; i++) {
 			Repository repository = new Repository();
 			repository.setId(i+1);
 			repository.setFull_name("repo"+(i+1));
