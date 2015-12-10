@@ -14,4 +14,8 @@ public interface RepoByTagDataService {
 	public List<Tag> listFirstTag();
 	
 	public List<Tag> listSecondTag(String firstTag);
+	
+	public List<Tag> listSecondTagByMulti(List<String> firstTags);
+	
+	public List<Repository> getReposSortByHot(List<String> tags);
 }

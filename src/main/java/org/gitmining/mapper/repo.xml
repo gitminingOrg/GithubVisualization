@@ -143,4 +143,19 @@
 	<select id="getSimpleReposByTagNameSortStar" resultMap="simpleRepo">
 		select id,full_name,owner_name,description,update_time,language,stargazers,fork_num from repotest where id in (select repo_id from repo_tag where tag_id in (select t2.id from tag t1,tag t2 where t1.name=#{tag_name} and t2.node_id like concat(t1.node_id,'%'))) order by stargazers desc;
 	</select>
+	
+	<select id="getReposSortByHot" resultMap="repository" parameterType="org.gitmining.bean.MultiTag">
+		select id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
+		commit,stargazers,subscribers,fork_num
+		from repo_tag,repotest
+		where repo_tag.repo_id = repotest.id and tag_id in
+		 <foreach collection="list" item="tagIDs" index="index"
+            open="(" close=")" separator=",">
+            #{tagIDs}
+         </foreach>
+        group by repo_id
+		having count(tag_id) = #{number}
+		order by hot desc limit 10
+	</select>
 </mapper>

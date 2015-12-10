@@ -19,4 +19,5 @@ public interface RepositoryDao {
 	public List<SimpleRepo> getSimpleReposByTagNode(String node_id);
 	public List<SimpleRepo> getSimpleReposByTagName(String tag_name);
 	public List<SimpleRepo> getSimpleReposByTagNameAndSort(String tag_name,String type);
+	public List<Repository> getReposSortByHot(List<Integer> tagIDs,int number);
 }

@@ -1,7 +1,9 @@
 package org.gitmining.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
+import org.gitmining.bean.MultiTag;
 import org.gitmining.bean.RepoScore;
 import org.gitmining.bean.RepoTagPair;
 import org.gitmining.bean.Repository;
@@ -82,6 +84,15 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 			return sqlSession.selectList("repo.getSimpleReposByTagName", tag_name);
 		}
 		
+	}
+
+	@Override
+	public List<Repository> getReposSortByHot(List<Integer> tagIDs, int number) {
+		// TODO Auto-generated method stub
+		MultiTag tags = new MultiTag();
+		tags.setTagIDs(tagIDs);
+		tags.setNumber(number);
+		return sqlSession.selectList("repo.getReposSortByHot", tags);
 	}
 
 }

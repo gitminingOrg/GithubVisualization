@@ -56,4 +56,30 @@ public class RepoByTagDataServiceImpl implements org.gitmining.service.RepoByTag
 		return tagDao.listSecondTag(para);
 	}
 
+	@Override
+	public List<Tag> listSecondTagByMulti(List<String> firstTags) {
+		// TODO Auto-generated method stub
+		List<Tag> secondTags = new ArrayList<Tag>();
+		for (int i = 0; i < firstTags.size(); i++) {
+			String node_id = tagDao.getTagNodeID(firstTags.get(i));
+			String para = node_id + "." + "%";
+			List<Tag> temp = tagDao.listSecondTag(para);
+			for (int j = 0; j < temp.size(); j++) {
+				secondTags.add(temp.get(j));
+			}
+		}
+		return secondTags;
+	}
+
+	@Override
+	public List<Repository> getReposSortByHot(List<String> tags) {
+		// TODO Auto-generated method stub
+		List<Integer> tagIDs = new ArrayList<Integer>();
+		for(int i = 0 ; i < tags.size() ; i ++){
+			System.out.println(tagDao.getTagID(tags.get(i)));
+			tagIDs.add(tagDao.getTagID(tags.get(i)));
+		}
+		return repositoryDao.getReposSortByHot(tagIDs, tagIDs.size());
+	}
+
 }
