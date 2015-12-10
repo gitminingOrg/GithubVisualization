@@ -55,8 +55,16 @@ public class RepoDataServiceImpl implements RepoDataService {
 	@Override
 	public Map<String,Integer> getRepositoryScoreById(int id){
 		// TODO Auto-generated method stub
-	//	RepoScore repoScore = repositoryDao.getRepoScoreById(id);
-		return getRepositoryScoreByIdStub();
+		RepoScore repoScore = repositoryDao.getRepoScoreById(id);
+		Map<String,Integer> map = new HashMap<String, Integer>();
+		map.put("hot", repoScore.getHot());
+		map.put("mature", repoScore.getMature());
+		map.put("popular", repoScore.getPopular());
+		map.put("famous", repoScore.getNb());
+		map.put("size", repoScore.getSize());
+		map.put("contributor", repoScore.getContributor());
+		map.put("total", repoScore.getTotal());		
+		return map;
 	}
 	@Override
 	public Map<String, List> relatedRepos(Repository repository) {
