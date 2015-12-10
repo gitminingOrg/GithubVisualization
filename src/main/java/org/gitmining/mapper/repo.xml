@@ -106,6 +106,16 @@
 		WHERE
 		id=#{id};
 	</select>
+	
+	<select id="searchContributedRepoByUserId" resultMap="repository">
+		SELECT id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
+		commit,stargazers,subscribers,fork_num
+		FROM
+		repotest
+		where id in (select repo_id from contribution where user_id = #{user_id});
+	</select>
+	
 	<select id="searchRepoScoreById" resultMap="repoScore">
 		SELECT repo_id,hot,mature,popular,nb,contributor,size,`update`,`release`,total
 		FROM
@@ -164,7 +174,7 @@
 	</select>
 	
 
-		<select id="getSimilarRepo" resultMap="repoPairRelation">
+	<select id="getSimilarRepo" resultMap="repoPairRelation">
 		select repo_id,relate_repo_id,similar from repo_similar where repo_id = #{repo_id} order by similar limit 5;
 	</select>
 </mapper>

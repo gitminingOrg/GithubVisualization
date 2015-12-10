@@ -49,17 +49,24 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public UserScore getUserScore(int id) {
+	public Map getUserScore(int id) {
 		// TODO Auto-generated method stub
-		return userDao.selectUserScoreById(id);
+		UserScore userScore = userDao.selectUserScoreById(id);
+		Map<String, Integer> scores = new HashMap<String, Integer>();
+		scores.put("efficiency", userScore.getEfficiency_score());
+		scores.put("quantity", userScore.getQuantity_score());
+		scores.put("total", userScore.getTotal_score());
+		return scores;
 	}
 
 	@Override
-	public Map getRecommendRepos(String ownerName) {
+	public Map getRecommendRepos(User user) {
 		// TODO Auto-generated method stub
 		Map<String, List> result = new HashMap<String, List>();
-		List<Repository> repositories = repositoryDao.getRepositoryByOwnerName(ownerName);
+		List<Repository> repositories = repositoryDao.getRepositoryByOwnerName(user.getLogin());
+		List<Repository> contriRepositories = repositoryDao.getContributedRepoByUserId(user.getId());
 		result.put("own_repo", repositories);
+		result.put("contri_repo", contriRepositories);
 		return result;
 	}
 

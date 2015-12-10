@@ -32,4 +32,10 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 		return sqlSession.selectOne("user.selectUserScoreById",id);
 	}
 
+	@Override
+	public User selectUserByName(String login) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("user.selectUserByName",login);
+		}
+
 }

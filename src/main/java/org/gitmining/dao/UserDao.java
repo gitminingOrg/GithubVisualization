@@ -9,5 +9,6 @@ public interface UserDao {
 	public List<User> selectAllUsers();
 	public int countUsers();
 	public User selectUserById(int id);
+	public User selectUserByName(String login);
 	public UserScore selectUserScoreById(int id);
 }

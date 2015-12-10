@@ -6,6 +6,7 @@ import org.gitmining.bean.*;
 
 public interface UserInfoService {
 	public User getUserInfo(int id);
-	public UserScore getUserScore(int id);
-	public Map getRecommendRepos(String ownerName);
+	public Map getUserScore(int id);
+	public Map getRecommendRepos(User user);
+
 }

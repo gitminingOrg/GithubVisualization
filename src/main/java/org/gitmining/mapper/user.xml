@@ -38,6 +38,14 @@
 		WHERE
 		id=#{id};
 	</select>	
+	
+	<select id="selectUserByName" resultMap="user">
+		SELECT id, login, type, site_admin, name,company,blog,location,email,hireable,bio,public_repos,public_gists,followers,following,created_at,updated_at
+		FROM
+		usertest
+		WHERE
+		login=#{login};
+	</select>	
 	<select id="selectUserScoreById" resultMap="userScore">
 		SELECT user_id, efficiency_score, quantity_score, total_score
 		FROM
