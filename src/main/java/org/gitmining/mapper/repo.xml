@@ -11,7 +11,11 @@
 		<result property="stargazers" column="stargazers" />
 		<result property="fork_num" column="fork_num" />
 	</resultMap>
-	
+	<resultMap type="org.gitmining.bean.RepoPairRelation" id="repoPairRelation">
+		<result property="repo_id" column="repo_id" />
+		<result property="repo_relate_id" column="relate_repo_id" />
+		<result property="relation_score" column="similar" />
+	</resultMap>	
 	<resultMap type="org.gitmining.bean.RepoTagPair" id="repoTagPair">
 		<result property="id" column="id" />
 		<result property="repo_id" column="repo_id" />
@@ -157,5 +161,10 @@
         group by repo_id
 		having count(tag_id) = #{number}
 		order by hot desc limit 10
+	</select>
+	
+
+		<select id="getSimilarRepo" resultMap="repoPairRelation">
+		select repo_id,relate_repo_id,similar from repo_similar where repo_id = #{repo_id} order by similar limit 5;
 	</select>
 </mapper>

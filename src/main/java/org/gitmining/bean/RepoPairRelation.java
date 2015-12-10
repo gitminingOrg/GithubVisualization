@@ -22,10 +22,4 @@ public class RepoPairRelation {
 	public void setRelation_score(int relation_score) {
 		this.relation_score = relation_score;
 	}
-	public RepoPairRelation(int repo_id, int repo_relate_id, int relation_score) {
-		super();
-		this.repo_id = repo_id;
-		this.repo_relate_id = repo_relate_id;
-		this.relation_score = relation_score;
-	}
 }

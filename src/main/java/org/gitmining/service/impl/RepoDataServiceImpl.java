@@ -56,8 +56,6 @@ public class RepoDataServiceImpl implements RepoDataService {
 	public Map<String,Integer> getRepositoryScoreById(int id){
 		// TODO Auto-generated method stub
 	//	RepoScore repoScore = repositoryDao.getRepoScoreById(id);
-		List<SimpleRepo> repos = repositoryDao.getSimpleReposByTagNameAndSort("typeA", "fork");
-		System.out.println(repos.get(0).getFork_num());
 		return getRepositoryScoreByIdStub();
 	}
 	@Override
@@ -96,13 +94,8 @@ public class RepoDataServiceImpl implements RepoDataService {
 		return history;
 	}
 	public List<Repository> getRelatedTagRepos(int id){
-		if (memcachedClient.get("relation_matrix") == null) {
-			calculateRepoSimilarity();
-		}
-		Gson gson = new Gson();
-		String matrixString = (String) memcachedClient.get("relation_matrix");
-		ArrayList<RepoPairRelation>[] matrix = gson.fromJson(matrixString, new TypeToken<ArrayList<RepoPairRelation>[]>(){}.getType());
-		ArrayList<RepoPairRelation> related = matrix[id];
+	
+		List<RepoPairRelation> related = repositoryDao.getSimilarRepoPairRelation(id);
 		ArrayList<Repository> relatedRepository = new ArrayList<Repository>();
 		
 		for (int index = 0; index < 5; index++) {
@@ -116,6 +109,7 @@ public class RepoDataServiceImpl implements RepoDataService {
 	
 	public List<Repository> getRelatedOwnerRepos(Repository repository){
 		List<Repository> repositories = repositoryDao.getRepositoryByOwnerName(repository.getOwner_name());
+		repositories.remove(repository);
 		return repositories;
 	}
 	public List<Repository> getRelatedViewerRepos(int id){
@@ -143,63 +137,6 @@ public class RepoDataServiceImpl implements RepoDataService {
 		map.put("contributor", 77);
 		map.put("total", 90);
 		return map;
-	}
-	/**
-	 * calculate the similarity metrix of repos by tag
-	 */
-	public void calculateRepoSimilarity(){
-		//get all tags of each repo
-		List<RepoTagPair> repoTagPairs = repositoryDao.getAllRepoTagPairs();
-		Map<Integer,List<Integer>> repoTagMap = new HashMap<Integer, List<Integer>>();
-		for (RepoTagPair repoTagPair : repoTagPairs) {
-			if(!repoTagMap.containsKey(repoTagPair.getRepo_id())){
-				List<Integer> list = new ArrayList<Integer>();
-				list.add(repoTagPair.getTag_id());
-				repoTagMap.put(repoTagPair.getRepo_id(), list);
-			}else{
-				List<Integer> list = repoTagMap.get(repoTagPair.getRepo_id());
-				list.add(repoTagPair.getTag_id());
-			}
-		}
-
-		//compare tags of different repos
-		ArrayList<RepoPairRelation>[] matrix = new ArrayList[5000];
-		Set<Integer> keySet = repoTagMap.keySet();
-		for (Integer integer : keySet) {
-			List<Integer> values1 = repoTagMap.get(integer);
-			matrix[integer] = new ArrayList<RepoPairRelation>();
-			for (Integer integer2 : keySet) {
-				RepoPairRelation repoPairRelation=new RepoPairRelation(integer, integer2, 0);
-				int count = 0;
-				List<Integer> values2 = repoTagMap.get(integer2);
-				for (int i=0; i< values2.size(); i++) {
-					if(values2.get(i) == values1.get(i)){
-						count++;
-						
-					}
-				}
-				repoPairRelation.setRelation_score(count);
-				matrix[integer].add(repoPairRelation);
-			}
-		}
-		Gson gson = new Gson();
-		
-		for (int i = 0; i < matrix.length; i++) {
-			if(matrix[i] != null){
-				Collections.sort(matrix[i], new Comparator<RepoPairRelation>() {
-
-					@Override
-					public int compare(RepoPairRelation o1, RepoPairRelation o2) {
-						// TODO Auto-generated method stub
-						return o2.getRelation_score()-o1.getRelation_score();
-					}
-				});				
-			}
-			
-		}
-		String matrixString = gson.toJson(matrix);
-		memcachedClient.add("relation_matrix", 0, matrixString);
-		
 	}
 
 }
