@@ -5,7 +5,7 @@
 			<i class="github square icon"></i>
 			<div style="text-align: left;" class="content">
 				<br />$!result.repository.full_name &nbsp;&nbsp;&nbsp;
-				(type:$!result.repository.type)
+				(tag:$!result.repository.type)
 				<div style="text-align: left;" class="sub header">
 					$!result.repository.description<br />
 				</div>
@@ -110,7 +110,7 @@
 		</div>
 	</div>
 	
-   <script src="/GithubVisualization/static/js/highcharts.js"></script>
-  <script type="text/javascript" src="/GithubVisualization/static/js/exporting.js"></script>
-  <script type="text/javascript" src="/GithubVisualization/static/js/highcharts-more.js"></script>
+   <script src="/GithubVisualization/static/js/library/highcharts.js"></script>
+  <script type="text/javascript" src="/GithubVisualization/static/js/library/exporting.js"></script>
+  <script type="text/javascript" src="/GithubVisualization/static/js/library/highcharts-more.js"></script>
   <script type="text/javascript" src="/GithubVisualization/static/js/repository.js"></script>

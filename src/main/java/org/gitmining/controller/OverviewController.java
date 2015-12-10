@@ -34,15 +34,12 @@ public class OverviewController {
 			throws Exception {
 		String tagName=request.getParameter("tag");
 		String type=request.getParameter("type");
-		System.out.println(tagName+"fefew"+type);
 		List<SimpleRepo> repos=repoByTagDataService.searchAndSortByTag(tagName, type);
-		System.out.println(repos.size());
 		ModelMap result = new ModelMap();
 		result.put("repos", repos);
 		result.put("type", "REPOSITORY");
 		List<Tag> firsTags=(ArrayList<Tag>)repoByTagDataService.listFirstTag();
 		List<Tag> secondTags=(ArrayList<Tag>)repoByTagDataService.listSecondTag(tagName);
-		System.out.println(secondTags.size());
 		result.put("tags", firsTags);
 		result.put("secondTags", secondTags);
 		result.put("searchTag", tagName);

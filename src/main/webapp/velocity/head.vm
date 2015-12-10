@@ -3,9 +3,9 @@
 		<div class="ui container">
 			<div href="#" class="header item">GitMining</div>
 			<a href="/GithubVisualization/overview" class="item" id="overviewitem">Overview</a>
-			<a href="/GithubVisualization/simpleRepo" class="item" id="repositoryitem">Repository</a>
+			<a href="/GithubVisualization/repos?tag=typeA&type=all" class="item" id="repositoryitem">Repository</a>
 			<a href="/GithubVisualization/simpleUser" class="item" id="useritem">User</a>
-			<a href="/GithubVisualization/user" class="item" id="useranalysisitem">UserAnalysis</a>
+			
 			<p id="viewtype" style="hidden">$!result.type</p>
 		</div>
 	</div>

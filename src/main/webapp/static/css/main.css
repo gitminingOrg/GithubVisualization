@@ -59,7 +59,7 @@ td, b {
 
 #myCanvasContainer {
 	margin: 0 auto;
-	width: 700px !important;
+	width: 100% !important;
 }
 
 .ui.input {	
@@ -151,15 +151,24 @@ a:hover {
 	margin-left: 30px;
 }
 
+.rightcontainer .ui.grid{
+	width:100%;
+	margin:0 0 1rem 0 ;
+}
+
+.rightcontainer .ui.grid .repo-list-name{
+	font-size:1em;
+}
+
 #searchitem .firstrow .head {
 	position: absolute;
 	left: 11px;
-	top: 15px;
+	top: 17px;
 	color: #999;
 }
 
 #searchitem .firstrow .body {
-	padding: 0 10px 0 80px;
+	padding: 0 10px 5px 80px;
 }
 
 #searchitem .secondrow {
@@ -203,6 +212,14 @@ a:hover {
 
 #repoitems .column .ui.segment .repo-list-stats {
 	float: none;
+}
+
+#repoitems .ui.tab.active, .ui.tab.open{
+	display:flex;
+}
+
+#repoitems .ui.grid+.grid{
+	margin-top:-1rem;
 }
 
 #pagination {

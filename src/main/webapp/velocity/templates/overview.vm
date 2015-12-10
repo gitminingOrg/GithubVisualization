@@ -1,16 +1,16 @@
 <div id="myCanvasContainer">
-   <canvas width="700px" height="400" id="myCanvas">
+   <canvas width="1100px" height="500" id="myCanvas">
       <p>Anything in here will be replaced on browsers that support the canvas element</p>
    </canvas>
 </div>
 <div id="tags">
 <ul>
   #foreach( $tag in $result.tags) 
-    <li><a data-weight="34+$!velocityCount"  href="/GithubVisualization/repos?tag=$!tag.name&type=all" target="_blank">$!tag.name</a></li>
+    <li><a data-weight="$!tag.weight"  href="/GithubVisualization/repos?tag=$!tag.name&type=all" target="_blank">$!tag.name</a></li>
   #end
 </ul>
 </div>
 
-<script src="/GithubVisualization/static/js/tagcanvas.js"></script>
+<script src="/GithubVisualization/static/js/library/tagcanvas.js"></script>
 
 <script src="/GithubVisualization/static/js/overview.js"></script>

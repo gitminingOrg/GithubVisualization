@@ -8,10 +8,12 @@
                <i class="star icon link"></i>$!repo.stargazers 
                <i class="fork icon link" style="margin-left:6px;"></i>$!repo.fork_num
              </div>
-             <h3 class="repo-list-name"><a href="/GithubVisualization/repository/info?id=$repo.id">$!repo.full_name</a></h3>
+             <h3 class="repo-list-name"><a href="/GithubVisualization/repository/info?id=$!repo.id">$!repo.full_name</a></h3>
              <p class="repo-list-discription">$!repo.description</p>  
                   
           </div>
         #end       
       </div>
   </div>
+  
+  <script type="text/javascript" src="/GithubVisualization/static/js/repository.js"></script>
