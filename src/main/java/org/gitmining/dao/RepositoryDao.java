@@ -5,6 +5,8 @@ import org.gitmining.bean.RepoScore;
 import org.gitmining.bean.RepoTagPair;
 import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
+
+import weka.classifiers.bayes.net.search.SearchAlgorithm;
 public interface RepositoryDao {
 	public	List<SimpleRepo> searchRepos(String pattern);
 	public	SimpleRepo searchSimpleRepoById(int id);
