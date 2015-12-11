@@ -1,5 +1,6 @@
 package org.gitmining.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +68,22 @@ public class UserInfoServiceImpl implements UserInfoService {
 		List<Repository> contriRepositories = repositoryDao.getContributedRepoByUserId(user.getId());
 		result.put("own_repo", repositories);
 		result.put("contri_repo", contriRepositories);
+		return result;
+	}
+
+	@Override
+	public List<User> getTop20Users() {
+		// TODO Auto-generated method stub
+		
+		return getTop20Users();
+	}
+	
+	public List<User> getTop20UsersStub(){
+		List<User> users = userDao.selectAllUsers();
+		List<User> result = new ArrayList<User>();
+		for (int i=0; i<20;i++){
+			result.add(users.get(i));
+		}
 		return result;
 	}
 
