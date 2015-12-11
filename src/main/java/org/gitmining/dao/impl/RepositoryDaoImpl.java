@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.gitmining.bean.MultiTag;
+import org.gitmining.bean.RepoPairRelation;
 import org.gitmining.bean.RepoScore;
 import org.gitmining.bean.RepoTagPair;
 import org.gitmining.bean.Repository;
@@ -94,5 +95,15 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		tags.setNumber(number);
 		return sqlSession.selectList("repo.getReposSortByHot", tags);
 	}
+	@Override
+	public List<RepoPairRelation> getSimilarRepoPairRelation(int repo_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("repo.getSimilarRepo", repo_id);
+	}
 
+	@Override
+	public List<Repository> getContributedRepoByUserId(int user_id) {
+		// TODO Auto-generated method stub		
+		return sqlSession.selectList("repo.searchContributedRepoByUserId", user_id);
+	}
 }
