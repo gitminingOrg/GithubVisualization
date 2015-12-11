@@ -57,7 +57,7 @@ td, b {
 	border-bottom: 3px solid #009c95
 }
 
-#myCanvasContainer {
+#myCanvasContainer,#userContainer {
 	margin: 0 auto;
 	width: 100% !important;
 }
@@ -231,7 +231,7 @@ a:hover {
 	padding-bottom: 10px;
 }
 
-#repos .ui.segment a {
+#repos .ui.segment a ,.rightcontainer .ui.segment a {
 	word-break: break-all;
 	word-wrap: break-word;
 }
@@ -239,6 +239,7 @@ a:hover {
 #repos .ui.segment ,.rightcontainer .ui.segment{
 	height: 250px;
 	overflow: hidden;
+	width:100%;
 }
 
 #repos .ui.segment .detaildes{
@@ -266,4 +267,54 @@ a:hover {
 
 #recommendlist .ui.segment:last-child{
 	margin-bottom:1rem;
+}
+
+#userinfo .card{
+	border-radius:0;
+}
+
+.rightinfo{
+	border:1px solid #eee;
+	margin:.875em .5em;
+	min-width:780px;
+}
+
+.rightinfo .scorecontainer{
+	margin:1em 1em;
+	display:inline;
+	float:left;
+}
+
+.scorecontainer .circleseg{
+	margin-left:10px;
+	display:inline;
+	float:left;
+}
+
+.scorecontainer .circleseg.first{
+	margin-right:0;
+}
+
+.scorecontainer .circleseg.last{
+	display:block;
+}
+
+.rightinfo .ui.grid{
+	margin:0;
+	padding-top:1em;
+	width:260px;
+	float:right;
+	margin-right:1em;
+}
+
+.rightinfo .circular.segment{
+	width:104px;
+	height:104px;
+	margin-left:10px;
+}
+
+h4.ui.header .sub.header{
+	font-size:1.6em;
+	font-weight:bold;
+	color:#00B5AD;
 }

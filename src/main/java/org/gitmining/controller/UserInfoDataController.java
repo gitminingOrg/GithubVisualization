@@ -47,6 +47,9 @@ public class UserInfoDataController {
 		ModelMap result=new ModelMap();
 		int user_id = Integer.parseInt(request.getParameter("id"));
 		User user = userInfoService.getUserInfo(user_id);
+		
+		user.setCreated_at(user.getCreated_at().substring(0, 10));
+		
 		Map userScores = userInfoService.getUserScore(user_id);
 		
 		Map<String, List> relatedRepos = userInfoService.getRecommendRepos(user);
@@ -54,15 +57,19 @@ public class UserInfoDataController {
 		result.put("user", user);
 		result.put("score", userScores);
 		result.put("repos", relatedRepos);
-		return new ModelAndView("usercontent","result",result);
+		return new ModelAndView("userinfo","result",result);
 	}	
 	
 	@RequestMapping(value="/user/top")
 	public ModelAndView getTopUserContent(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ModelMap result=new ModelMap();
 		List<User> users = userInfoService.getTop20Users();
+		for (int i = 0; i < users.size(); i++) {
+			users.get(i).setFollowers(users.get(i).getFollowers()/240);
+			System.out.println(users.get(i).getId());
+		}
 		result.put("type", "USER");
-		result.put("user", users);
+		result.put("users", users);
 		return new ModelAndView("useroverview","result",result);
 	}
 }

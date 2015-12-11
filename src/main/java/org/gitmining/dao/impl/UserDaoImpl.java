@@ -38,4 +38,10 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 		return sqlSession.selectOne("user.selectUserByName",login);
 		}
 
+	@Override
+	public List<User> selectTOP20Users() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("user.selectTOP20Users");
+	}
+
 }

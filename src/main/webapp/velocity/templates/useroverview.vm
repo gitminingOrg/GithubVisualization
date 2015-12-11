@@ -1,16 +1,16 @@
-<div id="myCanvasContainer">
+<div id="userContainer">
    <canvas width="1100px" height="500px" id="myCanvas">
       <p>Anything in here will be replaced on browsers that support the canvas element</p>
    </canvas>
 </div>
 <div id="tags">
 <ul>
-  #foreach( $tag in $result.tags) 
-    <li><a data-weight="$!tag.weight"  href="/GithubVisualization/repos?tag=$!tag.name">$!tag.name</a></li>
+  #foreach( $user in $result.users) 
+    <li><a data-weight="$!user.followers"  href="/GithubVisualization/user/content?id=$!user.id">$!user.name</a></li>
   #end
 </ul>
 </div>
 
 <script src="/GithubVisualization/static/js/library/tagcanvas.js"></script>
 
-<script src="/GithubVisualization/static/js/overview.js"></script>
+<script src="/GithubVisualization/static/js/user.js"></script>

@@ -31,6 +31,13 @@
 		FROM
 		usertest;
 	</select>
+	
+	<select id="selectTOP20Users" resultMap="user">
+		SELECT id, login, type, site_admin, name,company,blog,location,email,hireable,bio,public_repos,public_gists,followers,following,created_at,updated_at
+		FROM
+		usertest order by followers desc limit 20;
+	</select>
+	
 	<select id="selectUserById" resultMap="user">
 		SELECT id, login, type, site_admin, name,company,blog,location,email,hireable,bio,public_repos,public_gists,followers,following,created_at,updated_at
 		FROM

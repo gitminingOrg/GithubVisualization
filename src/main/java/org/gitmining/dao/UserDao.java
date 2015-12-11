@@ -11,4 +11,5 @@ public interface UserDao {
 	public User selectUserById(int id);
 	public User selectUserByName(String login);
 	public UserScore selectUserScoreById(int id);
+	public List<User> selectTOP20Users();
 }

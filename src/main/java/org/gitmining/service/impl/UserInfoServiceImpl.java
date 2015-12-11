@@ -75,16 +75,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public List<User> getTop20Users() {
 		// TODO Auto-generated method stub
 		
-		return getTop20Users();
+		return getTop20UsersStub();
 	}
 	
 	public List<User> getTop20UsersStub(){
-		List<User> users = userDao.selectAllUsers();
-		List<User> result = new ArrayList<User>();
-		for (int i=0; i<20;i++){
-			result.add(users.get(i));
-		}
-		return result;
+		List<User> users = userDao.selectTOP20Users();
+		
+		return users;
 	}
 
 }

@@ -18,7 +18,7 @@
 							   #if($tag.name == $result.searchTag)
 							      <a class="ui label teal choose" onclick="cancelTag()">$!tag.name</a>
 							   #else
-								  <a class="header" href="/GithubVisualization/repos?tag=$!tag.name&type=all" onclick="addTag()">$!tag.name</a>
+								  <a class="header" href="/GithubVisualization/repos?tag=$!tag.name" onclick="addTag()">$!tag.name</a>
 							   #end
 							  </div>
 							#end
@@ -132,7 +132,7 @@
 		</div>
 		
 		<div style="clear:both;"></div>
-<div>		
+</div>		
 		
 		<script src="/GithubVisualization/static/js/allrepos.js"></script>
 	
