@@ -1,12 +1,9 @@
 package org.gitmining.service.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import net.spy.memcached.MemcachedClient;
@@ -15,15 +12,11 @@ import org.gitmining.bean.Event;
 import org.gitmining.bean.History;
 import org.gitmining.bean.RepoPairRelation;
 import org.gitmining.bean.RepoScore;
-import org.gitmining.bean.RepoTagPair;
 import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
 import org.gitmining.dao.RepositoryDao;
 import org.gitmining.service.RepoDataService;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 
 public class RepoDataServiceImpl implements RepoDataService {
 	

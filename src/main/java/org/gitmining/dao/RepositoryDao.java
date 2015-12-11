@@ -19,7 +19,7 @@ public interface RepositoryDao {
 	public List<SimpleRepo> getSimpleReposByTagNode(String node_id);
 	public List<SimpleRepo> getSimpleReposByTagName(String tag_name);
 	public List<SimpleRepo> getSimpleReposByTagNameAndSort(String tag_name,String type);
-	public List<Repository> getReposSortByHot(List<Integer> tagIDs, int number);
+	public List<SimpleRepo> getReposSortByHot(List<Integer> tagIDs, int number);
 	public List<RepoPairRelation> getSimilarRepoPairRelation(int repo_id);
 	public List<Repository> getContributedRepoByUserId(int user_id);
 }

@@ -1,8 +1,9 @@
 package org.gitmining.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.gitmining.bean.MultiTag;
 import org.gitmining.bean.RepoPairRelation;
 import org.gitmining.bean.RepoScore;
 import org.gitmining.bean.RepoTagPair;
@@ -87,13 +88,15 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 	}
 
 	@Override
-	public List<Repository> getReposSortByHot(List<Integer> tagIDs, int number) {
+	public List<SimpleRepo> getReposSortByHot(List<Integer> tagIDs, int number) {
 		// TODO Auto-generated method stub
-		MultiTag tags = new MultiTag();
-		tags.setTagIDs(tagIDs);
-		tags.setNumber(number);
-		return sqlSession.selectList("repo.getReposSortByHot", tags);
+		
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("first", tagIDs);
+		map.put("second", number);
+		return sqlSession.selectList("repo.getReposSortByHot", map);
 	}
+	
 	@Override
 	public List<RepoPairRelation> getSimilarRepoPairRelation(int repo_id) {
 		// TODO Auto-generated method stub

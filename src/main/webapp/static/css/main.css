@@ -236,13 +236,17 @@ a:hover {
 	word-wrap: break-word;
 }
 
-#repos .ui.segment {
+#repos .ui.segment ,.rightcontainer .ui.segment{
 	height: 250px;
 	overflow: hidden;
 }
 
-#repos .ui.segment .detaildes {
+#repos .ui.segment .detaildes{
 	position:absolute;
+}
+
+#repos .ui.segment .detaildes,.rightcontainer .ui.segment .detaildes{
+	
 	top:63px;
 	overflow: hidden;
 	height: 140px;
@@ -250,7 +254,7 @@ a:hover {
 	/* 	white-space: nowrap; */
 }
 
-#repos .ui.segment .repo-list-stats {
+#repos .ui.segment .repo-list-stats ,.rightcontainer .ui.segment .repo-list-stats{
 	bottom: 5px;
 	position: absolute;
 }

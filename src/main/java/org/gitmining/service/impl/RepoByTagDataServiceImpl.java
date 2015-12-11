@@ -3,9 +3,8 @@ package org.gitmining.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.gitmining.bean.RepoTagPair;
-import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
+import org.gitmining.bean.Sort;
 import org.gitmining.bean.Tag;
 import org.gitmining.dao.RepositoryDao;
 import org.gitmining.dao.TagDao;
@@ -31,11 +30,18 @@ public class RepoByTagDataServiceImpl implements org.gitmining.service.RepoByTag
 	}
 
 	@Override
-	public List<SimpleRepo> searchAndSortByTag(String tagName, String type) {
+	public List<SimpleRepo> searchAndSortByTag(String tagName, Sort type) {
 		// TODO Auto-generated method stub
 		//int tag_id = tagDao.getTagID(tagName); 
 		//List<RepoTagPair> repoTagPairs = (List<RepoTagPair>) repositoryDao.getRepoTagPairsByTagID(tag_id);
-		List<SimpleRepo> simpleRepos=repositoryDao.getSimpleReposByTagName(tagName);
+		List<SimpleRepo> simpleRepos=new ArrayList<SimpleRepo>();
+		if (type==Sort.GENERAL) {
+			simpleRepos=repositoryDao.getSimpleReposByTagName(tagName);
+		}else if (type==Sort.STAR) {
+			simpleRepos=repositoryDao.getSimpleReposByTagNameAndSort(tagName, "star");
+		}else if (type==Sort.FORK) {
+			simpleRepos=repositoryDao.getSimpleReposByTagNameAndSort(tagName, "fork");
+		}		
 		//for (int i = 0; i < repoTagPairs.size(); i++) {
 		//	simpleRepos.add(repositoryDao.searchSimpleRepoById(repoTagPairs.get(i).getRepo_id()));
 		//}
@@ -72,7 +78,7 @@ public class RepoByTagDataServiceImpl implements org.gitmining.service.RepoByTag
 	}
 
 	@Override
-	public List<Repository> getReposSortByHot(List<String> tags) {
+	public List<SimpleRepo> getReposSortByHot(List<String> tags) {
 		// TODO Auto-generated method stub
 		List<Integer> tagIDs = new ArrayList<Integer>();
 		for(int i = 0 ; i < tags.size() ; i ++){

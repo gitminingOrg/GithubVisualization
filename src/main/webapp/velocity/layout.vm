@@ -17,12 +17,13 @@
 		<link rel="stylesheet" href="/GithubVisualization/static/css/timeglider/Timeglider.css" type="text/css" charset="utf-8">
 		<link rel="stylesheet" href="/GithubVisualization/static/css/timeglider/timeglider.datepicker.css" type="text/css" charset="utf-8">
 	    <script src="/GithubVisualization/static/js/library/jquery-1.11.3.js"></script>
+	    <script src="/GithubVisualization/static/js/library/angular.min.js"></script>
         
     </head>  
     <body>  
        <div class="content">
          #parse('head.vm')       
-         <div class="ui main text container">     
+         <div class="ui main text container" >     
             $screen_content 
          </div>       
          #parse('footer.vm')

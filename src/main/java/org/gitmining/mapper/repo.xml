@@ -158,18 +158,16 @@
 		SELECT distinct re.id AS id ,full_name,owner_name,description,update_time,language,stargazers,fork_num  FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and rt.`tag_id` = t.`id` and t.`name` = #{tag_name} order by stargazers desc;
 	</select>
 	
-	<select id="getReposSortByHot" resultMap="repository" parameterType="org.gitmining.bean.MultiTag">
-		select id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
-		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
-		commit,stargazers,subscribers,fork_num
+	<select id="getReposSortByHot" resultMap="simpleRepo" parameterType="map">
+		select repotest.id,full_name,owner_name,description,update_time,language,stargazers,fork_num
 		from repo_tag,repotest
-		where repo_tag.repo_id = repotest.id and tag_id in
-		 <foreach collection="list" item="tagIDs" index="index"
+		where repo_tag.repo_id = repotest.id and repo_tag.tag_id in
+		 <foreach collection="first" item="item" index="index"
             open="(" close=")" separator=",">
-            #{tagIDs}
+            #{item}
          </foreach>
-        group by repo_id
-		having count(tag_id) = #{number}
+        group by repo_tag.repo_id
+		having count(repo_tag.tag_id) = #{second}
 		order by hot desc limit 10
 	</select>
 	
