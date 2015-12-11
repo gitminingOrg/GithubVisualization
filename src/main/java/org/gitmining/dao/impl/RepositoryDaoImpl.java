@@ -1,7 +1,6 @@
 package org.gitmining.dao.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.gitmining.bean.MultiTag;
 import org.gitmining.bean.RepoPairRelation;
