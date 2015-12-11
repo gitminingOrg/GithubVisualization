@@ -147,15 +147,15 @@
 	</select>
 	
 	<select id="getSimpleReposByTagName" resultMap="simpleRepo">
-		select id,full_name,owner_name,description,update_time,language,stargazers,fork_num from repotest where id in (select repo_id from repo_tag where tag_id in (select t2.id from tag t1,tag t2 where t1.name=#{tag_name} and t2.node_id like concat(t1.node_id,'%')));
+		SELECT distinct re.id AS id ,full_name,owner_name,description,update_time,language,stargazers,fork_num  FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and rt.`tag_id` = t.`id` and t.`name` = #{tag_name};
 	</select>
 
 	<select id="getSimpleReposByTagNameSortFork" resultMap="simpleRepo">
-		select id,full_name,owner_name,description,update_time,language,stargazers,fork_num from repotest where id in (select repo_id from repo_tag where tag_id in (select t2.id from tag t1,tag t2 where t1.name=#{tag_name} and t2.node_id like concat(t1.node_id,'%'))) order by fork_num desc;
+		SELECT distinct re.id AS id ,full_name,owner_name,description,update_time,language,stargazers,fork_num  FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and rt.`tag_id` = t.`id` and t.`name` = #{tag_name} order by fork_num desc;
 	</select>
 
 	<select id="getSimpleReposByTagNameSortStar" resultMap="simpleRepo">
-		select id,full_name,owner_name,description,update_time,language,stargazers,fork_num from repotest where id in (select repo_id from repo_tag where tag_id in (select t2.id from tag t1,tag t2 where t1.name=#{tag_name} and t2.node_id like concat(t1.node_id,'%'))) order by stargazers desc;
+		SELECT distinct re.id AS id ,full_name,owner_name,description,update_time,language,stargazers,fork_num  FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and rt.`tag_id` = t.`id` and t.`name` = #{tag_name} order by stargazers desc;
 	</select>
 	
 	<select id="getReposSortByHot" resultMap="repository" parameterType="org.gitmining.bean.MultiTag">

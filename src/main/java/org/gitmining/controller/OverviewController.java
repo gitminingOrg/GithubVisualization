@@ -35,11 +35,14 @@ public class OverviewController {
 		String tagName=request.getParameter("tag");
 		String type=request.getParameter("type");
 		List<SimpleRepo> repos=repoByTagDataService.searchAndSortByTag(tagName, type);
+		System.out.println(11111);
 		ModelMap result = new ModelMap();
 		result.put("repos", repos);
 		result.put("type", "REPOSITORY");
 		List<Tag> firsTags=(ArrayList<Tag>)repoByTagDataService.listFirstTag();
+		System.out.println(2222);
 		List<Tag> secondTags=(ArrayList<Tag>)repoByTagDataService.listSecondTag(tagName);
+		System.out.println(33333);
 		result.put("tags", firsTags);
 		result.put("secondTags", secondTags);
 		result.put("searchTag", tagName);
