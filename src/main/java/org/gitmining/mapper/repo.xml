@@ -15,13 +15,13 @@
 		<result property="repo_id" column="repo_id" />
 		<result property="repo_relate_id" column="relate_repo_id" />
 		<result property="relation_score" column="similar" />
-	</resultMap>	
+	</resultMap>
 	<resultMap type="org.gitmining.bean.RepoTagPair" id="repoTagPair">
 		<result property="id" column="id" />
 		<result property="repo_id" column="repo_id" />
 		<result property="tag_id" column="tag_id" />
 	</resultMap>
-	
+
 	<resultMap type="org.gitmining.bean.RepoScore" id="repoScore">
 		<result property="repo_id" column="repo_id" />
 		<result property="hot" column="hot" />
@@ -34,7 +34,7 @@
 		<result property="release" column="release" />
 		<result property="total" column="total" />
 	</resultMap>
-	
+
 	<resultMap type="org.gitmining.bean.Repository" id="repository">
 		<result property="id" column="id" />
 		<result property="full_name" column="full_name" />
@@ -61,10 +61,11 @@
 		<result property="stargazers" column="stargazers" />
 		<result property="subscribers" column="subscribers" />
 		<result property="fork_num" column="fork_num" />
-	</resultMap>	
+	</resultMap>
 
 	<select id="searchRepo" resultMap="simpleRepo">
-		SELECT id,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		SELECT
+		id,full_name,owner_name,description,update_time,language,stargazers,fork_num
 		FROM
 		repotest
 		WHERE
@@ -72,14 +73,16 @@
 	</select>
 
 	<select id="searchSimpleRepoById" resultMap="simpleRepo">
-		SELECT id,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		SELECT
+		id,full_name,owner_name,description,update_time,language,stargazers,fork_num
 		FROM
 		repotest
 		WHERE
 		id=#{id};
-	</select>	
+	</select>
 	<select id="searchRepoByName" resultMap="repository">
-		SELECT id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		SELECT
+		id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
 		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,close_pull,merged_pull,rejected_pull,
 		commit,stargazers,subscribers,fork_num
 		FROM
@@ -87,18 +90,20 @@
 		WHERE
 		full_name=#{full_name};
 	</select>
-	
+
 	<select id="searchRepoByOwnerName" resultMap="repository">
-		SELECT id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		SELECT
+		id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
 		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
 		commit,stargazers,subscribers,fork_num
 		FROM
 		repotest
 		WHERE
 		owner_name=#{owner_name};
-	</select>	
+	</select>
 	<select id="searchRepoById" resultMap="repository">
-		SELECT id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		SELECT
+		id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
 		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
 		commit,stargazers,subscribers,fork_num
 		FROM
@@ -106,73 +111,115 @@
 		WHERE
 		id=#{id};
 	</select>
-	
+
 	<select id="searchContributedRepoByUserId" resultMap="repository">
-		SELECT id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		SELECT
+		id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
 		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
 		commit,stargazers,subscribers,fork_num
 		FROM
 		repotest
-		where id in (select repo_id from contribution where user_id = #{user_id});
+		where id in (select
+		repo_id from contribution where user_id = #{user_id});
 	</select>
-	
+
 	<select id="searchRepoScoreById" resultMap="repoScore">
-		SELECT repo_id,hot,mature,popular,nb,contributor,size,`update`,`release`,total
+		SELECT
+		repo_id,hot,mature,popular,nb,contributor,size,`update`,`release`,total
 		FROM
 		reposcore
 		WHERE
 		repo_id=#{repo_id};
 	</select>
 	<select id="getAllRepoTagPair" resultMap="repoTagPair">
-		SELECT id,repo_id,tag_id
+		SELECT
+		id,repo_id,tag_id
 		FROM
 		repo_tag;
 	</select>
-	
+
 	<select id="getRepoTagPairsByTagID" resultMap="repoTagPair">
-		SELECT id,repo_id,tag_id
+		SELECT
+		id,repo_id,tag_id
 		FROM
 		repo_tag
 		WHERE
 		tag_id=#{tid};
 	</select>
-	
+
 	<select id="getSimpleReposByTagNode" resultMap="simpleRepo">
-		SELECT id,full_name,owner_name,description,update_time,language,stargazers,fork_num 
-		FROM 
-		repotest 
-		WHERE 
-		id IN 
-		(SELECT repo_id FRPM repo_tag WHERE tag_id IN (SELECT id FROM tag where node_id LIKE concat(#{node_id},'%')))
+		SELECT
+		id,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		FROM
+		repotest
+		WHERE
+		id IN
+		(SELECT repo_id FRPM repo_tag WHERE tag_id IN
+		(SELECT id FROM tag where
+		node_id LIKE concat(#{node_id},'%')))
 	</select>
-	
+
 	<select id="getSimpleReposByTagName" resultMap="simpleRepo">
-		SELECT distinct re.id AS id ,full_name,owner_name,description,update_time,language,stargazers,fork_num  FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and rt.`tag_id` = t.`id` and t.`name` = #{tag_name};
+		SELECT distinct
+		re.id AS id
+		,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
+		rt.`tag_id` = t.`id` and t.`name` in
+		<foreach collection="name" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+		;
 	</select>
 
 	<select id="getSimpleReposByTagNameSortFork" resultMap="simpleRepo">
-		SELECT distinct re.id AS id ,full_name,owner_name,description,update_time,language,stargazers,fork_num  FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and rt.`tag_id` = t.`id` and t.`name` = #{tag_name} order by fork_num desc;
+		SELECT
+		distinct re.id AS id
+		,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
+		rt.`tag_id` = t.`id` and t.`name` in
+		<foreach collection="name" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+		order by fork_num
+		desc;
 	</select>
 
 	<select id="getSimpleReposByTagNameSortStar" resultMap="simpleRepo">
-		SELECT distinct re.id AS id ,full_name,owner_name,description,update_time,language,stargazers,fork_num  FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and rt.`tag_id` = t.`id` and t.`name` = #{tag_name} order by stargazers desc;
+		SELECT
+		distinct re.id AS id
+		,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
+		rt.`tag_id` = t.`id` and t.`name` in
+		<foreach collection="name" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+		order by stargazers
+		desc;
 	</select>
-	
-	<select id="getReposSortByHot" resultMap="simpleRepo" parameterType="map">
-		select repotest.id,full_name,owner_name,description,update_time,language,stargazers,fork_num
+
+	<select id="getReposSortByHot" resultMap="simpleRepo"
+		parameterType="map">
+		select
+		repotest.id,full_name,owner_name,description,update_time,language,stargazers,fork_num
 		from repo_tag,repotest
-		where repo_tag.repo_id = repotest.id and repo_tag.tag_id in
-		 <foreach collection="first" item="item" index="index"
-            open="(" close=")" separator=",">
-            #{item}
-         </foreach>
-        group by repo_tag.repo_id
+		where repo_tag.repo_id = repotest.id and
+		repo_tag.tag_id in
+		<foreach collection="first" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+		group by repo_tag.repo_id
 		having count(repo_tag.tag_id) = #{second}
 		order by hot desc limit 10
 	</select>
-	
+
 
 	<select id="getSimilarRepo" resultMap="repoPairRelation">
-		select repo_id,relate_repo_id,similar from repo_similar where repo_id = #{repo_id} order by similar limit 5;
+		select
+		repo_id,relate_repo_id,similar from repo_similar where repo_id =
+		#{repo_id} order by similar limit 5;
 	</select>
 </mapper>

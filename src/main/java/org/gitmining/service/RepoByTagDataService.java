@@ -8,7 +8,7 @@ import org.gitmining.bean.Tag;
 
 public interface RepoByTagDataService {
 	
-	public List<SimpleRepo> searchAndSortByTag(String tagName ,Sort type);
+	public List<SimpleRepo> searchAndSortByTag(List<String> tagName ,Sort type);
 	
 	public List<Tag> listFirstTag();
 	

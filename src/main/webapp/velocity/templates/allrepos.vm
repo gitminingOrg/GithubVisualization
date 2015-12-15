@@ -2,7 +2,7 @@
 <div ng-app="repoapp">	
 	<div class="ui breadcrumb">
 		<a href="/GithubVisualization/overview" class="section">Overview</a><i class="right angle icon divider"></i>
-		<div class="active section">$!result.searchTag</div>
+		<div class="active section">#foreach($tag in $!result.searchTag.entrySet())#if($tag.value==1)$!tag.key.name #end #end</div>
 	</div>
 	<div class="leftcontainer">
 			<div id="searchitem" class="ui segment">
@@ -11,15 +11,14 @@
 						<p>Category:</p>
 					</div>
 					<div class="body">
-						<div class="ui very relaxed horizontal list">
-					
-							#foreach($tag in $result.tags)
-							  <div class="item">
-							   #if($tag.name == $result.searchTag)
-							      <a class="ui label teal choose" onclick="cancelTag()">$!tag.name</a>
-							   #else
-								  <a class="header" href="/GithubVisualization/repos?tag=$!tag.name" onclick="addTag()">$!tag.name</a>
-							   #end
+						<div class="ui very relaxed horizontal list">				
+							#foreach($tag in $result.searchTag.entrySet())
+							  <div class="item">						    
+							  		 #if($tag.value==1)
+							     		<a class="ui label teal choose">$!tag.key.name</a>
+							     	 #else
+							     	     <a class="first header">$!tag.key.name</a>
+							         #end
 							  </div>
 							#end
 						</div>
@@ -41,8 +40,7 @@
 								  <a class="header">$!stag.name</a>
 							   #end
 							  </div>
-							#end
-							
+							#end					
 						</div>
 					</div>
 				</div>

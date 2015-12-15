@@ -30,10 +30,11 @@ public class RepoByTagDataServiceImpl implements org.gitmining.service.RepoByTag
 	}
 
 	@Override
-	public List<SimpleRepo> searchAndSortByTag(String tagName, Sort type) {
+	public List<SimpleRepo> searchAndSortByTag(List<String> tagName, Sort type) {
 		// TODO Auto-generated method stub
 		//int tag_id = tagDao.getTagID(tagName); 
 		//List<RepoTagPair> repoTagPairs = (List<RepoTagPair>) repositoryDao.getRepoTagPairsByTagID(tag_id);
+		
 		List<SimpleRepo> simpleRepos=new ArrayList<SimpleRepo>();
 		if (type==Sort.GENERAL) {
 			simpleRepos=repositoryDao.getSimpleReposByTagName(tagName);
@@ -81,8 +82,8 @@ public class RepoByTagDataServiceImpl implements org.gitmining.service.RepoByTag
 	public List<SimpleRepo> getReposSortByHot(List<String> tags) {
 		// TODO Auto-generated method stub
 		List<Integer> tagIDs = new ArrayList<Integer>();
+
 		for(int i = 0 ; i < tags.size() ; i ++){
-			System.out.println(tagDao.getTagID(tags.get(i)));
 			tagIDs.add(tagDao.getTagID(tags.get(i)));
 		}
 		return repositoryDao.getReposSortByHot(tagIDs, tagIDs.size());

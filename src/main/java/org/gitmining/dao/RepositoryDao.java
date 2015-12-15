@@ -17,8 +17,8 @@ public interface RepositoryDao {
 	public List<RepoTagPair> getRepoTagPairsByTagID(int tid);
 	public List<Repository> getRepositoryByOwnerName(String owner_name);
 	public List<SimpleRepo> getSimpleReposByTagNode(String node_id);
-	public List<SimpleRepo> getSimpleReposByTagName(String tag_name);
-	public List<SimpleRepo> getSimpleReposByTagNameAndSort(String tag_name,String type);
+	public List<SimpleRepo> getSimpleReposByTagName(List<String> tag_name);
+	public List<SimpleRepo> getSimpleReposByTagNameAndSort(List<String> tag_name,String type);
 	public List<SimpleRepo> getReposSortByHot(List<Integer> tagIDs, int number);
 	public List<RepoPairRelation> getSimilarRepoPairRelation(int repo_id);
 	public List<Repository> getContributedRepoByUserId(int user_id);

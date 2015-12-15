@@ -37,7 +37,7 @@ body {
 .main.container {
 	margin-top: 5em;
 	overflow: hidden;
-	min-height:500px;
+	min-height: 500px;
 }
 
 .wireframe {
@@ -57,28 +57,28 @@ td, b {
 	border-bottom: 3px solid #009c95
 }
 
-#myCanvasContainer,#userContainer {
+#myCanvasContainer, #userContainer {
 	margin: 0 auto;
 	width: 100% !important;
 }
 
-.ui.input {	
+.ui.input {
 	width: 28em;
-	margin:0 auto;
-	margin-left:250px;
+	margin: 0 auto;
+	margin-left: 250px;
 }
 
-.ui.action.input .dropdown{
-	border-radius:0 !important;
+.ui.action.input .dropdown {
+	border-radius: 0 !important;
 }
 
-.ui.action.input input{
-	border-radius:0 !important;
-	border-right:none;
+.ui.action.input input {
+	border-radius: 0 !important;
+	border-right: none;
 }
 
-.ui.action.input button{
-	border-radius:0 !important;
+.ui.action.input button {
+	border-radius: 0 !important;
 }
 
 #repolist, #repoinfo {
@@ -151,13 +151,13 @@ a:hover {
 	margin-left: 30px;
 }
 
-.rightcontainer .ui.grid{
-	width:100%;
-	margin:0 0 1rem 0 ;
+.rightcontainer .ui.grid {
+	width: 100%;
+	margin: 0 0 1rem 0;
 }
 
-.rightcontainer .ui.grid .repo-list-name{
-	font-size:1em;
+.rightcontainer .ui.grid .repo-list-name {
+	font-size: 1em;
 }
 
 #searchitem .firstrow .head {
@@ -214,12 +214,12 @@ a:hover {
 	float: none;
 }
 
-#repoitems .ui.tab.active, .ui.tab.open{
-	display:flex;
+#repoitems .ui.tab.active, .ui.tab.open {
+	display: flex;
 }
 
-#repoitems .ui.grid+.grid{
-	margin-top:-1rem;
+#repoitems .ui.grid+.grid {
+	margin-top: -1rem;
 }
 
 #pagination {
@@ -231,90 +231,104 @@ a:hover {
 	padding-bottom: 10px;
 }
 
-#repos .ui.segment a ,.rightcontainer .ui.segment a {
+#repos .ui.segment a, .rightcontainer .ui.segment a {
 	word-break: break-all;
 	word-wrap: break-word;
 }
 
-#repos .ui.segment ,.rightcontainer .ui.segment{
+#repos .ui.segment, .rightcontainer .ui.segment {
 	height: 250px;
 	overflow: hidden;
-	width:100%;
+	width: 100%;
 }
 
-#repos .ui.segment .detaildes{
-	position:absolute;
+#repos .ui.segment .detaildes {
+	position: absolute;
 }
 
-#repos .ui.segment .detaildes,.rightcontainer .ui.segment .detaildes{
-	
-	top:63px;
+#repos .ui.segment .detaildes, .rightcontainer .ui.segment .detaildes {
+	top: 63px;
 	overflow: hidden;
 	height: 140px;
 	text-overflow: ellipsis;
 	/* 	white-space: nowrap; */
 }
 
-#repos .ui.segment .repo-list-stats ,.rightcontainer .ui.segment .repo-list-stats{
+#repos .ui.segment .repo-list-stats, .rightcontainer .ui.segment .repo-list-stats
+	{
 	bottom: 5px;
 	position: absolute;
 }
 
-#recommendlist .content a{
+#recommendlist .content a {
 	word-wrap: break-word;
 	word-break: break-all;
 }
 
-#recommendlist .ui.segment:last-child{
-	margin-bottom:1rem;
+#recommendlist .ui.segment:last-child {
+	margin-bottom: 1rem;
 }
 
-#userinfo .card{
-	border-radius:0;
+#userinfo{
+	display:flex;
+	overflow-x: scroll;
 }
 
-.rightinfo{
-	border:1px solid #eee;
-	margin:.875em .5em;
-	min-width:780px;
-}
-
-.rightinfo .scorecontainer{
-	margin:1em 1em;
-	display:inline;
-	float:left;
-}
-
-.scorecontainer .circleseg{
-	margin-left:10px;
-	display:inline;
-	float:left;
-}
-
-.scorecontainer .circleseg.first{
-	margin-right:0;
-}
-
-.scorecontainer .circleseg.last{
-	display:block;
-}
-
-.rightinfo .ui.grid{
+.ui.cards {
+	display: inline;
+	float: left;
 	margin:0;
-	padding-top:1em;
-	width:260px;
-	float:right;
-	margin-right:1em;
 }
 
-.rightinfo .circular.segment{
-	width:104px;
-	height:104px;
-	margin-left:10px;
+.ui.cards>.card {
+	border-radius: 0;
 }
 
-h4.ui.header .sub.header{
-	font-size:1.6em;
-	font-weight:bold;
-	color:#00B5AD;
+.rightinfo {
+	border: 1px solid #eee;
+	margin: .875em .5em;
+	min-width: 780px;
+	width: 780px;
+	display: inline;
+	float: left;
+}
+
+.rightinfo .scorecontainer {
+	margin: 1em 1em;
+	display: inline;
+	float: left;
+}
+
+.scorecontainer .circleseg {
+	margin-left: 10px;
+	display: inline;
+	float: left;
+}
+
+.scorecontainer .circleseg.first {
+	margin-right: 0;
+}
+
+.scorecontainer .circleseg.last {
+	display: block;
+}
+
+.rightinfo .ui.grid {
+	margin: 0;
+	padding-top: 1em;
+	width: 260px;
+	float: right;
+	margin-right: 1em;
+}
+
+.rightinfo .circular.segment {
+	width: 104px;
+	height: 104px;
+	margin-left: 10px;
+}
+
+h4.ui.header .sub.header {
+	font-size: 1.6em;
+	font-weight: bold;
+	color: #00B5AD;
 }

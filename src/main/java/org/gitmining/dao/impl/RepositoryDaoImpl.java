@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.print.attribute.standard.MediaSize.NA;
+
 import org.gitmining.bean.RepoPairRelation;
 import org.gitmining.bean.RepoScore;
 import org.gitmining.bean.RepoTagPair;
@@ -68,21 +70,26 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 	}
 
 	@Override
-	public List<SimpleRepo> getSimpleReposByTagName(String tag_name) {
+	public List<SimpleRepo> getSimpleReposByTagName(List<String> tag_name) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("repo.getSimpleReposByTagName", tag_name);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("name", tag_name);
+		return sqlSession.selectList("repo.getSimpleReposByTagName", map);
 	}
 
 	@Override
-	public List<SimpleRepo> getSimpleReposByTagNameAndSort(String tag_name,
+	public List<SimpleRepo> getSimpleReposByTagNameAndSort(List<String> tag_name,
 			String type) {
 		// TODO Auto-generated method stub
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("name", tag_name);
+		
 		if(type.equals("fork")){
-			return sqlSession.selectList("repo.getSimpleReposByTagNameSortFork", tag_name);
+			return sqlSession.selectList("repo.getSimpleReposByTagNameSortFork", map);
 		}else if(type.equals("star")){
-			return sqlSession.selectList("repo.getSimpleReposByTagNameSortStar", tag_name);
+			return sqlSession.selectList("repo.getSimpleReposByTagNameSortStar", map);
 		}else{
-			return sqlSession.selectList("repo.getSimpleReposByTagName", tag_name);
+			return sqlSession.selectList("repo.getSimpleReposByTagName", map);
 		}
 		
 	}
