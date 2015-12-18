@@ -21,7 +21,7 @@ $(".ui.choose").each(function() {
 	});
 });
 
-$(".first.header").each(function() {
+$(".item .header").each(function() {
 	$(this).click(function() {
 		var text = $(this).text();
 		tags = tags + text + "ae";
@@ -30,7 +30,62 @@ $(".first.header").each(function() {
 	});
 });
 
-var app = angular.module('repoapp', []);
+var app = angular.module('repoapp', [ 'tm.pagination' ]);
+
+app.controller('generalCtrl', [
+		'$scope',
+		'BusinessService',
+		function($scope, BusinessService) {
+
+			var GetGeneralRepos = function() {
+
+				var postData = {
+					pageIndex : $scope.paginationConf.currentPage,
+					pageSize : $scope.paginationConf.itemsPerPage,
+					tag : tags
+				}
+
+				BusinessService.list(postData).success(function(response) {
+					$scope.paginationConf.totalItems = response.count;
+					$scope.generalrepos = response.repos;
+				});
+
+			}
+
+			// 配置分页基本参数
+			$scope.paginationConf = {
+				currentPage : 1,
+				itemsPerPage : 6
+			};
+
+			/*******************************************************************
+			 * 当页码和页面记录数发生变化时监控后台查询 如果把currentPage和itemsPerPage分开监控的话则会触发两次后台事件。
+			 ******************************************************************/
+			$scope.$watch(
+					'paginationConf.currentPage + paginationConf.itemsPerPage',
+					GetGeneralRepos);
+		} ]);
+
+// 业务类
+app.factory('BusinessService', [ '$http', function($http) {
+	var list = function(postData) {
+		     transFn = function(postData) {
+				return $.param(postData);
+			}, postCfg = {
+				headers : {
+					'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+				},
+				transformRequest : transFn
+			};
+		return $http.post('/GithubVisualization/repos/general',postData,postCfg);
+	}
+
+	return {
+		list : function(postData) {
+			return list(postData);
+		}
+	}
+} ]);
 
 app.controller('starCtrl', function($scope, $http) {
 	var url = '/GithubVisualization/repos/star', data = {

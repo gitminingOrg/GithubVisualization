@@ -54,36 +54,36 @@ public class OverviewController {
 		List<Tag> firsTags = (ArrayList<Tag>) repoByTagDataService
 				.listFirstTag();
 		List<Tag> secondTags = (ArrayList<Tag>) repoByTagDataService
-				.listSecondTag("typeA");
-		Map<Tag, Integer> searchTags = new HashMap<Tag, Integer>();
-		for (int i = 0; i < firsTags.size(); i++) {
-			if (tagNameList.contains(firsTags.get(i).getName())) {
-				searchTags.put(firsTags.get(i), 1);
-			} else {
-				searchTags.put(firsTags.get(i), 0);
-			}
-		}
+				.listSecondTagByMulti(tagNameList);
 
 		result.put("tags", firsTags);
 		result.put("secondTags", secondTags);
-		result.put("searchTag", searchTags);
+		result.put("searchTag", tagNameList);
 		return new ModelAndView("allrepos", "result", result);
 	}
 
-	@RequestMapping(value = "/TopTen", method = RequestMethod.POST)
-	public Map getTopTen(HttpServletRequest request,
+	@RequestMapping(value = "/repos/general", method = RequestMethod.POST)
+	public Map getGeneralRepos(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		Map<String, List> result = new HashMap<String, List>();
-		String temp=request.getParameter("tag");
-		String[] tagName = temp.substring(1,temp.length()-1).split("ae");
+		Map<String, Object> result = new HashMap<String, Object>();
+		int currentPage = Integer.parseInt(request.getParameter("pageIndex"));
+		int itemsperPage = Integer.parseInt(request.getParameter("pageSize"));
+		String temp = request.getParameter("tag");
+		String[] tagName = temp.split("ae");
 		List<String> tagNameList = new ArrayList<String>();
 		for (int i = 0; i < tagName.length; i++) {
 			tagNameList.add(tagName[i]);
+			System.out.println(tagName[i]);
 		}
+
 		List<SimpleRepo> repos = repoByTagDataService
-				.getReposSortByHot(tagNameList);
+				.searchAndSortByTagPagination(tagNameList, Sort.GENERAL,
+						currentPage, itemsperPage);
+		int totalCount=repoByTagDataService.resultCount(tagNameList, Sort.GENERAL);
+
 		result.put("repos", repos);
+		result.put("count", totalCount);
 		return result;
 	}
 
@@ -93,7 +93,8 @@ public class OverviewController {
 		// TODO Auto-generated method stub
 		Map<String, List> result = new HashMap<String, List>();
 
-		String[] tagName = request.getParameter("tag").split("ae");
+		String temp = request.getParameter("tag");
+		String[] tagName = temp.substring(1, temp.length() - 1).split("ae");
 		List<String> tagNameList = new ArrayList<String>();
 		for (int i = 0; i < tagName.length; i++) {
 			tagNameList.add(tagName[i]);
@@ -111,7 +112,8 @@ public class OverviewController {
 		// TODO Auto-generated method stub
 		Map<String, List> result = new HashMap<String, List>();
 
-		String[] tagName = request.getParameter("tag").split("ae");
+		String temp = request.getParameter("tag");
+		String[] tagName = temp.substring(1, temp.length() - 1).split("ae");
 		List<String> tagNameList = new ArrayList<String>();
 		for (int i = 0; i < tagName.length; i++) {
 			tagNameList.add(tagName[i]);
@@ -119,6 +121,23 @@ public class OverviewController {
 
 		List<SimpleRepo> repos = repoByTagDataService.searchAndSortByTag(
 				tagNameList, Sort.FORK);
+		result.put("repos", repos);
+		return result;
+	}
+
+	@RequestMapping(value = "/TopTen", method = RequestMethod.POST)
+	public Map getTopTen(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, List> result = new HashMap<String, List>();
+		String temp = request.getParameter("tag");
+		String[] tagName = temp.substring(1, temp.length() - 1).split("ae");
+		List<String> tagNameList = new ArrayList<String>();
+		for (int i = 0; i < tagName.length; i++) {
+			tagNameList.add(tagName[i]);
+		}
+		List<SimpleRepo> repos = repoByTagDataService
+				.getReposSortByHot(tagNameList);
 		result.put("repos", repos);
 		return result;
 	}

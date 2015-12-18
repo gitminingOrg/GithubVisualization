@@ -200,6 +200,52 @@
 		desc;
 	</select>
 
+	<!-- 综合排序分页 -->
+	<select id="getSimpleReposByTagNameSortGeneralPagination" resultMap="simpleRepo">
+		SELECT distinct
+		re.id AS id
+		,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
+		rt.`tag_id` = t.`id` and t.`name` in
+		<foreach collection="name" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+		limit #{beginItem}, #{itemsPerPage};
+	</select>
+
+	<!-- star排序分页 -->
+	<select id="getSimpleReposByTagNameSortStarPagination" resultMap="simpleRepo">
+		SELECT
+		distinct re.id AS id
+		,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
+		rt.`tag_id` = t.`id` and t.`name` in
+		<foreach collection="name" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+		order by stargazers  
+		desc limit #{beginItem}, #{itemsPerPage};
+	</select>
+
+	<!-- fork排序分页 -->
+	<select id="getSimpleReposByTagNameSortForkPagination" resultMap="simpleRepo">
+		SELECT
+		distinct re.id AS id
+		,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
+		rt.`tag_id` = t.`id` and t.`name` in
+		<foreach collection="name" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+		order by fork_num 
+		desc limit #{beginItem}, #{itemsPerPage} ;
+	</select>
+
+
+	<!-- top 10 -->
 	<select id="getReposSortByHot" resultMap="simpleRepo"
 		parameterType="map">
 		select

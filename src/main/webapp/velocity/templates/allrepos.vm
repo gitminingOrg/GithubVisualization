@@ -1,8 +1,47 @@
-	#parse('/templates/searchrepo.vm')
+<style>
+    .page-list .pagination {
+        float: left;
+    }
+
+        .page-list .pagination span {
+            cursor: pointer;
+        }
+
+        .page-list .pagination .separate span {
+            cursor: default;
+            border-top: none;
+            border-bottom: none;
+        }
+
+            .page-list .pagination .separate span:hover {
+                background: none;
+            }
+
+    .page-list .page-total {
+        float: left;
+        margin: 25px 20px;
+    }
+
+        .page-list .page-total input, .page-list .page-total select {
+            height: 26px;
+            border: 1px solid #ddd;
+        }
+
+        .page-list .page-total input {
+            width: 40px;
+            padding-left: 3px;
+        }
+
+        .page-list .page-total select {
+            width: 50px;
+        }
+</style>
+
+#parse('/templates/searchrepo.vm')
 <div ng-app="repoapp">	
 	<div class="ui breadcrumb">
 		<a href="/GithubVisualization/overview" class="section">Overview</a><i class="right angle icon divider"></i>
-		<div class="active section">#foreach($tag in $!result.searchTag.entrySet())#if($tag.value==1)$!tag.key.name #end #end</div>
+		<div class="active section">#foreach($tag in $!result.searchTag) $!tag #end</div>
 	</div>
 	<div class="leftcontainer">
 			<div id="searchitem" class="ui segment">
@@ -12,12 +51,12 @@
 					</div>
 					<div class="body">
 						<div class="ui very relaxed horizontal list">				
-							#foreach($tag in $result.searchTag.entrySet())
+							#foreach($tag in $result.tags)
 							  <div class="item">						    
-							  		 #if($tag.value==1)
-							     		<a class="ui label teal choose">$!tag.key.name</a>
+							  		 #if($result.searchTag.contains($tag.name))
+							     		<a class="ui label teal choose">$!tag.name</a>
 							     	 #else
-							     	     <a class="first header">$!tag.key.name</a>
+							     	     <a class="header">$!tag.name</a>
 							         #end
 							  </div>
 							#end
@@ -34,8 +73,8 @@
 						<div class="ui very relaxed horizontal list">
 							#foreach($stag in $result.secondTags)
 							  <div class="item">
-							   #if($tag.name == $result.searchTag)
-							      <a class="ui label teal">$!stag.name</a>
+							   #if($result.searchTag.contains($stag.name))
+							      <a class="ui label teal choose">$!stag.name</a>
 							   #else
 								  <a class="header">$!stag.name</a>
 							   #end
@@ -54,21 +93,19 @@
 				</div>
          <div id="repoitems" class="ui segment">				
        <!--first-->
-				<div id="repos" class="ui grid tab active"  data-tab="first">
-				  #foreach($repo in $result.repos)
-					<div class="three wide column">
+				<div id="repos" class="ui grid tab active"  data-tab="first" ng-controller="generalCtrl">
+					<div class="three wide column" ng-repeat="repo in generalrepos">
 						<div class="ui segment">
 							<h3 class="repo-list-name">
-								<a href="/GithubVisualization/repository/content?id=$!repo.id">$!repo.full_name</a>
+								<a href="/GithubVisualization/repository/content?id={{repo.id}}">{{repo.full_name}}</a>
 							</h3>
-							<div class="detaildes"><span class="repo-list-discription">$!repo.description</span></div>
+							<div class="detaildes"><span class="repo-list-discription">{{repo.description}}</span></div>
 							<div class="repo-list-stats">
-								<i class="star icon"></i>$!repo.stargazers <i class="fork icon"
-									style="margin-left: 6px;"></i>$!repo.fork_num
+								<i class="star icon"></i>{{repo.stargazers }}<i class="fork icon"
+									style="margin-left: 6px;"></i>{{repo.fork_num}}
 							</div>
 						</div>
 					</div>
-				  #end					
 				</div>
 				
 				<!--second-->
@@ -103,13 +140,15 @@
 						</div>
 					</div>
 				</div>
+				
+				<tm-pagination conf="paginationConf"></tm-pagination>
 							
 				<div style="clear:both;"></div>
 			</div>
 				
 		</div>
 
-		<div class="rightcontainer" ng-app="topten" ng-controller="topCtrl">
+		<div class="rightcontainer" ng-controller="topCtrl">
 			<h3 class="ui teal header">
 				<i class="github icon"></i>
 				<div class="content">TOP 10</div>				
@@ -131,6 +170,6 @@
 		
 		<div style="clear:both;"></div>
 </div>		
-		
+		<script src="/GithubVisualization/static/js/library/pagination.js"></script>
 		<script src="/GithubVisualization/static/js/allrepos.js"></script>
 	
