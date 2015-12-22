@@ -1,44 +1,6 @@
-<style>
-    .page-list .pagination {
-        float: left;
-    }
-
-        .page-list .pagination span {
-            cursor: pointer;
-        }
-
-        .page-list .pagination .separate span {
-            cursor: default;
-            border-top: none;
-            border-bottom: none;
-        }
-
-            .page-list .pagination .separate span:hover {
-                background: none;
-            }
-
-    .page-list .page-total {
-        float: left;
-        margin: 25px 20px;
-    }
-
-        .page-list .page-total input, .page-list .page-total select {
-            height: 26px;
-            border: 1px solid #ddd;
-        }
-
-        .page-list .page-total input {
-            width: 40px;
-            padding-left: 3px;
-        }
-
-        .page-list .page-total select {
-            width: 50px;
-        }
-</style>
 
 #parse('/templates/searchrepo.vm')
-<div ng-app="repoapp">	
+<div ng-app="repoapp" ng-cloak>	
 	<div class="ui breadcrumb">
 		<a href="/GithubVisualization/overview" class="section">Overview</a><i class="right angle icon divider"></i>
 		<div class="active section">#foreach($tag in $!result.searchTag) $!tag #end</div>
@@ -91,9 +53,9 @@
 					<a class="item"  data-tab="second">Star<i class="long arrow down icon"></i></a> 
 					<a class="item"  data-tab="third">Fork<i class="long arrow down icon"></i></a>
 				</div>
-         <div id="repoitems" class="ui segment">				
+         <div id="repoitems" class="ui segment"  ng-controller="generalCtrl">				
        <!--first-->
-				<div id="repos" class="ui grid tab active"  data-tab="first" ng-controller="generalCtrl">
+				<div id="repos" class="ui grid tab active"  data-tab="first">
 					<div class="three wide column" ng-repeat="repo in generalrepos">
 						<div class="ui segment">
 							<h3 class="repo-list-name">
@@ -170,6 +132,7 @@
 		
 		<div style="clear:both;"></div>
 </div>		
-		<script src="/GithubVisualization/static/js/library/pagination.js"></script>
 		<script src="/GithubVisualization/static/js/allrepos.js"></script>
+		<script src="/GithubVisualization/static/js/library/pagination.js"></script>
+		
 	

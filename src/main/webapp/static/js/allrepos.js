@@ -30,7 +30,9 @@ $(".item .header").each(function() {
 	});
 });
 
-var app = angular.module('repoapp', [ 'tm.pagination' ]);
+var app = angular.module('repoapp',[], function($httpProvider){
+	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+});
 
 app.controller('generalCtrl', [
 		'$scope',
@@ -55,7 +57,7 @@ app.controller('generalCtrl', [
 			// 配置分页基本参数
 			$scope.paginationConf = {
 				currentPage : 1,
-				itemsPerPage : 6
+				itemsPerPage : 18
 			};
 
 			/*******************************************************************
@@ -72,9 +74,6 @@ app.factory('BusinessService', [ '$http', function($http) {
 		     transFn = function(postData) {
 				return $.param(postData);
 			}, postCfg = {
-				headers : {
-					'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
-				},
 				transformRequest : transFn
 			};
 		return $http.post('/GithubVisualization/repos/general',postData,postCfg);
@@ -93,9 +92,6 @@ app.controller('starCtrl', function($scope, $http) {
 	}, transFn = function(data) {
 		return $.param(data);
 	}, postCfg = {
-		headers : {
-			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
-		},
 		transformRequest : transFn
 	};
 
@@ -110,9 +106,6 @@ app.controller('forkCtrl', function($scope, $http) {
 	}, transFn = function(data) {
 		return $.param(data);
 	}, postCfg = {
-		headers : {
-			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
-		},
 		transformRequest : transFn
 	};
 
@@ -127,9 +120,6 @@ app.controller('topCtrl', function($scope, $http) {
 	}, transFn = function(data) {
 		return $.param(data);
 	}, postCfg = {
-		headers : {
-			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
-		},
 		transformRequest : transFn
 	};
 
