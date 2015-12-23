@@ -48,7 +48,7 @@ app.controller('generalCtrl', [
 			// 配置分页基本参数
 			$scope.paginationConf = {
 				currentPage : 1,
-				itemsPerPage : 3
+				itemsPerPage : 6
 			};
 
 			$scope.changerepo = function(retype) {

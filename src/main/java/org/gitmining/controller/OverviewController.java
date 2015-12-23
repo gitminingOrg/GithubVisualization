@@ -79,7 +79,7 @@ public class OverviewController {
 						currentPage, itemsperPage);
 		int totalCount = repoByTagDataService.resultCount(tagNameList,
 				Sort.GENERAL);
-
+		result.put("count", totalCount);
 		result.put("repos", repos);
 		result.put("count", totalCount);
 		return result;
@@ -104,6 +104,9 @@ public class OverviewController {
 				.searchAndSortByTagPagination(tagNameList, Sort.STAR,
 						currentPage, itemsperPage);
 		result.put("repos", repos);
+		int totalCount = repoByTagDataService.resultCount(tagNameList,
+				Sort.STAR);
+		result.put("count", totalCount);
 		return result;
 	}
 
@@ -125,6 +128,9 @@ public class OverviewController {
 		List<SimpleRepo> repos = repoByTagDataService.searchAndSortByTagPagination(
 				tagNameList, Sort.FORK,currentPage,itemsperPage);
 		result.put("repos", repos);
+		int totalCount = repoByTagDataService.resultCount(tagNameList,
+				Sort.FORK);
+		result.put("count", totalCount);
 		return result;
 	}
 
