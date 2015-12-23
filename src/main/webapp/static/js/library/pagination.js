@@ -19,8 +19,9 @@ angular.module('repoapp').directive('tmPagination',[function(){
             'Total items:<strong>{{ conf.totalItems }}</strong>' +
             '</div>' +
             '<div class="no-items" ng-show="conf.totalItems <= 0">no matched data</div>' +
-            '</div>',
+            '<div style="clear:both;"></div></div>',
         replace: true,
+        transclude:true,
         link: function(scope, element, attrs){
             // 变更当前页
             scope.changeCurrentPage = function(item){

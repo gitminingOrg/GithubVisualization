@@ -105,7 +105,6 @@ public class RepoByTagDataServiceImpl implements
 			simpleRepos = repositoryDao
 					.getSimpleReposByTagNameAndSortPagination(tagName,
 							Sort.GENERAL, begin, itemsPerPage);
-			System.out.println("general++" + simpleRepos.size());
 		} else if (type == Sort.STAR) {
 			simpleRepos = repositoryDao
 					.getSimpleReposByTagNameAndSortPagination(tagName,

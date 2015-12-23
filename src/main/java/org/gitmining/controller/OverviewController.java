@@ -46,10 +46,7 @@ public class OverviewController {
 			tagNameList.add(tagName[i]);
 		}
 
-		List<SimpleRepo> repos = repoByTagDataService.searchAndSortByTag(
-				tagNameList, Sort.GENERAL);
 		ModelMap result = new ModelMap();
-		result.put("repos", repos);
 		result.put("type", "REPOSITORY");
 		List<Tag> firsTags = (ArrayList<Tag>) repoByTagDataService
 				.listFirstTag();
@@ -80,7 +77,8 @@ public class OverviewController {
 		List<SimpleRepo> repos = repoByTagDataService
 				.searchAndSortByTagPagination(tagNameList, Sort.GENERAL,
 						currentPage, itemsperPage);
-		int totalCount=repoByTagDataService.resultCount(tagNameList, Sort.GENERAL);
+		int totalCount = repoByTagDataService.resultCount(tagNameList,
+				Sort.GENERAL);
 
 		result.put("repos", repos);
 		result.put("count", totalCount);
@@ -91,17 +89,20 @@ public class OverviewController {
 	public Map getStarRepos(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		Map<String, List> result = new HashMap<String, List>();
+		Map<String, Object> result = new HashMap<String, Object>();
+		int currentPage = Integer.parseInt(request.getParameter("pageIndex"));
+		int itemsperPage = Integer.parseInt(request.getParameter("pageSize"));
 
 		String temp = request.getParameter("tag");
-		String[] tagName = temp.substring(1, temp.length() - 1).split("ae");
+		String[] tagName = temp.split("ae");
 		List<String> tagNameList = new ArrayList<String>();
 		for (int i = 0; i < tagName.length; i++) {
 			tagNameList.add(tagName[i]);
 		}
 
-		List<SimpleRepo> repos = repoByTagDataService.searchAndSortByTag(
-				tagNameList, Sort.STAR);
+		List<SimpleRepo> repos = repoByTagDataService
+				.searchAndSortByTagPagination(tagNameList, Sort.STAR,
+						currentPage, itemsperPage);
 		result.put("repos", repos);
 		return result;
 	}
@@ -110,17 +111,19 @@ public class OverviewController {
 	public Map getForkRepos(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		Map<String, List> result = new HashMap<String, List>();
+		Map<String, Object> result = new HashMap<String, Object>();
+		int currentPage = Integer.parseInt(request.getParameter("pageIndex"));
+		int itemsperPage = Integer.parseInt(request.getParameter("pageSize"));
 
 		String temp = request.getParameter("tag");
-		String[] tagName = temp.substring(1, temp.length() - 1).split("ae");
+		String[] tagName = temp.split("ae");
 		List<String> tagNameList = new ArrayList<String>();
 		for (int i = 0; i < tagName.length; i++) {
 			tagNameList.add(tagName[i]);
 		}
 
-		List<SimpleRepo> repos = repoByTagDataService.searchAndSortByTag(
-				tagNameList, Sort.FORK);
+		List<SimpleRepo> repos = repoByTagDataService.searchAndSortByTagPagination(
+				tagNameList, Sort.FORK,currentPage,itemsperPage);
 		result.put("repos", repos);
 		return result;
 	}

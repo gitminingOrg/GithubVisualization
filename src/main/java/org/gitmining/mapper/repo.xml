@@ -225,8 +225,7 @@
 			close=")" separator=",">
 			#{item}
 		</foreach>
-		order by stargazers  
-		desc limit #{beginItem}, #{itemsPerPage};
+		order by stargazers desc limit #{beginItem}, #{itemsPerPage};
 	</select>
 
 	<!-- fork排序分页 -->
