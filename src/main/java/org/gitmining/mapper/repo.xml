@@ -229,7 +229,7 @@
 			close=")" separator=",">
 			#{item}
 		</foreach>
-		order by #{type} desc limit #{beginItem}, #{itemsPerPage};
+		order by ${type} desc limit #{beginItem}, #{itemsPerPage};
 	</select>
 
 	<!-- top 10 -->
