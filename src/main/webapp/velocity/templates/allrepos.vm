@@ -1,137 +1,95 @@
 
 #parse('/templates/searchrepo.vm')
-<div ng-app="repoapp" ng-cloak>	
-	<div class="ui breadcrumb">
-		<a href="/GithubVisualization/overview" class="section">Overview</a><i class="right angle icon divider"></i>
-		<div class="active section">#foreach($tag in $!result.searchTag) $!tag #end</div>
-	</div>
-	<div class="leftcontainer" ng-controller="generalCtrl">
+<div ng-app="repoapp" ng-cloak style="overflow-x: scroll;">
+		<div class="ui breadcrumb">
+			<a href="/GithubVisualization/overview" class="section">Overview</a><i
+				class="right angle icon divider"></i>
+			<div class="active section">#foreach($tag in
+				$!result.searchTag) $!tag #end</div>
+		</div>
+		<div class="leftcontainer" ng-controller="generalCtrl">
 			<div id="searchitem" class="ui segment">
 				<div class="firstrow">
 					<div class="head">
 						<p>Category:</p>
 					</div>
 					<div class="body">
-						<div class="ui very relaxed horizontal list">				
+						<div class="ui very relaxed horizontal list">
 							#foreach($tag in $result.tags)
-							  <div class="item">						    
-							  		 #if($result.searchTag.contains($tag.name))
-							     		<a class="ui label teal choose">$!tag.name</a>
-							     	 #else
-							     	     <a class="header">$!tag.name</a>
-							         #end
-							  </div>
+							<div class="item">
+								#if($result.searchTag.contains($tag.name)) <a
+									class="ui label teal choose">$!tag.name</a> #else <a
+									class="header">$!tag.name</a> #end
+							</div>
 							#end
 						</div>
 					</div>
 				</div>
-				
-			 #if($result.secondTags.size() !=0)
-				<div class="secondrow">
-					<div class="head">
-						<p>Detail Category:</p>
-					</div>
-					<div class="body">
-						<div class="ui very relaxed horizontal list">
-							#foreach($stag in $result.secondTags)
-							  <div class="item">
-							   #if($result.searchTag.contains($stag.name))
-							      <a class="ui label teal choose">$!stag.name</a>
-							   #else
-								  <a class="header">$!stag.name</a>
-							   #end
-							  </div>
-							#end					
-						</div>
-					</div>
-				</div>
-			 #end
+
+					
 			</div>
-				
-				<div id="repomenu" class="ui top menu">
-					<a class="item active"  data-tab="first">General</a> 
-					<a class="item"  data-tab="second" ng-click="changerepo('star')">Star<i class="long arrow down icon"></i></a> 
-					<a class="item"  data-tab="third"  ng-click="changerepo('fork')">Fork<i class="long arrow down icon"></i></a>
-				</div>
-         <div id="repoitems" class="ui segment"  >				
-              <!--first-->
-				<div id="repos" class="ui grid tab active"  data-tab="first">
-					<div class="three wide column" ng-repeat="repo in generalrepos">
-						<div class="ui segment">
-							<h3 class="repo-list-name">
-								<a href="/GithubVisualization/repository/content?id={{repo.id}}">{{repo.full_name}}</a>
-							</h3>
-							<div class="detaildes"><span class="repo-list-discription">{{repo.description}}</span></div>
-							<div class="repo-list-stats">
-								<i class="star icon"></i>{{repo.stargazers }}<i class="fork icon"
-									style="margin-left: 6px;"></i>{{repo.fork_num}}
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<!--second-->
-				<div id="repos" class="ui grid tab"  data-tab="second">
-				 
-					<div class="three wide column" ng-repeat="repo in starrepos">
-						<div class="ui segment">
-							<h3 class="repo-list-name">
-								<a href="/GithubVisualization/repository/content?id={{repo.id}}">{{repo.full_name}}</a>
-							</h3>
-							<div class="detaildes"><span class="repo-list-discription">{{repo.description}}</span></div>
-							<div class="repo-list-stats">
-								<i class="star icon"></i>{{repo.stargazers}} <i class="fork icon"
-									style="margin-left: 6px;"></i>{{repo.fork_num}}
-							</div>
-						</div>
-					</div>
-				 			
-				</div>
-				<!--third-->
-				<div id="repos" class="ui grid tab"  data-tab="third" >
-					<div class="three wide column" ng-repeat="repo in forkrepos">
-						<div class="ui segment">
-							<h3 class="repo-list-name">
-								<a href="/GithubVisualization/repository/content?id={{repo.id}}">{{repo.full_name}}</a>
-							</h3>
-							<div class="detaildes"><span class="repo-list-discription">{{repo.description}}</span></div>
-							<div class="repo-list-stats">
-								<i class="star icon"></i>{{repo.stargazers}} <i class="fork icon"
-									style="margin-left: 6px;"></i>{{repo.fork_num}}
-							</div>
-						</div>
-					</div>
-				</div>
-				
+
+			<div id="repomenu" class="ui top menu">
+				<a class="item" ng-class="{active: isActive.isGen}" ng-click="changerepo(1)">General</a>
+				<a class="item" ng-class="{active: isActive.isStar}" ng-click="changerepo(2)">Star<i
+					class="long arrow down icon"></i></a>
+				<a class="item" ng-class="{active: isActive.isFork}" ng-click="changerepo(3)">Fork<i
+					class="long arrow down icon"></i></a>
+				<a class="item" ng-class="{active: isActive.isCon}" ng-click="changerepo(4)">Contributor<i
+					class="long arrow down icon"></i></a>
+			</div>
+			<div id="repoitems" class="ui segment">
+				<table class="ui very basic table">
+					<tbody>
+						<tr ng-repeat="repo in generalrepos">
+							<td width="45%"><h3 class="repo-list-name">
+									<a
+										href="/GithubVisualization/repository/content?id={{repo.id}}">{{repo.full_name}}</a>
+								</h3>
+								<div class="detaildes">
+									<span class="repo-list-discription">{{repo.description}}</span>
+								</div></td>
+							<td class="states">{{repo.language }}</td>
+							<td class="states"><span class="span-number"><i class="star icon"></i>{{repo.stargazers}}</span>
+							<span class="span-number"><i class="fork icon"></i>{{repo.fork_num}}</span>
+							<span class="span-number"><i class="user icon"></i>{{repo.contributor}}</span>
+							</td>
+							<td class="states"><span>created at:{{repo.create_time}}</span>
+							<span>updated at:{{repo.update_time}}</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!--pagination-->
 				<tm-pagination conf="paginationConf"></tm-pagination>
-							
-				<div style="clear:both;"></div>
+				<div style="clear: both;"></div>
 			</div>
-				
 		</div>
 
 		<div class="rightcontainer" ng-controller="topCtrl">
 			<h3 class="ui teal header">
 				<i class="github icon"></i>
-				<div class="content">TOP 10</div>				
+				<div class="content">TOP 10</div>
 			</h3>
-			      <div class="ui grid" ng-repeat="repo in repos">
-						<div class="ui segment">
-							<h5 class="repo-list-name">
-								<a href="/GithubVisualization/repository/content?id={{repo.id}}">{{repo.full_name}}</a>
-							</h5>
-							<div class="detaildes"><span class="repo-list-discription">{{repo.description}}</span></div>
-							<div class="repo-list-stats">
-								<i class="star icon"></i>{{repo.stargazers }}<i class="fork icon"
-									style="margin-left: 6px;"></i>{{repo.fork_num}}
-							</div>
-						</div>
+			<div class="ui grid" ng-repeat="repo in repos">
+				<div class="ui segment">
+					<h5 class="repo-list-name">
+						<a href="/GithubVisualization/repository/content?id={{repo.id}}">{{repo.full_name}}</a>
+					</h5>
+					<div class="detaildes">
+						<span class="repo-list-discription">{{repo.description}}</span>
 					</div>
-					
+					<div class="repo-list-stats">
+						<i class="star icon"></i>{{repo.stargazers }}<i class="fork icon"
+							style="margin-left: 6px;"></i>{{repo.fork_num}}
+					</div>
+				</div>
+			</div>
 		</div>
-		
-		<div style="clear:both;"></div>
-</div>		
+		<div style="clear: both;"></div>
+	</div>
+	
 		<script src="/GithubVisualization/static/js/allrepos.js"></script>
 		<script src="/GithubVisualization/static/js/library/pagination.js"></script>
 		<script src="/GithubVisualization/static/js/reposervice.js"></script>

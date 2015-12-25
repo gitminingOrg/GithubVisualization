@@ -3,6 +3,7 @@ package org.gitmining.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
 import org.gitmining.bean.Sort;
 import org.gitmining.bean.Tag;
@@ -94,25 +95,20 @@ public class RepoByTagDataServiceImpl implements
 	}
 
 	@Override
-	public List<SimpleRepo> searchAndSortByTagPagination(List<String> tagName,
+	public List<Repository> searchAndSortByTagPagination(List<String> tagName,
 			Sort type, int currentPage, int itemsPerPage) {
 		// TODO Auto-generated method stub
 		int begin = (currentPage - 1) * itemsPerPage;
 
-		List<SimpleRepo> simpleRepos = new ArrayList<SimpleRepo>();
+		List<Repository> simpleRepos = repositoryDao
+				.getSimpleReposByTagNameAndSortPagination(tagName, type, begin,
+						itemsPerPage);
 
-		if (type == Sort.GENERAL) {
-			simpleRepos = repositoryDao
-					.getSimpleReposByTagNameAndSortPagination(tagName,
-							Sort.GENERAL, begin, itemsPerPage);
-		} else if (type == Sort.STAR) {
-			simpleRepos = repositoryDao
-					.getSimpleReposByTagNameAndSortPagination(tagName,
-							Sort.STAR, begin, itemsPerPage);
-		} else if (type == Sort.FORK) {
-			simpleRepos = repositoryDao
-					.getSimpleReposByTagNameAndSortPagination(tagName,
-							Sort.FORK, begin, itemsPerPage);
+		for (int i = 0; i < simpleRepos.size(); i++) {
+			simpleRepos.get(i).setCreate_time(
+					simpleRepos.get(i).getCreate_time().substring(0, 10));
+			simpleRepos.get(i).setUpdate_time(
+					simpleRepos.get(i).getUpdate_time().substring(0, 10));
 		}
 		return simpleRepos;
 	}
@@ -120,18 +116,7 @@ public class RepoByTagDataServiceImpl implements
 	@Override
 	public int resultCount(List<String> tagName, Sort type) {
 		// TODO Auto-generated method stub
-		int resultCount = 0;
-		if (type == Sort.GENERAL) {
-			resultCount = repositoryDao.getResultCountPagination(tagName,
-					Sort.GENERAL);
-		} else if (type == Sort.STAR) {
-			resultCount = repositoryDao.getResultCountPagination(tagName,
-					Sort.STAR);
-		} else if (type == Sort.FORK) {
-			resultCount = repositoryDao.getResultCountPagination(tagName,
-					Sort.FORK);
-		}
-		return resultCount;
+		return repositoryDao.getResultCountPagination(tagName, type);
 	}
 
 }

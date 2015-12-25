@@ -201,10 +201,12 @@
 	</select>
 
 	<!-- 综合排序分页 -->
-	<select id="getSimpleReposByTagNameSortGeneralPagination" resultMap="simpleRepo">
+	<select id="getSimpleReposByTagNameSortGeneralPagination" resultMap="repository">
 		SELECT distinct
 		re.id AS id
-		,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
+		commit,stargazers,subscribers,fork_num
 		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
 		rt.`tag_id` = t.`id` and t.`name` in
 		<foreach collection="name" item="item" index="index" open="("
@@ -214,35 +216,21 @@
 		limit #{beginItem}, #{itemsPerPage};
 	</select>
 
-	<!-- star排序分页 -->
-	<select id="getSimpleReposByTagNameSortStarPagination" resultMap="simpleRepo">
+	<!-- type排序分页 -->
+	<select id="getSimpleReposByTagNameSortPagination" resultMap="repository">
 		SELECT
 		distinct re.id AS id
-		,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
+		commit,stargazers,subscribers,fork_num
 		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
 		rt.`tag_id` = t.`id` and t.`name` in
 		<foreach collection="name" item="item" index="index" open="("
 			close=")" separator=",">
 			#{item}
 		</foreach>
-		order by stargazers desc limit #{beginItem}, #{itemsPerPage};
+		order by #{type} desc limit #{beginItem}, #{itemsPerPage};
 	</select>
-
-	<!-- fork排序分页 -->
-	<select id="getSimpleReposByTagNameSortForkPagination" resultMap="simpleRepo">
-		SELECT
-		distinct re.id AS id
-		,full_name,owner_name,description,update_time,language,stargazers,fork_num
-		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
-		rt.`tag_id` = t.`id` and t.`name` in
-		<foreach collection="name" item="item" index="index" open="("
-			close=")" separator=",">
-			#{item}
-		</foreach>
-		order by fork_num 
-		desc limit #{beginItem}, #{itemsPerPage} ;
-	</select>
-
 
 	<!-- top 10 -->
 	<select id="getReposSortByHot" resultMap="simpleRepo"

@@ -6,7 +6,7 @@ $(document).ready(function() {
 		$("#repositoryitem").attr("class", "item");
 	}
 
-	$('#repomenu .item').tab();
+//	$('#repomenu .item').tab();
 });
 
 var tags = "";
@@ -42,107 +42,74 @@ app.controller('generalCtrl', [
 		'$scope',
 		'RepoService',
 		function($scope, RepoService) {
-
-			$scope.type = "general";
+       //general:1;star:2;fork:3
+			$scope.type = 1;
+			
+			$scope.isActive={
+				isGen:true,
+				isStar:false,
+				isFork:false,
+				isCon:false
+			};
 
 			// 配置分页基本参数
 			$scope.paginationConf = {
 				currentPage : 1,
-				itemsPerPage : 6
+				itemsPerPage : 5
 			};
 
 			$scope.changerepo = function(retype) {
 				$scope.type = retype;
 				$scope.paginationConf.currentPage = 1
+				if(retype==1){
+					$scope.isActive.isGen=true;
+					$scope.isActive.isStar=false;
+					$scope.isActive.isFork=false;
+					$scope.isActive.isCon=false;
+				}else if(retype==2){
+					$scope.isActive.isStar=true;
+					$scope.isActive.isGen=false;
+					$scope.isActive.isFork=false;
+					$scope.isActive.isCon=false;
+				}else if(retype==3){
+					$scope.isActive.isFork=true;
+					$scope.isActive.isStar=false;
+					$scope.isActive.isGen=false;
+					$scope.isActive.isCon=false;
+				}else if(retype==4){
+					$scope.isActive.isCon=true;
+					$scope.isActive.isStar=false;
+					$scope.isActive.isGen=false;
+					$scope.isActive.isFork=false;
+				}
+				
 			};
 
-			var GetGeneralRepos = function() {
+			var GetRepos = function() {
 				var postData = {
 					pageIndex : $scope.paginationConf.currentPage,
 					pageSize : $scope.paginationConf.itemsPerPage,
-					tag : tags
+					tag : tags,
+					type: $scope.type
 				}
 
-				RepoService.getGeneralRepos(postData).success(
+				RepoService.getRepos(postData).success(
 						function(response) {
 							$scope.paginationConf.totalItems = response.count;
 							$scope.generalrepos = response.repos;
 						});
 			}
 
-			var GetStarRepos = function() {
-				var postData = {
-					pageIndex : $scope.paginationConf.currentPage,
-					pageSize : $scope.paginationConf.itemsPerPage,
-					tag : tags
-				}
-
-				RepoService.getStarRepos(postData).success(function(response) {
-					$scope.paginationConf.totalItems = response.count;
-					$scope.starrepos = response.repos;
-				});
-			}
-
-			var GetForkRepos = function() {
-				var postData = {
-					pageIndex : $scope.paginationConf.currentPage,
-					pageSize : $scope.paginationConf.itemsPerPage,
-					tag : tags
-				}
-
-				RepoService.getForkRepos(postData).success(function(response) {
-					$scope.paginationConf.totalItems = response.count;
-					$scope.forkrepos = response.repos;
-				});
-			}
 
 			/*******************************************************************
 			 * 当页码和页面记录数发生变化时监控后台查询 如果把currentPage和itemsPerPage分开监控的话则会触发两次后台事件。
 			 ******************************************************************/
-			var changeRepos = function() {
-				if ($scope.type == "general") {
-					GetGeneralRepos();
-				} else if ($scope.type == "star") {
-					GetStarRepos();
-				} else if ($scope.type == "fork") {
-					GetForkRepos();
-				}
-			}
-
 			$scope.$watch(
 					'paginationConf.currentPage + paginationConf.itemsPerPage + type',
-					changeRepos);
+					GetRepos);
 			
 
 		} ]);
-
-// app.controller('starCtrl', function($scope, $http) {
-// var url = '/GithubVisualization/repos/star', data = {
-// tag : JSON.stringify(tags),
-// }, transFn = function(data) {
-// return $.param(data);
-// }, postCfg = {
-// transformRequest : transFn
-// };
-//
-// $http.post(url, data, postCfg).success(function(data) {
-// $scope.starrepos = data.repos;
-// });
-// });
-//
-// app.controller('forkCtrl', function($scope, $http) {
-// var url = '/GithubVisualization/repos/fork', data = {
-// tag : JSON.stringify(tags),
-// }, transFn = function(data) {
-// return $.param(data);
-// }, postCfg = {
-// transformRequest : transFn
-// };
-//
-// $http.post(url, data, postCfg).success(function(data) {
-// $scope.forkrepos = data.repos;
-// });
-// });
 
 app.controller('topCtrl', function($scope, $http) {
 	var url = '/GithubVisualization/TopTen', data = {

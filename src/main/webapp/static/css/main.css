@@ -246,11 +246,14 @@ a:hover {
 	height: 180px;
 }
 
-#repos .ui.segment .detaildes {
-	position: absolute;
+#repoitems table .detaildes {
+	overflow: hidden;
+	height: 57px;
+	text-overflow: ellipsis;
+	color:#888;
 }
 
-#repos .ui.segment .detaildes, .rightcontainer .ui.segment .detaildes {
+.rightcontainer .ui.segment .detaildes {
 	top: 63px;
 	overflow: hidden;
 	height: 140px;
@@ -440,4 +443,27 @@ h4.ui.header .sub.header {
 
 .page-list .page-total select {
 	width: 50px;
+}
+
+#repoitems table tr {
+	height: 110px;
+}
+
+#repoitems table tr td {
+	vertical-align: super;
+}
+
+#repoitems table tr td span{
+	display:block;
+}
+
+.span-number{
+/* 	color: #00B5AD !important; */
+	font-weight:400;
+	font-size:1.05em;
+	color:#767676!important;
+}
+
+.states {
+	color: #888;
 }

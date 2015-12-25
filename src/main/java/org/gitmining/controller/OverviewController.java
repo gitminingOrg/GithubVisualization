@@ -10,6 +10,7 @@ import java_cup.internal_error;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
 import org.gitmining.bean.Sort;
 import org.gitmining.bean.Tag;
@@ -59,7 +60,7 @@ public class OverviewController {
 		return new ModelAndView("allrepos", "result", result);
 	}
 
-	@RequestMapping(value = "/repos/general", method = RequestMethod.POST)
+	@RequestMapping(value = "/repos/sort", method = RequestMethod.POST)
 	public Map getGeneralRepos(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
@@ -74,62 +75,33 @@ public class OverviewController {
 			System.out.println(tagName[i]);
 		}
 
-		List<SimpleRepo> repos = repoByTagDataService
-				.searchAndSortByTagPagination(tagNameList, Sort.GENERAL,
-						currentPage, itemsperPage);
+		int type = Integer.parseInt(request.getParameter("type"));
+		List<Repository> repos = new ArrayList<Repository>();
+		switch (type) {
+		case 1:
+			repos = repoByTagDataService.searchAndSortByTagPagination(
+					tagNameList, Sort.GENERAL, currentPage, itemsperPage);
+			break;
+		case 2:
+			repos = repoByTagDataService.searchAndSortByTagPagination(
+					tagNameList, Sort.STAR, currentPage, itemsperPage);
+			break;
+		case 3:
+			repos = repoByTagDataService.searchAndSortByTagPagination(
+					tagNameList, Sort.FORK, currentPage, itemsperPage);
+			break;
+		case 4:
+			repos = repoByTagDataService.searchAndSortByTagPagination(
+					tagNameList, Sort.CONTRIBUTOR, currentPage, itemsperPage);
+			break;
+		default:
+			break;
+		}
+
 		int totalCount = repoByTagDataService.resultCount(tagNameList,
 				Sort.GENERAL);
 		result.put("count", totalCount);
 		result.put("repos", repos);
-		result.put("count", totalCount);
-		return result;
-	}
-
-	@RequestMapping(value = "/repos/star", method = RequestMethod.POST)
-	public Map getStarRepos(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		Map<String, Object> result = new HashMap<String, Object>();
-		int currentPage = Integer.parseInt(request.getParameter("pageIndex"));
-		int itemsperPage = Integer.parseInt(request.getParameter("pageSize"));
-
-		String temp = request.getParameter("tag");
-		String[] tagName = temp.split("ae");
-		List<String> tagNameList = new ArrayList<String>();
-		for (int i = 0; i < tagName.length; i++) {
-			tagNameList.add(tagName[i]);
-		}
-
-		List<SimpleRepo> repos = repoByTagDataService
-				.searchAndSortByTagPagination(tagNameList, Sort.STAR,
-						currentPage, itemsperPage);
-		result.put("repos", repos);
-		int totalCount = repoByTagDataService.resultCount(tagNameList,
-				Sort.STAR);
-		result.put("count", totalCount);
-		return result;
-	}
-
-	@RequestMapping(value = "/repos/fork", method = RequestMethod.POST)
-	public Map getForkRepos(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		Map<String, Object> result = new HashMap<String, Object>();
-		int currentPage = Integer.parseInt(request.getParameter("pageIndex"));
-		int itemsperPage = Integer.parseInt(request.getParameter("pageSize"));
-
-		String temp = request.getParameter("tag");
-		String[] tagName = temp.split("ae");
-		List<String> tagNameList = new ArrayList<String>();
-		for (int i = 0; i < tagName.length; i++) {
-			tagNameList.add(tagName[i]);
-		}
-
-		List<SimpleRepo> repos = repoByTagDataService.searchAndSortByTagPagination(
-				tagNameList, Sort.FORK,currentPage,itemsperPage);
-		result.put("repos", repos);
-		int totalCount = repoByTagDataService.resultCount(tagNameList,
-				Sort.FORK);
 		result.put("count", totalCount);
 		return result;
 	}

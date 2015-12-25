@@ -121,7 +121,7 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 	}
 
 	@Override
-	public List<SimpleRepo> getSimpleReposByTagNameAndSortPagination(
+	public List<Repository> getSimpleReposByTagNameAndSortPagination(
 			List<String> tag_name, Sort type, int begin, int itemsPerPage) {
 		// TODO Auto-generated method stub
 
@@ -130,16 +130,21 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		map.put("beginItem", begin);
 		map.put("itemsPerPage", itemsPerPage);
 		
-
 		if (type == Sort.GENERAL) {
 			return sqlSession.selectList(
 					"repo.getSimpleReposByTagNameSortGeneralPagination", map);
 		} else if (type == Sort.STAR) {
+			map.put("type", "stargazers");
 			return sqlSession.selectList(
-					"repo.getSimpleReposByTagNameSortStarPagination", map);
-		} else {
+					"repo.getSimpleReposByTagNameSortPagination", map);
+		} else if(type==Sort.FORK){
+			map.put("type", "fork_num");
 			return sqlSession.selectList(
-					"repo.getSimpleReposByTagNameSortForkPagination", map);
+					"repo.getSimpleReposByTagNameSortPagination", map);
+		}else {
+			map.put("type", "contributor");
+			return sqlSession.selectList(
+					"repo.getSimpleReposByTagNameSortPagination", map);
 		}
 	}
 

@@ -33,7 +33,7 @@ public interface RepositoryDao {
 	public List<SimpleRepo> getSimpleReposByTagNameAndSort(
 			List<String> tag_name, String type);
 
-	public List<SimpleRepo> getSimpleReposByTagNameAndSortPagination(
+	public List<Repository> getSimpleReposByTagNameAndSortPagination(
 			List<String> tag_name, Sort type, int begin, int itemsPerPage);
 
 	public List<SimpleRepo> getReposSortByHot(List<Integer> tagIDs, int number);

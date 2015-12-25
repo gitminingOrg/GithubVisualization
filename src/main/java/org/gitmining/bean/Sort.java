@@ -1,5 +1,5 @@
 package org.gitmining.bean;
 
 public enum Sort {
-  GENERAL,STAR,FORK;
+  GENERAL,STAR,FORK,CONTRIBUTOR;
 }
