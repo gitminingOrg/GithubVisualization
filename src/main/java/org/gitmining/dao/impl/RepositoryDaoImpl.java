@@ -129,7 +129,7 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		map.put("name", tag_name);
 		map.put("beginItem", begin);
 		map.put("itemsPerPage", itemsPerPage);
-		
+
 		if (type == Sort.GENERAL) {
 			return sqlSession.selectList(
 					"repo.getSimpleReposByTagNameSortGeneralPagination", map);
@@ -137,11 +137,11 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 			map.put("type", "stargazers");
 			return sqlSession.selectList(
 					"repo.getSimpleReposByTagNameSortPagination", map);
-		} else if(type==Sort.FORK){
+		} else if (type == Sort.FORK) {
 			map.put("type", "fork_num");
 			return sqlSession.selectList(
 					"repo.getSimpleReposByTagNameSortPagination", map);
-		}else {
+		} else {
 			map.put("type", "contributor");
 			return sqlSession.selectList(
 					"repo.getSimpleReposByTagNameSortPagination", map);
@@ -153,15 +153,13 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("name", tagName);
-		if (type == Sort.GENERAL) {
-			return sqlSession.selectList("repo.getSimpleReposByTagName", map)
-					.size();
-		} else if (type == Sort.STAR) {
-			return sqlSession.selectList(
-					"repo.getSimpleReposByTagNameSortStar", map).size();
-		} else {
-			return sqlSession.selectList(
-					"repo.getSimpleReposByTagNameSortFork", map).size();
-		}
+		return sqlSession.selectList("repo.getSimpleReposByTagName", map)
+				.size();
+	}
+
+	@Override
+	public List<String> getAllLanguages() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("repo.getAllLanguages");
 	}
 }

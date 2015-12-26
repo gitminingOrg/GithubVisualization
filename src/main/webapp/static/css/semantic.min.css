@@ -8915,7 +8915,7 @@ img.ui.image {
 	margin: 0 .14285714em;
 	background-color: #E8E8E8;
 	background-image: none;
-	padding: .5833em .833em;
+	padding: .5833em .5em;
 	color: rgba(0, 0, 0, .6);
 	text-transform: none;
 	font-weight: 700;

@@ -119,4 +119,12 @@ public class RepoByTagDataServiceImpl implements
 		return repositoryDao.getResultCountPagination(tagName, type);
 	}
 
+	@Override
+	public List<String> getAllLanguages() {
+		// TODO Auto-generated method stub
+		List<String> languages=repositoryDao.getAllLanguages();
+		
+		return languages;
+	}
+
 }

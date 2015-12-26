@@ -172,34 +172,6 @@
 		;
 	</select>
 
-	<select id="getSimpleReposByTagNameSortFork" resultMap="simpleRepo">
-		SELECT
-		distinct re.id AS id
-		,full_name,owner_name,description,update_time,language,stargazers,fork_num
-		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
-		rt.`tag_id` = t.`id` and t.`name` in
-		<foreach collection="name" item="item" index="index" open="("
-			close=")" separator=",">
-			#{item}
-		</foreach>
-		order by fork_num
-		desc;
-	</select>
-
-	<select id="getSimpleReposByTagNameSortStar" resultMap="simpleRepo">
-		SELECT
-		distinct re.id AS id
-		,full_name,owner_name,description,update_time,language,stargazers,fork_num
-		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
-		rt.`tag_id` = t.`id` and t.`name` in
-		<foreach collection="name" item="item" index="index" open="("
-			close=")" separator=",">
-			#{item}
-		</foreach>
-		order by stargazers
-		desc;
-	</select>
-
 	<!-- 综合排序分页 -->
 	<select id="getSimpleReposByTagNameSortGeneralPagination" resultMap="repository">
 		SELECT distinct
@@ -254,5 +226,9 @@
 		select
 		repo_id,relate_repo_id,similar from repo_similar where repo_id =
 		#{repo_id} order by similar limit 5;
+	</select>
+	
+	<select id="getAllLanguages" resultType="String">
+		SELECT distinct `language` from repotest group by `language` order by count(*) desc;
 	</select>
 </mapper>

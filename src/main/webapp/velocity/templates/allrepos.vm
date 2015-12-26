@@ -19,7 +19,22 @@
 							<div class="item">
 								#if($result.searchTag.contains($tag.name)) <a
 									class="ui label teal choose">$!tag.name</a> #else <a
-									class="header">$!tag.name</a> #end
+									class="ui label">$!tag.name</a> #end
+							</div>
+							#end
+						</div>
+					</div>
+				</div>
+				
+				<div class="secondrow">
+					<div class="head">
+						<p>Language:</p>
+					</div>
+					<div class="body">
+						<div class="ui very relaxed horizontal list">
+							#foreach($lan in $result.languages)
+							<div class="item">
+							 	<a class="ui label">$!lan</a> 
 							</div>
 							#end
 						</div>
@@ -38,29 +53,38 @@
 				<a class="item" ng-class="{active: isActive.isCon}" ng-click="changerepo(4)">Contributor<i
 					class="long arrow down icon"></i></a>
 			</div>
-			<div id="repoitems" class="ui segment">
-				<table class="ui very basic table">
-					<tbody>
-						<tr ng-repeat="repo in generalrepos">
-							<td width="45%"><h3 class="repo-list-name">
-									<a
-										href="/GithubVisualization/repository/content?id={{repo.id}}">{{repo.full_name}}</a>
-								</h3>
-								<div class="detaildes">
-									<span class="repo-list-discription">{{repo.description}}</span>
-								</div></td>
-							<td class="states">{{repo.language }}</td>
-							<td class="states"><span class="span-number"><i class="star icon"></i>{{repo.stargazers}}</span>
-							<span class="span-number"><i class="fork icon"></i>{{repo.fork_num}}</span>
-							<span class="span-number"><i class="user icon"></i>{{repo.contributor}}</span>
-							</td>
-							<td class="states"><span>created at:{{repo.create_time}}</span>
-							<span>updated at:{{repo.update_time}}</span>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-
+		<div id="repoitems" class="ui segment">
+			<div class="repodetails" ng-repeat="repo in generalrepos">
+					<div class="summary">
+						<h3>
+							<a href="/GithubVisualization/repository/content?id={{repo.id}}">{{repo.full_name}}</a>
+						</h3>
+						<div class="detaildes">
+							<span class="repo-list-discription">{{repo.description}}</span>
+						</div>
+						<span class="detaildes">Last updated : {{repo.update_time}}</span>
+					</div>
+					<div class="number">
+						<div class="star">
+							<div>
+								<span class="nums">{{repo.stargazers}}</span>
+							</div>
+							<span  class="tips">stars</span>
+						</div>
+						<div class="fork">
+							<div>
+								<span class="nums">{{repo.fork_num}}</span>
+							</div>
+							<span class="tips">forks</span>
+						</div>
+						<div class="contributors">
+							<div>
+								<span class="nums">{{repo.contributor}}</span>
+							</div>
+							<span  class="tips">contributors</span>
+						</div>
+					</div>
+				</div>
 				<!--pagination-->
 				<tm-pagination conf="paginationConf"></tm-pagination>
 				<div style="clear: both;"></div>
@@ -89,7 +113,7 @@
 		</div>
 		<div style="clear: both;"></div>
 	</div>
-	
+
 		<script src="/GithubVisualization/static/js/allrepos.js"></script>
 		<script src="/GithubVisualization/static/js/library/pagination.js"></script>
 		<script src="/GithubVisualization/static/js/reposervice.js"></script>

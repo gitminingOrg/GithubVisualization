@@ -25,4 +25,6 @@ public interface RepoByTagDataService {
 	public List<Tag> listSecondTagByMulti(List<String> firstTags);
 
 	public List<SimpleRepo> getReposSortByHot(List<String> tags);
+	
+	public List<String> getAllLanguages();
 }

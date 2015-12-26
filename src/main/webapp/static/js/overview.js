@@ -1,10 +1,16 @@
 $(document).ready(function() {
-	var type=$("#viewtype").text();
-    if(type=="OVERVIEW"){
-    	$("#overviewitem").attr("class","item active");
-    }else{
-    	$("#overviewitem").attr("class","item");
-    }
+	$('.masthead').visibility({
+		once : false,
+		onBottomPassed : function() {
+			$('.fixed.menu').transition('fade in');
+		},
+		onBottomPassedReverse : function() {
+			$('.fixed.menu').transition('fade out');
+		}
+	});
+
+	// create sidebar and attach to menu open
+	$('.ui.sidebar').sidebar('attach events', '.toc.item');
 	
 	$('#tags').hide();	
 	
@@ -37,6 +43,5 @@ $(document).ready(function() {
 		$('#myCanvasContainer').hide();
 		
 	}
-	
 	
 });

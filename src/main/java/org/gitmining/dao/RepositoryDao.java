@@ -43,4 +43,6 @@ public interface RepositoryDao {
 	public List<Repository> getContributedRepoByUserId(int user_id);
 
 	public int getResultCountPagination(List<String> tagName, Sort type);
+
+	public List<String> getAllLanguages();
 }

@@ -22,10 +22,10 @@
     </head>  
     <body>  
        <div class="content">
-         #parse('head.vm')       
-         <div class="ui main text container" >     
-            $screen_content 
-         </div>       
+         #parse('head.vm')  
+         <div class="ui main text container" >       
+         $screen_content 
+         </div>
          #parse('footer.vm')
        </div> 
        

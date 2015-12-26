@@ -10,6 +10,7 @@ import java_cup.internal_error;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.gitmining.bean.Language;
 import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
 import org.gitmining.bean.Sort;
@@ -51,11 +52,12 @@ public class OverviewController {
 		result.put("type", "REPOSITORY");
 		List<Tag> firsTags = (ArrayList<Tag>) repoByTagDataService
 				.listFirstTag();
-		List<Tag> secondTags = (ArrayList<Tag>) repoByTagDataService
-				.listSecondTagByMulti(tagNameList);
+//		List<Tag> secondTags = (ArrayList<Tag>) repoByTagDataService
+//				.listSecondTagByMulti(tagNameList);
+		String[] languages=Language.getInstance().getLanguages();
 
 		result.put("tags", firsTags);
-		result.put("secondTags", secondTags);
+		result.put("languages", languages);
 		result.put("searchTag", tagNameList);
 		return new ModelAndView("allrepos", "result", result);
 	}
