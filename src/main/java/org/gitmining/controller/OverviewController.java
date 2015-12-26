@@ -10,7 +10,7 @@ import java_cup.internal_error;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.gitmining.bean.Language;
+import org.gitmining.bean.Choice;
 import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
 import org.gitmining.bean.Sort;
@@ -54,10 +54,13 @@ public class OverviewController {
 				.listFirstTag();
 //		List<Tag> secondTags = (ArrayList<Tag>) repoByTagDataService
 //				.listSecondTagByMulti(tagNameList);
-		String[] languages=Language.getInstance().getLanguages();
+		String[] languages=Choice.getLanguages();
+		Choice.getInstance();
+		String[] create_years=Choice.getCreate_years();
 
 		result.put("tags", firsTags);
 		result.put("languages", languages);
+		result.put("createYears", create_years);
 		result.put("searchTag", tagNameList);
 		return new ModelAndView("allrepos", "result", result);
 	}

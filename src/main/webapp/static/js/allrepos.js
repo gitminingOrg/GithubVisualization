@@ -5,6 +5,11 @@ $(document).ready(function() {
 	} else {
 		$("#repositoryitem").attr("class", "item");
 	}
+	
+	$("#dropdown-icon").click(function() {
+		$("#searchitem").slideToggle();
+		
+	});
 
 //	$('#repomenu .item').tab();
 });
@@ -51,11 +56,21 @@ app.controller('generalCtrl', [
 				isFork:false,
 				isCon:false
 			};
+			
+			$scope.isHidden=false;
+			
+			$scope.changeState=function(){
+				if($scope.isHidden==false){
+					$scope.isHidden=true;
+				}else{
+					$scope.isHidden=false;
+				}
+			}
 
 			// 配置分页基本参数
 			$scope.paginationConf = {
 				currentPage : 1,
-				itemsPerPage : 5
+				itemsPerPage : 10
 			};
 
 			$scope.changerepo = function(retype) {

@@ -1,13 +1,15 @@
 
 #parse('/templates/searchrepo.vm')
-<div ng-app="repoapp" ng-cloak style="overflow-x: scroll;">
+<div ng-app="repoapp" ng-cloak style="overflow-x: scroll;" ng-controller="generalCtrl">
 		<div class="ui breadcrumb">
-			<a href="/GithubVisualization/overview" class="section">Overview</a><i
+			<a href="/GithubVisualization/overview" class="section">Home</a><i
 				class="right angle icon divider"></i>
 			<div class="active section">#foreach($tag in
 				$!result.searchTag) $!tag #end</div>
+			<i class="angle double icon" ng-class="{true: 'down', false: 'up'}[isHidden]" 
+			 ng-click="changeState()" style="font-size:1.5em;vertical-align:middle;" id="dropdown-icon"></i>
 		</div>
-		<div class="leftcontainer" ng-controller="generalCtrl">
+		<div class="leftcontainer">
 			<div id="searchitem" class="ui segment">
 				<div class="firstrow">
 					<div class="head">
@@ -35,6 +37,21 @@
 							#foreach($lan in $result.languages)
 							<div class="item">
 							 	<a class="ui label">$!lan</a> 
+							</div>
+							#end
+						</div>
+					</div>
+				</div>
+				
+				<div class="secondrow">
+					<div class="head">
+						<p>CreateTime:</p>
+					</div>
+					<div class="body">
+						<div class="ui very relaxed horizontal list">
+							#foreach($year in $result.createYears)
+							<div class="item">
+							 	<a class="ui label">$!year</a> 
 							</div>
 							#end
 						</div>

@@ -26,11 +26,6 @@ body {
 	color: #fff;
 }
 
-.overview{
-	min-height:450px;
-	margin-top:8em;
-}
-
 .ui.menu .item img.logo {
 	margin-right: 1.5em;
 }
@@ -165,6 +160,15 @@ a:hover {
 	font-size: 1em;
 }
 
+/* .dropdown-con{ */
+/* 	float:left; */
+/* 	margin-right:40%; */
+/* } */
+
+#dropdown-icon:hover{
+	cursor:pointer;
+}
+
 #searchitem .firstrow .head {
 	position: absolute;
 	left: 20px;
@@ -188,7 +192,7 @@ a:hover {
 }
 
 #searchitem .secondrow .body {
-	padding: 1em 10px 0 80px;
+	padding: 1em 10px 0.6em 80px;
 }
 
 .ui.label {
@@ -529,5 +533,5 @@ h4.ui.header .sub.header {
 
 .summary .detaildes{
 	color:#777;
-	font-size:0.8rem;
+	font-size:0.9rem;
 }

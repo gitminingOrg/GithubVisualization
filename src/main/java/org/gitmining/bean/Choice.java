@@ -1,16 +1,18 @@
 package org.gitmining.bean;
 
-public class Language {
+public class Choice {
 	private static String[] languages = { "java", "Ruby", "Python", "C",
 			"JavaScript", "Perl", "PHP", "C++", "HTML", "Shell", "Objective-C",
 			"VimL", "C#", "Emacs Lisp", "Erlang", "Lua", "Clojure", "CSS",
 			"Haskell", "Scala", "Common Lisp", "R", "Others" };
+	
+	private static String[] create_years={"2007","2008","2009","2010","2011"};
 
-	private static Language lan = null;
+	private static Choice lan = null;
 
-	public static Language getInstance() {
+	public static Choice getInstance() {
 		if (lan == null) {
-			lan = new Language();
+			lan = new Choice();
 		}
 		return lan;
 	}
@@ -20,7 +22,15 @@ public class Language {
 	}
 
 	public static void setLanguages(String[] languages) {
-		Language.languages = languages;
+		Choice.languages = languages;
+	}
+
+	public static String[] getCreate_years() {
+		return create_years;
+	}
+
+	public static void setCreate_years(String[] create_years) {
+		Choice.create_years = create_years;
 	}
 
 }

@@ -218,7 +218,7 @@
 		</foreach>
 		group by repo_tag.repo_id
 		having count(repo_tag.tag_id) = #{second}
-		order by hot desc limit 10
+		order by hot desc limit 5
 	</select>
 
 
