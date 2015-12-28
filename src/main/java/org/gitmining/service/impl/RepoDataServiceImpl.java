@@ -39,6 +39,8 @@ public class RepoDataServiceImpl implements RepoDataService {
 	public List<SimpleRepo> searchRepo(String name) {
 		// TODO Auto-generated method stub
 		String pattern = "%"+name+"%";
+		repositoryDao.getStatCounts("year_stat");
+		repositoryDao.getStatTypes("year_stat", "year");
 		return repositoryDao.searchRepos(pattern);
 	}
 	@Override
@@ -138,6 +140,34 @@ public class RepoDataServiceImpl implements RepoDataService {
 		map.put("contributor", 77);
 		map.put("total", 90);
 		return map;
+	}
+	
+	public Map<String, List> getStatCounts(String type){
+		Map<String, List> result = new TreeMap<String, List>();
+		if(type.equals("year")){
+			List<String> years = repositoryDao.getStatTypes("year_stat", "year");
+			List<Integer> counts = repositoryDao.getStatCounts("year_stat");
+			result.put("type", years);
+			result.put("counts", counts);
+		}
+		
+		if(type.equals("type")){
+			List<String> types = repositoryDao.getStatTypes("type_stat", "type");
+			List<Integer> counts = repositoryDao.getStatCounts("type_stat");
+			result.put("type", types);
+			result.put("counts", counts);
+		}
+		
+		if(type.equals("language")){
+			
+			
+			List<String> languages = repositoryDao.getStatTypes("language_stat", "language");
+			List<Integer> counts = repositoryDao.getStatCounts("language_stat");
+			result.put("type", languages);
+			result.put("counts", counts);
+		}
+		
+		return result;
 	}
 
 }
