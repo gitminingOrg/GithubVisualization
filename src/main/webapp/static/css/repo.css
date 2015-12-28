@@ -1,3 +1,38 @@
 .headcontent{
-	margin-top:10px;
+	margin-top:20px;
+}
+
+.ui.labeled{
+	margin-top:20px;
+}
+
+.ui.labeled .ui.label{
+	border-radius:0;
+	background:#c1c1c1;
+	border-color:#c1c1c1;
+	color:black;
+}
+
+.ui.labeled.input input{
+	border-radius:0;
+	border-left:none;
+	min-width:300px;
+}
+
+.ui.grid.static{
+	margin-top:30px;
+}
+
+.repo.number .star,.repo.number .fork{
+	margin-left:3px;
+	margin-right:3px;
+}
+
+.repo.number .nums{
+	color:#009c95;
+	font-size:1.5rem;
+}
+
+.repo.number .tips{
+	font-size:1.1rem;
 }

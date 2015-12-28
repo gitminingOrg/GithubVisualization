@@ -43,7 +43,7 @@ $(document)
 																},
 
 																title : {
-																	text : 'Score of Repository total:'+data.total+'',
+																	text : 'Score of Repository (total:'+data.total+')',
 																	x : -30
 																},
 

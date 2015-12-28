@@ -12,27 +12,48 @@
 				</div>
 			</div>
 		</h2>
-		<br /> <br />
-		<div id="content" class="ui grid">
+		<div class="ui labeled input">
+  			<div class="ui label">clone </div>
+  			<input type="text" value="$!result.repository.gitclone_url" readonly>
+  			
+		</div>
+		<a class="ui teal button" target="_blank" href="$!result.repository.github_url">See more</a>
+		
+		<div id="content" class="ui grid static">
 			<div class="ten wide column">
-				<h2>Repository Statistics</h2>
-				<div class="ui mini horizontal statistic">
-					<div class="value">$!result.repository.contributor</div>
-					<div class="label">contributors</div>
-				</div>
-
-				<div class="ui mini horizontal statistic">
-					<div class="value">$!result.repository.stargazers</div>
-					<div class="label">stargazers</div>
-				</div>
-				<div class="ui mini horizontal statistic">
-					<div class="value">$!result.repository.subscribers</div>
-					<div class="label">subscribers</div>
-				</div>
-				<div class="ui mini horizontal statistic">
-					<div class="value">$!result.repository.fork_num</div>
-					<div class="label">forks</div>
-				</div>
+				<h3>Repository Statistics</h3>
+				<div class="number repo">
+						<div class="star">
+							<div>
+								<span class="nums">$!result.repository.stargazers</span>
+							</div>
+							<span  class="tips">stars</span>
+						</div>
+						<div class="fork">
+							<div>
+								<span class="nums">$!result.repository.fork_num</span>
+							</div>
+							<span class="tips">forks</span>
+						</div>
+						<div class="fork">
+							<div>
+								<span class="nums">$!result.repository.subscribers</span>
+							</div>
+							<span  class="tips">subscribers</span>
+						</div>
+						<div class="fork">
+							<div>
+								<span class="nums">$!result.repository.contributor</span>
+							</div>
+							<span  class="tips">contributors</span>
+						</div>
+						<div class="fork">
+							<div>
+								<span class="nums">$!result.repository.collaborator</span>
+							</div>
+							<span  class="tips">collaborator</span>
+						</div>
+					</div>
 			</div>
 			<div class="six wide column">
 				<div id="reposcorePic" style="min-width: 300px; height: 300px"></div>

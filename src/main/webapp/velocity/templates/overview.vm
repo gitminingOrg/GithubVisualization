@@ -57,7 +57,7 @@
 
 			<div class="ui text container">
 				<h1 class="ui inverted header">GitMining</h1>
-				<h2>Do whatever you want when you want to.</h2>
+				<h2>Search what you are interested in on GitHub.</h2>
 				<a class="ui huge primary button" href="/GithubVisualization/repos?tag=typeA">
 					Get Started <i class="right arrow icon"></i>
 				</a>
@@ -70,9 +70,8 @@
 				<div class="row">
 					<div class="eight wide column">
 						<h3 class="ui header">We Help Find Repositories Easily</h3>
-						<p>We can give your company superpowers to do things that they
-							never thought possible. Let us delight your customers and empower
-							your needs...through pure data analytics.</p>
+						<p>We divide repositories into several classifications.You can search repositories 
+						by types,languages,create years......</p>
 						<div class="center aligned column">
 							<a class="ui huge button" href="/GithubVisualization/repos?tag=typeA">Check Them Out</a>
 						</div>

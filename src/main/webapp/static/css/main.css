@@ -62,7 +62,7 @@ td, b {
 	width: 100% !important;
 }
 
-.ui.input {
+.ui.input.action {
 	width: 28em;
 	margin: 0 auto;
 	margin-left: 250px;
