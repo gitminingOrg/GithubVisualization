@@ -32,6 +32,8 @@ public class Repository {
 	private int popular;
 	private int nb;
 	private int total;
+	private String gitclone_url;
+	private String github_url;
 	public int getId() {
 		return id;
 	}
@@ -175,6 +177,60 @@ public class Repository {
 	}
 	public void setFork_num(int fork_num) {
 		this.fork_num = fork_num;
+	}
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
+	}
+	public int getRelease() {
+		return release;
+	}
+	public void setRelease(int release) {
+		this.release = release;
+	}
+	public int getHot() {
+		return hot;
+	}
+	public void setHot(int hot) {
+		this.hot = hot;
+	}
+	public int getMature() {
+		return mature;
+	}
+	public void setMature(int mature) {
+		this.mature = mature;
+	}
+	public int getPopular() {
+		return popular;
+	}
+	public void setPopular(int popular) {
+		this.popular = popular;
+	}
+	public int getNb() {
+		return nb;
+	}
+	public void setNb(int nb) {
+		this.nb = nb;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public String getGitclone_url() {
+		return gitclone_url;
+	}
+	public void setGitclone_url(String gitclone_url) {
+		this.gitclone_url = gitclone_url;
+	}
+	public String getGithub_url() {
+		return github_url;
+	}
+	public void setGithub_url(String github_url) {
+		this.github_url = github_url;
 	}
 	
 }
