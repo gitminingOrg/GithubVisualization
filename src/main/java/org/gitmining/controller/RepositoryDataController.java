@@ -106,4 +106,9 @@ public class RepositoryDataController {
 		return new ModelAndView("repoanalysis","result",result);
 	}
 	
+	@RequestMapping(value="/statCounts")
+	public Map getStatCounts(HttpServletRequest request) throws Exception {
+		Map<String, List> result = repoDataService.getStatCounts(request.getParameter("type"));
+		return result;
+	}
 }

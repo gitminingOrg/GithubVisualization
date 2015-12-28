@@ -233,4 +233,12 @@
 	<select id="getAllLanguages" resultType="String">
 		SELECT distinct `language` from repotest group by `language` order by count(*) desc;
 	</select>
+	
+	<select id="getStatCounts" parameterType="java.util.Map" statementType="STATEMENT" resultType="Integer">
+		SELECT count from ${table} order by count desc;
+	</select>
+	
+	<select id="getStatTypes" parameterType="java.util.Map" statementType="STATEMENT" resultType="String" >
+		SELECT ${column} from ${table} order by count desc;
+	</select>
 </mapper>

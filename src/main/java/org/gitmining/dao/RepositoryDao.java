@@ -45,4 +45,8 @@ public interface RepositoryDao {
 	public int getResultCountPagination(List<String> tagName, Sort type);
 
 	public List<String> getAllLanguages();
+	
+	public List<Integer> getStatCounts(String table);
+	
+	public List<String> getStatTypes(String table,String column);
 }

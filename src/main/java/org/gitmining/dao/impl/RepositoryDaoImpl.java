@@ -162,4 +162,21 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("repo.getAllLanguages");
 	}
+
+	@Override
+	public List<Integer> getStatCounts(String table) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("table", table);
+		return sqlSession.selectList("repo.getStatCounts",map);
+	}
+
+	@Override
+	public List<String> getStatTypes(String table, String column) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("table", table);
+		map.put("column", column);
+		return sqlSession.selectList("repo.getStatTypes",map);
+	}
 }
