@@ -46,7 +46,7 @@
 	<div class="ui grid">
 		
 			<div class="ui segment">
-						<h3>His repositories</h3>
+						<h3>Popular repositories</h3>
 						<div class="ui relaxed divided list">
 							#foreach( $repo in $result.repos.own_repo)
 							<div class="item">
@@ -80,13 +80,13 @@
 	
 </div>
 </div>
-<div class='header' style="margin-top:5%">
+<div class='header' style="margin-top:5%;display:none;">
 <h1>User History</h1>
 </div>
 
 
 <!-- target div for the widget -->
-<div id='placement' style="height:400"></div>
+<div id='placement' style="height:400;display:none;"></div>
 
 </div>
 

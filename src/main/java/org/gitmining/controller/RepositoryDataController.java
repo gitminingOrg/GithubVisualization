@@ -40,6 +40,10 @@ public class RepositoryDataController {
 		int repo_id = Integer.parseInt(request.getParameter("id"));
 		ModelMap map = new ModelMap();
 		Repository repository = repoDataService.getRepositoryById(repo_id);
+		
+		String fullname=repository.getFull_name().split("/")[1];
+		repository.setFull_name(fullname);
+		
 		Map<String,List> relatedRepos = repoDataService.relatedRepos(repository);
 		Map<String,Integer> scores = repoDataService.getRepositoryScoreById(repo_id);
 		History history = repoDataService.getRepositoryHistory(repo_id);
@@ -56,18 +60,18 @@ public class RepositoryDataController {
 		// TODO Auto-generated method stub	
 		
 		int repo_id = Integer.parseInt(request.getParameter("id"));
-		
+		Map<String, Object> result = new TreeMap<String, Object>();
 		List<String> names = new ArrayList<String>();
 		List<Integer> nums = new ArrayList<Integer>();
 		Map<String,Integer> scores = repoDataService.getRepositoryScoreById(repo_id);
+		result.put("total", scores.get("total"));
+		scores.remove("total");
 		Set<String> keySet = scores.keySet();
 		for (String string : keySet) {
 			names.add(string);
 			nums.add(scores.get(string));
 		}
 
-		
-		Map<String, List> result = new TreeMap<String, List>();
 		result.put("names", names);
 		result.put("scores", nums);
 		return result;

@@ -1,6 +1,6 @@
-
+<div ng-app="repoapp" ng-controller="generalCtrl">
 #parse('/templates/searchrepo.vm')
-<div ng-app="repoapp" ng-cloak style="overflow-x: scroll;" ng-controller="generalCtrl">
+<div ng-cloak style="overflow-x: scroll;" ng-controller="generalCtrl">
 		<div class="ui breadcrumb">
 			<a href="/GithubVisualization/overview" class="section">Home</a><i
 				class="right angle icon divider"></i>
@@ -79,7 +79,7 @@
 						<div class="detaildes">
 							<span class="repo-list-discription">{{repo.description}}</span>
 						</div>
-						<span class="detaildes">Last updated : {{repo.update_time}}</span>
+						<span class="updatetime">Last updated : {{repo.update_time}}</span>
 					</div>
 					<div class="number">
 						<div class="star">
@@ -130,7 +130,7 @@
 		</div>
 		<div style="clear: both;"></div>
 	</div>
-
+</div> 
 		<script src="/GithubVisualization/static/js/allrepos.js"></script>
 		<script src="/GithubVisualization/static/js/library/pagination.js"></script>
 		<script src="/GithubVisualization/static/js/reposervice.js"></script>

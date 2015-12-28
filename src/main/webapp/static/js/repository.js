@@ -43,7 +43,7 @@ $(document)
 																},
 
 																title : {
-																	text : 'Score of Repository (total:87)',
+																	text : 'Score of Repository total:'+data.total+'',
 																	x : -30
 																},
 
@@ -66,7 +66,7 @@ $(document)
 
 																tooltip : {
 																	shared : true,
-																	pointFormat : '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f} points</b><br/>'
+																	pointFormat : '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f} </b><br/>'
 																},
 
 																// legend :

@@ -99,6 +99,17 @@ app.controller('generalCtrl', [
 				}
 				
 			};
+			
+			$scope.filterrepo=function(searchstring){
+				$scope.search=searchstring;
+				angular.forEach($scope.generalrepos, function(data,index){
+					//data等价于array[index]
+					
+					if(! (data.full_name.indexOf(searchstring) >= 0)){
+						$scope.generalrepos.splice(index,1);
+					}
+				});
+			}
 
 			var GetRepos = function() {
 				var postData = {
@@ -115,7 +126,6 @@ app.controller('generalCtrl', [
 						});
 			}
 
-
 			/*******************************************************************
 			 * 当页码和页面记录数发生变化时监控后台查询 如果把currentPage和itemsPerPage分开监控的话则会触发两次后台事件。
 			 ******************************************************************/
@@ -123,7 +133,6 @@ app.controller('generalCtrl', [
 					'paginationConf.currentPage + paginationConf.itemsPerPage + type',
 					GetRepos);
 			
-
 		} ]);
 
 app.controller('topCtrl', function($scope, $http) {

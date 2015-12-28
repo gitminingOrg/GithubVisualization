@@ -23,7 +23,7 @@
     <body>  
        <div class="content">
          #parse('head.vm')  
-         <div class="ui main text container" >       
+         <div class="ui main text container">       
          $screen_content 
          </div>
          #parse('footer.vm')

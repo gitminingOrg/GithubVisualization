@@ -1,16 +1,17 @@
+<link rel="stylesheet" type="text/css"
+	         href="/GithubVisualization/static/css/repo.css">
+
 #parse('/templates/searchrepo.vm')
-	<div id="repoinfo" style="text-align: left;">
+	<div id="repoinfo">
 		<!--客观信息-->
-		<h1 class="ui header" style="text-align: left;">
-			<i class="github square icon"></i>
-			<div style="text-align: left;" class="content">
-				<br />$!result.repository.full_name &nbsp;&nbsp;&nbsp;
-				(tag:$!result.repository.type)
-				<div style="text-align: left;" class="sub header">
+		<h2 class="ui header">
+			<div class="headcontent">
+			    <i class="github square icon small"></i><a href="/GithubVisualization/user/content?id=$!result.repository.owner_id">$!result.repository.owner_name</a> / <a >$!result.repository.full_name</a> 
+				<div class="sub header">
 					$!result.repository.description<br />
 				</div>
 			</div>
-		</h1>
+		</h2>
 		<br /> <br />
 		<div id="content" class="ui grid">
 			<div class="ten wide column">

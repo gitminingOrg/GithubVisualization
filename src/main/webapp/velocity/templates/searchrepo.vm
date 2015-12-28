@@ -2,7 +2,8 @@
 <form id="search-repo-form" action="/GithubVisualization/repository/search" method="POST">
     <div class="ui action input"> 
     
-      <input id="search-name" name="reponame" type="text" placeholder="Repository..." value="$!result.searchstring">
+      <input id="search-name" name="reponame" type="text" placeholder="Repository..." 
+             value="$!result.searchstring" ng-model="search" ng-change="filterrepo(search)">
       <button id="search-repo-btn" type="submit" class="ui teal button"> Search </button>     
     </div>  
 

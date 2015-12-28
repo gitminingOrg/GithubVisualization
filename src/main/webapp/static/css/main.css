@@ -272,7 +272,7 @@ a.ui.label:hover {
 	overflow: hidden;
 	height: 57px;
 	text-overflow: ellipsis;
-	color: #888;
+	color: #666;
 }
 
 .rightcontainer .ui.segment .detaildes {
@@ -469,18 +469,6 @@ h4.ui.header .sub.header {
 	width: 50px;
 }
 
-#repoitems table tr {
-	height: 110px;
-}
-
-#repoitems table tr td {
-	vertical-align: super;
-}
-
-#repoitems table tr td span {
-	display: block;
-}
-
 .span-number {
 	/* 	color: #00B5AD !important; */
 	font-weight: 400;
@@ -532,6 +520,11 @@ h4.ui.header .sub.header {
 }
 
 .summary .detaildes{
+	color:#666;
+	font-size:1rem;
+}
+
+.summary .updatetime{
 	color:#777;
 	font-size:0.9rem;
 }

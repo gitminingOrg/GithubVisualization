@@ -47,7 +47,6 @@ public class UserInfoDataController {
 		ModelMap result=new ModelMap();
 		int user_id = Integer.parseInt(request.getParameter("id"));
 		User user = userInfoService.getUserInfo(user_id);
-		
 		user.setCreated_at(user.getCreated_at().substring(0, 10));
 		
 		Map userScores = userInfoService.getUserScore(user_id);
