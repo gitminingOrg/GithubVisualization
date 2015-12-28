@@ -13,4 +13,10 @@ public interface RepoDataService {
 	public Map<String,Integer> getRepositoryScoreById(int id);
 	public Map<String,List> relatedRepos(Repository repository);
 	public History getRepositoryHistory(int id);
+	/**
+	 * get statistics of repo languages and so on 
+	 * @param type
+	 * @return
+	 */
+	public Map<String, List> getStatCounts(String type);
 }
