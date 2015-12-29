@@ -77,7 +77,7 @@
 					class="long arrow down icon"></i></a>
 			</div>
 		<div id="repoitems" class="ui segment">
-			<div class="repodetails" ng-repeat="repo in generalrepos">
+			<div class="repodetails" ng-repeat="repo in generalrepos | filter:query">
 					<div class="summary">
 						<h3>
 							<a href="/GithubVisualization/repository/content?id={{repo.id}}">{{repo.full_name}}</a>

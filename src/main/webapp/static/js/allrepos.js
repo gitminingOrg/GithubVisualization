@@ -103,17 +103,6 @@ app.controller('generalCtrl', [
 				
 			};
 			
-			$scope.filterrepo=function(searchstring){
-				$scope.search=searchstring;
-				angular.forEach($scope.generalrepos, function(data,index){
-					//data等价于array[index]
-					
-					if(! (data.full_name.indexOf(searchstring) >= 0)){
-						$scope.generalrepos.splice(index,1);
-					}
-				});
-			}
-
 			var GetRepos = function() {
 				var postData = {
 					pageIndex : $scope.paginationConf.currentPage,
