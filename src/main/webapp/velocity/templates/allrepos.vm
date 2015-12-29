@@ -19,9 +19,11 @@
 						<div class="ui very relaxed horizontal list">
 							#foreach($tag in $result.tags)
 							<div class="item">
-								#if($result.searchTag.contains($tag.name)) <a
-									class="ui label teal choose">$!tag.name</a> #else <a
-									class="ui label">$!tag.name</a> #end
+								#if($result.searchTag.contains($tag.name)) 
+								 <a id="choosetype" class="ui label teal">$!tag.name</a> 
+								#else 
+								<a class="ui label othertype">$!tag.name</a> 
+								#end
 							</div>
 							#end
 						</div>
@@ -36,7 +38,11 @@
 						<div class="ui very relaxed horizontal list">
 							#foreach($lan in $result.languages)
 							<div class="item">
-							 	<a class="ui label">$!lan</a> 
+								#if($result.searchTag.contains($tag.name))
+								  <a id="chooselan" class="ui label teal">$!tag.name</a>
+								#else
+							 	<a class="ui label otherlan">$!lan</a> 
+							 	#end
 							</div>
 							#end
 						</div>
@@ -111,7 +117,7 @@
 		<div class="rightcontainer" ng-controller="topCtrl">
 			<h3 class="ui teal header">
 				<i class="github icon"></i>
-				<div class="content">TOP 10</div>
+				<div class="content">TOP 5</div>
 			</h3>
 			<div class="ui grid" ng-repeat="repo in repos">
 				<div class="ui segment">

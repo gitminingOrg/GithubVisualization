@@ -16,24 +16,27 @@ $(document).ready(function() {
 
 var tags = "";
 
-$(".ui.choose").each(function() {
+var repotype=$("#choosetype").text();
+var language="";
+var createyear="";
+
+$(".othertype").each(function() {
 	var text = $(this).text();
-	tags = tags + text + "ae";
+
 	$(this).click(function() {
-		tags = text;
-		// $(this).addClass("test").siblings("td").removeClass("test");
-		window.location.href = "/GithubVisualization/repos?tag=" + tags;
+		repotype = text;
+		window.location.href = "/GithubVisualization/repos?tag=" + repotype;
 	});
 });
 
-$(".item .header").each(function() {
-	$(this).click(function() {
-		var text = $(this).text();
-		tags = tags + text + "ae";
-		// $(this).addClass("test").siblings("td").removeClass("test");
-		window.location.href = "/GithubVisualization/repos?tag=" + tags;
-	});
-});
+//$(".ui").each(function() {
+//	$(this).click(function() {
+//		var text = $(this).text();
+//		tags = tags + text + "ae";
+//		// $(this).addClass("test").siblings("td").removeClass("test");
+//		window.location.href = "/GithubVisualization/repos?tag=" + tags;
+//	});
+//});
 
 var app = angular
 		.module(
@@ -115,7 +118,7 @@ app.controller('generalCtrl', [
 				var postData = {
 					pageIndex : $scope.paginationConf.currentPage,
 					pageSize : $scope.paginationConf.itemsPerPage,
-					tag : tags,
+					tag : repotype,
 					type: $scope.type
 				}
 
@@ -137,7 +140,7 @@ app.controller('generalCtrl', [
 
 app.controller('topCtrl', function($scope, $http) {
 	var url = '/GithubVisualization/TopTen', data = {
-		tag : JSON.stringify(tags),
+		tag : JSON.stringify(repotype),
 	}, transFn = function(data) {
 		return $.param(data);
 	}, postCfg = {

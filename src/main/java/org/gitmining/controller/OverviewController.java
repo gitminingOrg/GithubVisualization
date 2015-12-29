@@ -43,6 +43,7 @@ public class OverviewController {
 	public ModelAndView getReposView(HttpServletRequest request)
 			throws Exception {
 		String[] tagName = request.getParameter("tag").split("ae");
+		System.out.println(request.getParameter("tag"));
 		List<String> tagNameList = new ArrayList<String>();
 		for (int i = 0; i < tagName.length; i++) {
 			tagNameList.add(tagName[i]);
