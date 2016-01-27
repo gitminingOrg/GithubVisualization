@@ -126,11 +126,11 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		// TODO Auto-generated method stub
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		if(!tag_name.get(0).equals("all"))
+		if (!tag_name.get(0).equals("all"))
 			map.put("tag", tag_name.get(0));
-		if(!tag_name.get(1).equals("all"))
+		if (!tag_name.get(1).equals("all"))
 			map.put("language", tag_name.get(1));
-		if(!tag_name.get(2).equals("all"))
+		if (!tag_name.get(2).equals("all"))
 			map.put("year", tag_name.get(2));
 		map.put("beginItem", begin);
 		map.put("itemsPerPage", itemsPerPage);
@@ -140,24 +140,27 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 					"repo.getSimpleReposByTagNameSortGeneralPagination", map);
 		} else if (type == Sort.STAR) {
 			map.put("type", "stargazers");
-			return sqlSession.selectList(
-					"repo.getSimpleReposByTagNameSortPagination", map);
 		} else if (type == Sort.FORK) {
 			map.put("type", "fork_num");
-			return sqlSession.selectList(
-					"repo.getSimpleReposByTagNameSortPagination", map);
-		} else {
+		} else if (type == Sort.CONTRIBUTOR) {
 			map.put("type", "contributor");
-			return sqlSession.selectList(
-					"repo.getSimpleReposByTagNameSortPagination", map);
+		} else {
+			map.put("type", "hot");
 		}
+		return sqlSession.selectList(
+				"repo.getSimpleReposByTagNameSortPagination", map);
 	}
 
 	@Override
 	public int getResultCountPagination(List<String> tagName, Sort type) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("name", tagName);
+		if (!tagName.get(0).equals("all"))
+			map.put("tag", tagName.get(0));
+		if (!tagName.get(1).equals("all"))
+			map.put("language", tagName.get(1));
+		if (!tagName.get(2).equals("all"))
+			map.put("year", tagName.get(2));
 		return sqlSession.selectList("repo.getSimpleReposByTagName", map)
 				.size();
 	}
@@ -173,7 +176,7 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("table", table);
-		return sqlSession.selectList("repo.getStatCounts",map);
+		return sqlSession.selectList("repo.getStatCounts", map);
 	}
 
 	@Override
@@ -182,6 +185,6 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("table", table);
 		map.put("column", column);
-		return sqlSession.selectList("repo.getStatTypes",map);
+		return sqlSession.selectList("repo.getStatTypes", map);
 	}
 }

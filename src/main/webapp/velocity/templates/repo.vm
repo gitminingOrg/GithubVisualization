@@ -2,6 +2,7 @@
 	         href="/GithubVisualization/static/css/repo.css">
 
 #parse('/templates/searchrepo.vm')
+    <p id="repoid" style="display:none;">$!result.repository.id</p>
 	<div id="repoinfo">
 		<!--客观信息-->
 		<h2 class="ui header">

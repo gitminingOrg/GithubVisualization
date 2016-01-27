@@ -21,16 +21,17 @@ $(document)
 					// //popup : $('.custom.popup'),
 					// position:'bottom left',
 					// });
+					
+					var id=$("#repoid").text();
 
 					var url = "/GithubVisualization/repository/score"
 					$
 							.ajax(
-
 									url,
 									{
 										type : 'GET',
 										data : {
-											"id" : 1
+											"id" : id
 										},
 										success : function(data, textStatus) {
 											$('#reposcorePic')

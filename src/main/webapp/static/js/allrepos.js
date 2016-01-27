@@ -140,7 +140,9 @@ app.controller('generalCtrl', [
 
 app.controller('topCtrl', function($scope, $http) {
 	var url = '/GithubVisualization/TopTen', data = {
-		tag : JSON.stringify(repotype),
+		tag : repotype,
+		language: language,
+		year: createyear
 	}, transFn = function(data) {
 		return $.param(data);
 	}, postCfg = {

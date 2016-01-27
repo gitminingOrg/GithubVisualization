@@ -78,7 +78,7 @@ public class OverviewController {
 		tagNameList.add(tag);
 		tagNameList.add(language);
 		tagNameList.add(year);
-		
+
 		int type = Integer.parseInt(request.getParameter("type"));
 		List<Repository> repos = new ArrayList<Repository>();
 		switch (type) {
@@ -115,14 +115,17 @@ public class OverviewController {
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		Map<String, List> result = new HashMap<String, List>();
-		String temp = request.getParameter("tag");
-		String[] tagName = temp.substring(1, temp.length() - 1).split("ae");
+		String tag = request.getParameter("tag");
+		String language = request.getParameter("language");
+		String year = request.getParameter("year");
+		System.out.println(tag+","+language+","+year);
 		List<String> tagNameList = new ArrayList<String>();
-		for (int i = 0; i < tagName.length; i++) {
-			tagNameList.add(tagName[i]);
-		}
-		List<SimpleRepo> repos = repoByTagDataService
-				.getReposSortByHot(tagNameList);
+		tagNameList.add(tag);
+		tagNameList.add(language);
+		tagNameList.add(year);
+
+		List<Repository> repos = repoByTagDataService
+				.searchAndSortByTagPagination(tagNameList, Sort.HOT, 0, 5);
 		result.put("repos", repos);
 		return result;
 	}

@@ -163,14 +163,19 @@
 
 	<select id="getSimpleReposByTagName" resultMap="simpleRepo">
 		SELECT distinct
-		re.id AS id
-		,full_name,owner_name,description,update_time,language,stargazers,fork_num
-		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
-		rt.`tag_id` = t.`id` and t.`name` in
-		<foreach collection="name" item="item" index="index" open="("
-			close=")" separator=",">
-			#{item}
-		</foreach>
+		id,full_name,owner_name,description,update_time,language,stargazers,fork_num
+		FROM repotest re where 1=1
+		<if test="tag != null">
+			AND re.id IN(select rt.repo_id from repo_tag rt,tag t where t.name = #{tag} and t.id = rt.tag_id)
+		</if>
+		
+		<if test="language != null">
+			AND re.id IN(select repo_id from language where language = #{language})
+		</if>
+		
+		<if test="year != null">
+			AND re.create_time LIKE concat(#{year},'%')
+		</if>
 		;
 	</select>
 
@@ -217,24 +222,6 @@
 		</if>
 		order by ${type} desc limit #{beginItem}, #{itemsPerPage};
 	</select>
-
-	<!-- top 10 -->
-	<select id="getReposSortByHot" resultMap="simpleRepo"
-		parameterType="map">
-		select
-		repotest.id,full_name,owner_name,description,update_time,language,stargazers,fork_num
-		from repo_tag,repotest
-		where repo_tag.repo_id = repotest.id and
-		repo_tag.tag_id in
-		<foreach collection="first" item="item" index="index" open="("
-			close=")" separator=",">
-			#{item}
-		</foreach>
-		group by repo_tag.repo_id
-		having count(repo_tag.tag_id) = #{second}
-		order by hot desc limit 5
-	</select>
-
 
 	<select id="getSimilarRepo" resultMap="repoPairRelation">
 		select

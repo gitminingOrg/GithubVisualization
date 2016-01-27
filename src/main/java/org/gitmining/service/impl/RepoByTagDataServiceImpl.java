@@ -98,8 +98,11 @@ public class RepoByTagDataServiceImpl implements
 	public List<Repository> searchAndSortByTagPagination(List<String> tagName,
 			Sort type, int currentPage, int itemsPerPage) {
 		// TODO Auto-generated method stub
-		int begin = (currentPage - 1) * itemsPerPage;
-
+		int begin=0;
+		if (currentPage!=0) {
+		    begin = (currentPage - 1) * itemsPerPage;
+		}
+		
 		List<Repository> simpleRepos = repositoryDao
 				.getSimpleReposByTagNameAndSortPagination(tagName, type, begin,
 						itemsPerPage);
