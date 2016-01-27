@@ -17,26 +17,35 @@ $(document).ready(function() {
 var tags = "";
 
 var repotype=$("#choosetype").text();
-var language="";
-var createyear="";
+var language=$("#chooselan").text();
+var createyear=$("#chooseyear").text();
 
 $(".othertype").each(function() {
 	var text = $(this).text();
 
 	$(this).click(function() {
 		repotype = text;
-		window.location.href = "/GithubVisualization/repos?tag=" + repotype;
+		window.location.href = "/GithubVisualization/repos?tag=" + repotype+"&lan="+language+"&year="+createyear;
 	});
 });
 
-//$(".ui").each(function() {
-//	$(this).click(function() {
-//		var text = $(this).text();
-//		tags = tags + text + "ae";
-//		// $(this).addClass("test").siblings("td").removeClass("test");
-//		window.location.href = "/GithubVisualization/repos?tag=" + tags;
-//	});
-//});
+$(".otherlan").each(function() {
+	var text = $(this).text();
+
+	$(this).click(function() {
+		language = text;
+		window.location.href = "/GithubVisualization/repos?tag=" + repotype+"&lan="+language+"&year="+createyear;
+	});
+});
+
+$(".otheryear").each(function() {
+	var text = $(this).text();
+
+	$(this).click(function() {
+		year = text;
+		window.location.href = "/GithubVisualization/repos?tag=" + repotype+"&lan="+language+"&year="+createyear;
+	});
+});
 
 var app = angular
 		.module(
@@ -108,6 +117,8 @@ app.controller('generalCtrl', [
 					pageIndex : $scope.paginationConf.currentPage,
 					pageSize : $scope.paginationConf.itemsPerPage,
 					tag : repotype,
+					language:language,
+					year:createyear,
 					type: $scope.type
 				}
 

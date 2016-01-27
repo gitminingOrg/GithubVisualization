@@ -1,12 +1,12 @@
 package org.gitmining.bean;
 
 public class Choice {
-	private static String[] languages = { "java", "Ruby", "Python", "C",
+	private static String[] languages = { "all","java", "Ruby", "Python", "C",
 			"JavaScript", "Perl", "PHP", "C++", "HTML", "Shell", "Objective-C",
 			"VimL", "C#", "Emacs Lisp", "Erlang", "Lua", "Clojure", "CSS",
 			"Haskell", "Scala", "Common Lisp", "R", "Others" };
 	
-	private static String[] create_years={"2007","2008","2009","2010","2011"};
+	private static String[] create_years={"all","2007","2008","2009","2010","2011"};
 
 	private static Choice lan = null;
 

@@ -19,7 +19,7 @@
 						<div class="ui very relaxed horizontal list">
 							#foreach($tag in $result.tags)
 							<div class="item">
-								#if($result.searchTag.contains($tag.name)) 
+								#if($result.searchTag.get(0).equals($tag.name)) 
 								 <a id="choosetype" class="ui label teal">$!tag.name</a> 
 								#else 
 								<a class="ui label othertype">$!tag.name</a> 
@@ -38,8 +38,8 @@
 						<div class="ui very relaxed horizontal list">
 							#foreach($lan in $result.languages)
 							<div class="item">
-								#if($result.searchTag.contains($tag.name))
-								  <a id="chooselan" class="ui label teal">$!tag.name</a>
+								#if($result.searchTag.get(1).equals($lan))
+								  <a id="chooselan" class="ui label teal">$!lan</a>
 								#else
 							 	<a class="ui label otherlan">$!lan</a> 
 							 	#end
@@ -57,7 +57,11 @@
 						<div class="ui very relaxed horizontal list">
 							#foreach($year in $result.createYears)
 							<div class="item">
-							 	<a class="ui label">$!year</a> 
+								#if($result.searchTag.get(2).equals($year))
+								  <a id="chooseyear" class="ui label teal">$!year</a>
+								#else
+							 	<a class="ui label otheryear">$!year</a> 
+							 	#end
 							</div>
 							#end
 						</div>

@@ -3,9 +3,12 @@ package org.gitmining.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.gitmining.bean.Choice;
 import org.gitmining.bean.History;
 import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
+import org.gitmining.bean.Tag;
+import org.gitmining.service.RepoByTagDataService;
 import org.gitmining.service.RepoDataService;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +21,15 @@ import java.util.*;
 @RestController
 public class RepositoryDataController {
 	private RepoDataService repoDataService;
+	private RepoByTagDataService repoByTagDataService;
+
+	public RepoByTagDataService getRepoByTagDataService() {
+		return repoByTagDataService;
+	}
+
+	public void setRepoByTagDataService(RepoByTagDataService repoByTagDataService) {
+		this.repoByTagDataService = repoByTagDataService;
+	}
 
 	public RepoDataService getRepoDataService() {
 		return repoDataService;
@@ -84,8 +96,22 @@ public class RepositoryDataController {
 		List<SimpleRepo> simpleRepos = (ArrayList<SimpleRepo>)repoDataService.searchRepo(name);
 		result.put("simpleRepos", simpleRepos);
 		result.put("type", "REPOSITORY");
-		result.put("searchstring", name);
-		return new ModelAndView("repolist", "result", result);
+		List<String> tagNameList = new ArrayList<String>();
+		tagNameList.add("ActiveRecord");
+		tagNameList.add("all");
+		tagNameList.add("all");
+		List<Tag> firsTags = (ArrayList<Tag>) repoByTagDataService
+				.listFirstTag();
+		// List<Tag> secondTags = (ArrayList<Tag>) repoByTagDataService
+		// .listSecondTagByMulti(tagNameList);
+		String[] languages = Choice.getLanguages();
+		String[] create_years = Choice.getCreate_years();
+
+		result.put("tags", firsTags);
+		result.put("languages", languages);
+		result.put("createYears", create_years);
+		result.put("searchTag", tagNameList);
+		return new ModelAndView("allrepos", "result", result);
 	}
 
 	@RequestMapping(value = "/repository/info")

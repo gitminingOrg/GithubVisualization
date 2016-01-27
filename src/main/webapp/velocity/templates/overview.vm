@@ -25,7 +25,7 @@
 	<div class="ui large top fixed hidden menu">
 		<div class="ui container">
 			<a class="active item">Home</a> <a
-				href="/GithubVisualization/repos?tag=typeA" class="item"
+				href="/GithubVisualization/repos?tag=ActiveRecord&lan=all&year=all" class="item"
 				id="repositoryitem">Repository</a> <a
 				href="/GithubVisualization/user/top" class="item" id="useritem">User</a>
 
@@ -35,7 +35,7 @@
 	<!-- Sidebar Menu -->
 	<div class="ui vertical inverted sidebar menu">
 		<a class="active item">Home</a> <a
-			href="/GithubVisualization/repos?tag=typeA" class="item"
+			href="/GithubVisualization/repos?tag=ActiveRecord&lan=all&year=all" class="item"
 			id="repositoryitem">Repository</a> <a
 			href="/GithubVisualization/user/top" class="item" id="useritem">User</a>
 	</div>
@@ -49,7 +49,7 @@
 				<div class="ui large secondary inverted pointing menu">
 					<a class="toc item"> <i class="sidebar icon"></i>
 					</a> <a class="active item">Home</a> <a
-						href="/GithubVisualization/repos?tag=typeA" class="item"
+						href="/GithubVisualization/repos?tag=ActiveRecord&lan=all&year=all" class="item"
 						id="repositoryitem">Repository</a> <a
 						href="/GithubVisualization/user/top" class="item" id="useritem">User</a>
 				</div>
@@ -58,7 +58,7 @@
 			<div class="ui text container">
 				<h1 class="ui inverted header">GitMining</h1>
 				<h2>Search what you are interested in on GitHub.</h2>
-				<a class="ui huge primary button" href="/GithubVisualization/repos?tag=typeA">
+				<a class="ui huge primary button" href="/GithubVisualization/repos?tag=ActiveRecord&lan=all&year=all">
 					Get Started <i class="right arrow icon"></i>
 				</a>
 			</div>
@@ -73,7 +73,7 @@
 						<p>We divide repositories into several classifications.You can search repositories 
 						by types,languages,create years......</p>
 						<div class="center aligned column">
-							<a class="ui huge button" href="/GithubVisualization/repos?tag=typeA">Check Them Out</a>
+							<a class="ui huge button" href="/GithubVisualization/repos?tag=ActiveRecord&lan=all&year=all">Check Them Out</a>
 						</div>
 					</div>
 					<div class="six wide right floated column">
@@ -92,7 +92,7 @@
 			<ul>
 				#foreach( $tag in $result.tags)
 				<li><a data-weight="$!tag.weight"
-					href="/GithubVisualization/repos?tag=$!tag.name">$!tag.name</a></li>
+					href="/GithubVisualization/repos?tag=$!tag.name&lan=all&year=all">$!tag.name</a></li>
 				#end
 			</ul>
 		</div>

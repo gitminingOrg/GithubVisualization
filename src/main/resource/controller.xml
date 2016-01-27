@@ -23,5 +23,6 @@
 	
 	<bean id="repoDataController" class="org.gitmining.controller.RepositoryDataController">
 		<property name="repoDataService" ref="repoDataService"></property>
+		<property name="repoByTagDataService" ref="repoByTagDataService"></property>
 	</bean>
 </beans>
