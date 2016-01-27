@@ -42,7 +42,7 @@ $(".otheryear").each(function() {
 	var text = $(this).text();
 
 	$(this).click(function() {
-		year = text;
+		createyear = text;
 		window.location.href = "/GithubVisualization/repos?tag=" + repotype+"&lan="+language+"&year="+createyear;
 	});
 });
