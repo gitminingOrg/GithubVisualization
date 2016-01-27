@@ -176,33 +176,45 @@
 
 	<!-- 综合排序分页 -->
 	<select id="getSimpleReposByTagNameSortGeneralPagination" resultMap="repository">
-		SELECT distinct
-		re.id AS id
-		,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		SELECT 
+		id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
 		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
 		commit,stargazers,subscribers,fork_num,gitclone_url,github_url
-		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
-		rt.`tag_id` = t.`id` and t.`name` in
-		<foreach collection="name" item="item" index="index" open="("
-			close=")" separator=",">
-			#{item}
-		</foreach>
+		FROM repotest WHERE 1=1 
+		
+		<if test="tag != null">
+			AND id IN(select rt.repo_id from repo_tag rt,tag t where t.name = #{tag} and t.id = rt.tag_id)
+		</if>
+		
+		<if test="language != null">
+			AND id IN(select repo_id from language where language = #{language})
+		</if>
+		
+		<if test="year != null">
+			AND create_time LIKE concat(#{year},'%')
+		</if>
 		limit #{beginItem}, #{itemsPerPage};
 	</select>
 
 	<!-- type排序分页 -->
 	<select id="getSimpleReposByTagNameSortPagination" resultMap="repository">
-		SELECT
-		distinct re.id AS id
-		,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
+		SELECT 
+		id,full_name,description,type,fork,owner_id,owner_type,owner_name,create_time,push_time,update_time,
 		language,contributor,collaborator,commit,open_issues,closed_issues,open_pull,closed_pull,merged_pull,rejected_pull,
 		commit,stargazers,subscribers,fork_num,gitclone_url,github_url
-		FROM repotest re,repo_tag rt, tag t where re.id = rt.`repo_id` and
-		rt.`tag_id` = t.`id` and t.`name` in
-		<foreach collection="name" item="item" index="index" open="("
-			close=")" separator=",">
-			#{item}
-		</foreach>
+		FROM repotest WHERE 1=1 
+		
+		<if test="tag != null">
+			AND id IN(select rt.repo_id from repo_tag rt,tag t where t.name = #{tag} and t.id = rt.tag_id)
+		</if>
+		
+		<if test="language != null">
+			AND id IN(select repo_id from language where language = #{language})
+		</if>
+		
+		<if test="year != null">
+			AND create_time LIKE concat(#{year},'%')
+		</if>
 		order by ${type} desc limit #{beginItem}, #{itemsPerPage};
 	</select>
 

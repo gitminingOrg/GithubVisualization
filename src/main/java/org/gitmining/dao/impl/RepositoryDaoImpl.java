@@ -126,9 +126,12 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		// TODO Auto-generated method stub
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("tag", tag_name.get(0));
-		map.put("language", tag_name.get(1));
-		map.put("year", tag_name.get(2));
+		if(!tag_name.get(0).equals("all"))
+			map.put("tag", tag_name.get(0));
+		if(!tag_name.get(1).equals("all"))
+			map.put("language", tag_name.get(1));
+		if(!tag_name.get(2).equals("all"))
+			map.put("year", tag_name.get(2));
 		map.put("beginItem", begin);
 		map.put("itemsPerPage", itemsPerPage);
 
