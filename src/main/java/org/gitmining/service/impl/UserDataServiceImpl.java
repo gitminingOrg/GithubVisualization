@@ -439,35 +439,37 @@ public class UserDataServiceImpl implements UserDataService {
 
 	@Override
 	public Map<String, int[]> getUserActiveData() {
-		// TODO Auto-generated method stub
-		int startYear = 2007, startDieYear = 2013, endYear = 2015;
-		List<User> allUsers = userDao.selectAllUsers();
-		List<int[]> userDieList = new ArrayList<int[]>();
-		int[] years = new int[endYear-startYear+1];
-		for (int i = 0; i < years.length; i++) {
-			years[i] = startYear+i;
+		Map<String, int[]> result = new HashMap<String, int[]>();
+		if(memcachedClient.get("userActiveData") != null){
+			result = (Map<String, int[]>) memcachedClient.get("userActiveData");
+			return result;
+		}else{
+			List<User> allUsers = userDao.selectAllUsers();
+			Map<Integer, Integer> map = new TreeMap<Integer, Integer>();
+	
+			for (int i = 0; i < allUsers.size(); i++) {
+				User user = allUsers.get(i);	
+				String createDate = user.getCreated_at();
+				int createYear = Integer.parseInt(createDate.split("-")[0]);
+				if(map.containsKey(createYear)){
+					map.put(createYear, map.get(createYear)+1);
+				}else{
+					map.put(createYear, 1);
+				}
+			}
+			Set<Integer> yearset = map.keySet();
+			int[] years = new int[yearset.size()];
+			int[] people = new int[yearset.size()];
+			int index = 0;
+			for (Integer year : yearset) {
+				years[index] = year;
+				people[index] = map.get(year);
+				index++;
+			}
+			memcachedClient.add("userActiveData", 0, result);
+			result.put("year", years);
+			result.put("people", people);
+			return result;
 		}
-		
-		for (int i = startDieYear; i<=endYear; i++) {
-			int[] yearData = new int[endYear-startYear+1];
-			userDieList.add(yearData);
-		}
-		for (int i = 0; i < allUsers.size(); i++) {
-			User user = allUsers.get(i);
-			String creatDate = user.getCreated_at();
-			String updateDate = user.getUpdated_at();
-			
-			int createYear = Integer.parseInt(creatDate.split("-")[0]);
-			int updateYear = Integer.parseInt(updateDate.split("-")[0]);
-			
-			userDieList.get(updateYear-startDieYear)[createYear-startYear]++;
-		}
-		Map<String,int[]> result = new HashMap<String, int[]>();
-		result.put("allYears",years);
-		for (int i = startDieYear; i <= endYear; i++) {
-			result.put("Year"+i, userDieList.get(i-startDieYear));
-		}
-		
-		return result;
 	}
 }
