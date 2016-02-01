@@ -10,12 +10,12 @@ $(window).load(function() {
 $(document)
 		.ready(
 				function() {
-					var type = $("#viewtype").text();
-					if (type == "REPOSITORY") {
-						$("#repositoryitem").attr("class", "item active");
-					} else {
-						$("#repositoryitem").attr("class", "item");
-					}
+//					var type = $("#viewtype").text();
+//					if (type == "REPOSITORY") {
+//						$("#repositoryitem").attr("class", "item active");
+//					} else {
+//						$("#repositoryitem").attr("class", "item");
+//					}
 
 					// $('.repo-list-item i').popup({
 					// //popup : $('.custom.popup'),

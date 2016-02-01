@@ -2,12 +2,12 @@ $(function() {
 	var chart;
 
 	$(document).ready(function() {
-        var type=$("#viewtype").text();
-        if(type=="USERANALYSIS"){
-        	$("#useranalysisitem").attr("class","item active");
-        }else{
-        	$("#useranalysisitem").attr("class","item");
-        }
+//        var type=$("#viewtype").text();
+//        if(type=="USERANALYSIS"){
+//        	$("#useranalysisitem").attr("class","item active");
+//        }else{
+//        	$("#useranalysisitem").attr("class","item");
+//        }
         
 		// get company
 		var url = "/GithubVisualization/companyData"

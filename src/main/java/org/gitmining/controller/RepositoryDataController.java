@@ -128,7 +128,6 @@ public class RepositoryDataController {
 	@RequestMapping(value="/repoAnalysis")
 	public ModelAndView getUserView(HttpServletRequest request) throws Exception {
 		ModelMap result=new ModelMap();
-		result.put("type", "REPOSITORYANALYSIS");
 		return new ModelAndView("repoanalysis","result",result);
 	}
 	

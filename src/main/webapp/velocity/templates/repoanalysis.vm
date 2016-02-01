@@ -1,0 +1,23 @@
+
+
+	<div class="ui main text container">
+		
+		<div id="user"></div>
+		<div id="company1"></div>
+		<div id="blog"></div>
+		<div id="location"></div>
+		<div id="email"></div>
+		<div id="repo"></div>
+		<div id="gist"></div>
+		<div id="follower"></div>
+		<div id="following"></div>
+		<div id="useractive"></div>
+		<div id="repouser"></div>
+		
+	</div>
+	
+
+ <script src="/GithubVisualization/static/js/library/highcharts.js"></script>
+ <script src="/GithubVisualization/static/js/library/highcharts-3d.js"></script>
+ <script src="/GithubVisualization/static/js/library/sand-signika.js"></script>
+ <script src="/GithubVisualization/static/js/repoanalysis.js"></script>
