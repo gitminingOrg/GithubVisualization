@@ -390,55 +390,52 @@ $(function() {
 				    });
 				}});
 		
-		//create-update time 
-		var url = "/GithubVisualization/userActiveData"
+		
+		// get user create time
+		url="/GithubVisualization/userActiveData"
 			$.ajax(url, {
 				type : 'GET',
 				success : function(data, textStatus) {
-					$('#useractive').highcharts({
-				        chart: {
-				            type: 'column'
-				        },
-				        title: {
-				            text: 'Update-time of Users'
-				        },
-				        xAxis: {
-				            categories:data.allYears
-				        },
-				        yAxis: {
-				            min: 0,
-				            title: {
-				                text: 'Users'
-				            }
-				        },
-				        tooltip: {
-				            headerFormat: '<span style="font-size:10px">{point.key}</span>',
-				            pointFormat: '' + '',
-				            footerFormat: '<table><tbody><tr><td style="color:{series.color};padding:0">{series.name}: </td><td style="padding:0"><b>{point.y}</b></td></tr></tbody></table>',
-				            shared: true,
-				            useHTML: true
-				        },
-				        plotOptions: {
-				            column: {
-				                pointPadding: 0.2,
-				                borderWidth: 0
-				            }
-				        },
-				        series: [{
-				            name: '2013',
-				            data: data.Year2013
-
-				        }, {
-				            name: '2014',
-				            data: data.Year2014
-
-				        }, {
-				            name: '2015',
-				            data: data.Year2015
-				        }]
-				    });
-
-				}});
+					var companychart = new Highcharts.Chart({
+						chart : {
+							renderTo : 'user',
+							type : 'column',
+							margin: 75,
+							options3d : {
+								enabled : true,
+								alpha : 5,
+								beta : 15,
+								depth : 50,
+								viewDistance : 25
+							}
+						},
+						title : {
+							text : 'User Create Time'
+						},
+						plotOptions : {
+							column : {
+								depth : 25
+							}
+						},
+						xAxis : {
+							categories : data.year
+						},
+						yAxis : {
+							title : {
+								text : 'Numbers of Users'
+							},
+						},
+						tooltip : {
+							valueSuffix : 'people'
+						},
+						series : [ {
+							name : 'User',
+							data : data.people
+						} ]
+					});
+				}
+			});
+		
 		
 		// get org's repo-user
 		url="/GithubVisualization/orgTotalData"

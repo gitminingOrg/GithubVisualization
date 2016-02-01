@@ -24,7 +24,6 @@ public class OrgDataController {
 	
 	@RequestMapping(value="/orgTotalData",method=RequestMethod.GET)
 	public Map getOrgLnMap(){
-		logger.debug("wahahahahahaha");
 		Map<String, List> result = new HashMap<String, List>();
 		List<double[]> repoMemberList = orgDataService.getOrgLnMap();
 		result.put("repoMemberList", repoMemberList);
