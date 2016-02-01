@@ -440,10 +440,10 @@ public class UserDataServiceImpl implements UserDataService {
 	@Override
 	public Map<String, int[]> getUserActiveData() {
 		Map<String, int[]> result = new HashMap<String, int[]>();
-		if(memcachedClient.get("userActiveData") != null){
-			result = (Map<String, int[]>) memcachedClient.get("userActiveData");
-			return result;
-		}else{
+//		if(memcachedClient.get("userActiveData") != null){
+//			result = (Map<String, int[]>) memcachedClient.get("userActiveData");
+//			return result;
+//		}else{
 			List<User> allUsers = userDao.selectAllUsers();
 			Map<Integer, Integer> map = new TreeMap<Integer, Integer>();
 	
@@ -466,10 +466,10 @@ public class UserDataServiceImpl implements UserDataService {
 				people[index] = map.get(year);
 				index++;
 			}
-			memcachedClient.add("userActiveData", 0, result);
+//			memcachedClient.add("userActiveData", 0, result);
 			result.put("year", years);
 			result.put("people", people);
 			return result;
-		}
+//		}
 	}
 }
