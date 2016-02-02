@@ -64,6 +64,13 @@
 		<result property="gitclone_url" column="gitclone_url" />
 		<result property="github_url" column="github_url" />
 	</resultMap>
+	
+	<resultMap type="org.gitmining.bean.Language" id="repoLanguage">
+		<result property="id" column="id" />
+		<result property="repo_id" column="repo_id" />
+		<result property="language" column="language" />
+		<result property="count" column="count" />
+	</resultMap>
 
 	<select id="searchRepo" resultMap="simpleRepo">
 		SELECT
@@ -239,5 +246,19 @@
 	
 	<select id="getStatTypes" parameterType="java.util.Map" statementType="STATEMENT" resultType="String" >
 		SELECT ${column} from ${table} order by count desc;
+	</select>
+	
+	<select id="getLanguageType" resultType="String">
+		SELECT language
+		FROM language
+		GROUP BY language
+		ORDER BY count(*) DESC;
+	</select>
+	
+	<select id="getLanguageNumber" resultType="Integer">
+		SELECT count(*)
+		FROM language
+		GROUP BY language
+		ORDER BY count(*) DESC;
 	</select>
 </mapper>

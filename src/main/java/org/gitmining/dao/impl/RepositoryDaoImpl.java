@@ -1,11 +1,16 @@
 package org.gitmining.dao.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import java_cup.internal_error;
+
 import javax.print.attribute.standard.MediaSize.NA;
 
+import org.gitmining.bean.Language;
 import org.gitmining.bean.RepoPairRelation;
 import org.gitmining.bean.RepoScore;
 import org.gitmining.bean.RepoTagPair;
@@ -186,5 +191,28 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		map.put("table", table);
 		map.put("column", column);
 		return sqlSession.selectList("repo.getStatTypes", map);
+	}
+
+	@Override
+	public Map<String, Integer> getLanguageAndNumber() {
+		// TODO Auto-generated method stub
+		List<String> type = sqlSession.selectList("repo.getLanguageType");
+		List<Integer> number = sqlSession.selectList("repo.getLanguageNumber");
+		HashMap<String, Integer> result = new LinkedHashMap<String, Integer>();
+		int others = 0;
+		if(type.size() >= 10){
+			for(int i = 0 ; i < 10 ; i ++){
+				result.put(type.get(i), number.get(i));
+			}
+			for(int i = 10 ; i < type.size(); i ++){
+				others = others + number.get(i);
+			}
+			result.put("others", others);
+		}else{
+			for(int i = 0 ; i < type.size() ; i ++){
+				result.put(type.get(i), number.get(i));
+			}
+		}
+		return result;
 	}
 }

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.gitmining.bean.Choice;
 import org.gitmining.bean.History;
+import org.gitmining.bean.Language;
 import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
 import org.gitmining.bean.Tag;
@@ -134,6 +135,12 @@ public class RepositoryDataController {
 	@RequestMapping(value="/statCounts")
 	public Map getStatCounts(HttpServletRequest request) throws Exception {
 		Map<String, List> result = repoDataService.getStatCounts(request.getParameter("type"));
+		return result;
+	}
+	
+	@RequestMapping(value="/repository/language")
+	public Map<String, Integer> getRepoLanguage(HttpServletRequest request) throws Exception {
+		Map<String, Integer> result = repoDataService.getLanguageAndNumber();
 		return result;
 	}
 }

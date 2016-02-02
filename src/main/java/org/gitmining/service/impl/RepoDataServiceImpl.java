@@ -10,6 +10,7 @@ import net.spy.memcached.MemcachedClient;
 
 import org.gitmining.bean.Event;
 import org.gitmining.bean.History;
+import org.gitmining.bean.Language;
 import org.gitmining.bean.RepoPairRelation;
 import org.gitmining.bean.RepoScore;
 import org.gitmining.bean.Repository;
@@ -168,6 +169,11 @@ public class RepoDataServiceImpl implements RepoDataService {
 		}
 		
 		return result;
+	}
+	@Override
+	public Map<String, Integer> getLanguageAndNumber() {
+		// TODO Auto-generated method stub
+		return repositoryDao.getLanguageAndNumber();
 	}
 
 }

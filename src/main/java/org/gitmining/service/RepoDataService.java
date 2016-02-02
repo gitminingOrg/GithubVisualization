@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.gitmining.bean.History;
+import org.gitmining.bean.Language;
 import org.gitmining.bean.Repository;
 import org.gitmining.bean.SimpleRepo;
 
@@ -19,4 +20,5 @@ public interface RepoDataService {
 	 * @return
 	 */
 	public Map<String, List> getStatCounts(String type);
+	public Map<String, Integer> getLanguageAndNumber();
 }

@@ -2,6 +2,7 @@ package org.gitmining.dao;
 
 import java.util.*;
 
+import org.gitmining.bean.Language;
 import org.gitmining.bean.RepoPairRelation;
 import org.gitmining.bean.RepoScore;
 import org.gitmining.bean.RepoTagPair;
@@ -49,4 +50,6 @@ public interface RepositoryDao {
 	public List<Integer> getStatCounts(String table);
 	
 	public List<String> getStatTypes(String table,String column);
+	
+	public Map<String, Integer> getLanguageAndNumber();
 }
