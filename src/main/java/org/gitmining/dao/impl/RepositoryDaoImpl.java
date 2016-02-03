@@ -215,4 +215,10 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		}
 		return result;
 	}
+
+	@Override
+	public List<String> getRepoCreateTime() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("repo.getRepoCreateTime");
+	}
 }

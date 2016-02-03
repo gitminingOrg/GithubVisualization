@@ -52,4 +52,6 @@ public interface RepositoryDao {
 	public List<String> getStatTypes(String table,String column);
 	
 	public Map<String, Integer> getLanguageAndNumber();
+	
+	public List<String> getRepoCreateTime();
 }

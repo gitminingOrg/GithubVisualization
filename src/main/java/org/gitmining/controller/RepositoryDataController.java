@@ -1,5 +1,7 @@
 package org.gitmining.controller;
 
+import java_cup.internal_error;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -141,6 +143,21 @@ public class RepositoryDataController {
 	@RequestMapping(value="/repository/language")
 	public Map<String, Integer> getRepoLanguage(HttpServletRequest request) throws Exception {
 		Map<String, Integer> result = repoDataService.getLanguageAndNumber();
+		return result;
+	}
+	
+	@RequestMapping(value="/repository/createtime")
+	public Map<Integer, Integer> getRepoCreateTime(HttpServletRequest request) throws Exception {
+		List<String> createtime = repoDataService.getRepoCreateTime();
+		Map<Integer, Integer> result = new HashMap<Integer, Integer>();
+		for(int i = 0 ; i < createtime.size() ; i ++){
+			int year = Integer.parseInt(createtime.get(i).split("-")[0]);
+			if(result.containsKey(year)){
+				result.put(year, result.get(year) + 1);
+			}else{
+				result.put(year, 1);
+			}
+		}
 		return result;
 	}
 }

@@ -21,4 +21,5 @@ public interface RepoDataService {
 	 */
 	public Map<String, List> getStatCounts(String type);
 	public Map<String, Integer> getLanguageAndNumber();
+	public List<String> getRepoCreateTime();
 }

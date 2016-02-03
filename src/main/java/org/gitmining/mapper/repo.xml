@@ -261,4 +261,9 @@
 		GROUP BY language
 		ORDER BY count(*) DESC;
 	</select>
+	
+	<select id="getRepoCreateTime" resultType="String">
+		SELECT create_time
+		FROM repotest
+	</select>
 </mapper>

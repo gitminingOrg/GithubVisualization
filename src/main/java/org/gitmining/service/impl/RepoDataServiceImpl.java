@@ -175,5 +175,10 @@ public class RepoDataServiceImpl implements RepoDataService {
 		// TODO Auto-generated method stub
 		return repositoryDao.getLanguageAndNumber();
 	}
+	@Override
+	public List<String> getRepoCreateTime() {
+		// TODO Auto-generated method stub
+		return repositoryDao.getRepoCreateTime();
+	}
 
 }
