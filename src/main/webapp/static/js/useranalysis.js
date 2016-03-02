@@ -64,7 +64,7 @@ $(function() {
 			type : 'GET',
 			success : function(data, textStatus) {
 				// Build the chart
-				$('#user').highcharts({
+				$('#totalCount').highcharts({
 					chart : {
 						plotBackgroundColor : null,
 						plotBorderWidth : null,
