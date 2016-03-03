@@ -180,5 +180,15 @@ public class RepoDataServiceImpl implements RepoDataService {
 		// TODO Auto-generated method stub
 		return repositoryDao.getRepoCreateTime();
 	}
+	@Override
+	public List<Integer> getContributorNumber() {
+		// TODO Auto-generated method stub
+		return repositoryDao.getContributorNumber();
+	}
+	@Override
+	public List<Integer> getCollaboratorNumber() {
+		// TODO Auto-generated method stub
+		return repositoryDao.getCollaboratorNumber();
+	}
 
 }

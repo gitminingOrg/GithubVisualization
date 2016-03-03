@@ -266,4 +266,14 @@
 		SELECT create_time
 		FROM repotest
 	</select>
+	
+	<select id="getContributorNumber" resultType="Integer">
+		SELECT contributor
+		FROM repotest
+	</select>
+	
+	<select id="getCollaboratorNumber" resultType="Integer">
+		SELECT collaborator
+		FROM repotest
+	</select>
 </mapper>

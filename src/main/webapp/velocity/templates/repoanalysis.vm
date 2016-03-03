@@ -2,7 +2,7 @@
 
 	<div class="ui main text container">
 		
-		<div id="user"></div>
+		<div id="language"></div>
 		<div id="company1"></div>
 		<div id="blog"></div>
 		<div id="location"></div>

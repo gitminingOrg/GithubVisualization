@@ -221,4 +221,16 @@ public class RepositoryDaoImpl extends BaseDaoImpl implements RepositoryDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("repo.getRepoCreateTime");
 	}
+
+	@Override
+	public List<Integer> getContributorNumber() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("repo.getContributorNumber");
+	}
+
+	@Override
+	public List<Integer> getCollaboratorNumber() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("repo.getCollaboratorNumber");
+	}
 }

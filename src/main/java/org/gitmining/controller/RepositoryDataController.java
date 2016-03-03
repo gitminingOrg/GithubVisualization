@@ -141,8 +141,17 @@ public class RepositoryDataController {
 	}
 	
 	@RequestMapping(value="/repository/language")
-	public Map<String, Integer> getRepoLanguage(HttpServletRequest request) throws Exception {
-		Map<String, Integer> result = repoDataService.getLanguageAndNumber();
+	public Map<String, Object> getRepoLanguage(HttpServletRequest request) throws Exception {
+		Map<String, Object> result = new HashMap<String, Object>();
+		List<String> language = new ArrayList<String>();
+		List<Integer> number = new ArrayList<Integer>();
+		Map<String, Integer> temp = repoDataService.getLanguageAndNumber();
+		for(String key : temp.keySet()){
+			language.add(key);
+			number.add(temp.get(key));
+		}
+		result.put("language", language);
+		result.put("number", number);
 		return result;
 	}
 	
@@ -156,6 +165,56 @@ public class RepositoryDataController {
 				result.put(year, result.get(year) + 1);
 			}else{
 				result.put(year, 1);
+			}
+		}
+		return result;
+	}
+	
+	@RequestMapping(value="/repository/contributor")
+	public Map<String, Integer> getRepoContributor(HttpServletRequest request) throws Exception {
+		Map<String, Integer> result = new LinkedHashMap<String, Integer>();
+		List<Integer> temp = repoDataService.getContributorNumber();
+		result.put("0~25", 0);
+		result.put("25~50", 0);
+		result.put("50~75", 0);
+		result.put("75~100", 0);
+		result.put("over 100", 0);
+		for(int i = 0 ; i < temp.size() ; i ++){
+			if(temp.get(i) >= 0 && temp.get(i) <= 25){
+				result.put("0~25", result.get("0~25") + 1);
+			}else if(temp.get(i) > 25 && temp.get(i) <= 50){
+				result.put("25~50", result.get("25~50") + 1);
+			}else if(temp.get(i) > 50 && temp.get(i) <= 75){
+				result.put("50~75", result.get("50~75") + 1);
+			}else if(temp.get(i) > 75 && temp.get(i) <= 100){
+				result.put("75~100", result.get("75~100") + 1);
+			}else{
+				result.put("over 100", result.get("over 100") + 1);
+			}
+		}
+		return result;
+	}
+	
+	@RequestMapping(value="/repository/collaborator")
+	public Map<String, Integer> getRepoCollaborator(HttpServletRequest request) throws Exception {
+		Map<String, Integer> result = new LinkedHashMap<String, Integer>();
+		List<Integer> temp = repoDataService.getCollaboratorNumber();
+		result.put("0~25", 0);
+		result.put("25~50", 0);
+		result.put("50~75", 0);
+		result.put("75~100", 0);
+		result.put("over 100", 0);
+		for(int i = 0 ; i < temp.size() ; i ++){
+			if(temp.get(i) >= 0 && temp.get(i) <= 25){
+				result.put("0~25", result.get("0~25") + 1);
+			}else if(temp.get(i) > 25 && temp.get(i) <= 50){
+				result.put("25~50", result.get("25~50") + 1);
+			}else if(temp.get(i) > 50 && temp.get(i) <= 75){
+				result.put("50~75", result.get("50~75") + 1);
+			}else if(temp.get(i) > 75 && temp.get(i) <= 100){
+				result.put("75~100", result.get("75~100") + 1);
+			}else{
+				result.put("over 100", result.get("over 100") + 1);
 			}
 		}
 		return result;

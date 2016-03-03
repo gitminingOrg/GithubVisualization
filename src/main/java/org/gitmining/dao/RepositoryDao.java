@@ -2,6 +2,8 @@ package org.gitmining.dao;
 
 import java.util.*;
 
+import java_cup.internal_error;
+
 import org.gitmining.bean.Language;
 import org.gitmining.bean.RepoPairRelation;
 import org.gitmining.bean.RepoScore;
@@ -54,4 +56,8 @@ public interface RepositoryDao {
 	public Map<String, Integer> getLanguageAndNumber();
 	
 	public List<String> getRepoCreateTime();
+	
+	public List<Integer> getContributorNumber();
+	
+	public List<Integer> getCollaboratorNumber();
 }
