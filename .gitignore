@@ -1,2 +1,4 @@
 /target/
 /bin/
+.settings/org.eclipse.wst.common.component
+.classpath
