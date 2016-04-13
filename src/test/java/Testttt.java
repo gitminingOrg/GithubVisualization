@@ -29,4 +29,9 @@ public class Testttt {
 	public void test4() {
 		assertEquals(null, "123", "123");
 	}
+	
+	@Test
+	public void test5() {
+		assertEquals(null, "123", "12");
+	}
 }
